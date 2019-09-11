@@ -23,8 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::check() && Auth::user()->admin != true){
-            return view('cliente.index');
+        if(auth()->check() && auth()->user()->admin != true){
+            return view('clientes.index');
         }
         return view('admin.index');
 

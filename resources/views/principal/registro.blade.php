@@ -18,7 +18,7 @@
         <div class="bread-crumbs-wrapper">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html" title="" itemprop="url">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}" title="" itemprop="url">Inicio</a></li>
                     <li class="breadcrumb-item active">Regístrate</li>
                 </ol>
             </div>
@@ -47,77 +47,77 @@
                                             <div class="reservation-tab-content">
                                                 <div class="tab-content">
                                                     <div class="tab-pane fade in active" id="reservation-tab1">
-                                                        <form class="restaurant-info-form brd-rd5">
+                                                            <form class="restaurant-info-form brd-rd5" method="POST" action="{{ route('register') }}">
+                                                                @csrf
                                                             <div class="row mrg20">
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Tipo de Identificación <sup>*</sup></label>
                                                                     <div class="select-wrp">
-                                                                        <select>
-                                                                            <option>DNI</option>
-                                                                            <option>Pasaporte</option>
-                                                                            <option>Cédula</option>
-                                                                            <option>Carné de Estranjería</option>
-                                                                            <option>Permiso Temporal de Permanencia
+                                                                        <select name="id_type">
+                                                                            <option value="1">DNI</option>
+                                                                            <option value="2">Pasaporte</option>
+                                                                            <option value="3">Cédula</option>
+                                                                            <option value="4">Carné de Estranjería</option>
+                                                                            <option value="5">Permiso Temporal de Permanencia
                                                                                 (PTP)</option>
-                                                                            <option>Registro Único de Contribuyentes
+                                                                            <option value="6">Registro Único de Contribuyentes
                                                                                 (RUC)</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Número de Identificación<sup>*</sup></label>
-                                                                    <input class="brd-rd3" type="text">
+                                                                    <input class="brd-rd3" type="text" name="id_number">
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Nombres<sup>*</sup></label>
-                                                                    <input class="brd-rd3" type="text">
+                                                                    <input class="brd-rd3" type="text" name="name">
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Apellidos<sup>*</sup></label>
-                                                                    <input class="brd-rd3" type="text">
+                                                                    <input class="brd-rd3" type="text" name="surname">
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Teléfono Principal<sup>*</sup></label>
-                                                                    <input class="brd-rd3" type="text">
+                                                                    <input class="brd-rd3" type="text" name="telefone">
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Teléfono Secundario</label>
-                                                                    <input class="brd-rd3" type="text">
+                                                                    <input class="brd-rd3" type="text" name="telefone_secondary">
                                                                 </div>
                                                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                                                     <label>Dirección</label>
-                                                                    <input class="brd-rd3" type="text">
+                                                                    <input class="brd-rd3" type="text" name="address">
                                                                 </div>
                                                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                                                     <h4 itemprop="headline">Terminar Inscripción</h4>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
-                                                                    <label>Usuario <sup>*</sup></label>
-                                                                    <input class="brd-rd3" type="text">
-                                                                </div>
-                                                                <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Correo Electrónico <sup>*</sup></label>
-                                                                    <input class="brd-rd3" type="email">
+                                                                    <input class="brd-rd3" type="email" name="email">
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Contraseña <sup>*</sup></label>
-                                                                    <input class="brd-rd3" type="text">
+                                                                    <input class="brd-rd3" type="password" name="password" >
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Repite la Contraseña <sup>*</sup></label>
-                                                                    <input class="brd-rd3" type="text">
+                                                                    <input class="brd-rd3" type="password" name="password">
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                                                    <label>Seleccione su foto de perfil</label>
+                                                                    <input type="file" name="cover">
                                                                 </div>
                                                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                                                     <div class="check-box">
-                                                                        <input type="checkbox" id="agrement">
+                                                                        <input type="checkbox" name="agrement" id="agrement">
                                                                         <label for="agrement">Acepto los términos y
                                                                             condiciones</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                                                     <div class="step-buttons">
-                                                                        <a class="brd-rd3 red-bg" href="#" title=""
-                                                                            itemprop="url">Regístrarme</a>
+                                                                        <input type="submit" value="Enviar" class="btn btn-danger">
                                                                     </div>
                                                                 </div>
                                                             </div>

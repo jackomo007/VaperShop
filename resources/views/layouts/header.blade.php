@@ -2,7 +2,7 @@
     @if(Auth::check())
         <div class="topbar">
             <div class="container">
-                <a class="log-popup-btn" href="#" title="Login" itemprop="url">MI CARRITO</a>
+                {{--  <a class="log-popup-btn" href="#" title="Login" itemprop="url">MI CARRITO</a>  --}}
                 <div class="social1">
                     <a href="#" title="Login" itemprop="url">MI CARRITO</a>
                     <a href="#" title="#" itemprop="url" target="_blank"><i class="fa fa-cart-arrow-down">
@@ -12,6 +12,16 @@
                         <p style="color:white;font-size:12px">0</p>
                     @endif
                     </i></a>
+                     @if (Route::has('login'))
+                             <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                Salir
+                            </a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                    @endif
                 </div>
             </div>
         </div>
@@ -78,7 +88,9 @@
         </div>
         <div class="topbar-register">
             <a class="log-popup-btn" href="#" title="Login" itemprop="url">INICIA SESIÓN</a><br><br>
+            @if(Auth::check()) 
             <a href="{{ url('/registro') }}" title="REGÍSTRATE" itemprop="url">REGÍSTRATE</a>
+            @endif
         </div>
     </div>
 </div><!-- Responsive Menu -->

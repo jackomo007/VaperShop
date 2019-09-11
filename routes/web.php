@@ -43,6 +43,41 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
+Route::get('/carrito', 'ShoppingCartController@index');
+Route::post('/carrito', 'ShoppingCartController@checkout');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('users', 'UsersController');
+
+Route::resource('products','ProductsController');
+
+Route::resource('in_shopping_carts','InShoppingCartsController', [ 
+	'only' => ['store','destroy'] 
+	]);
+
+Route::resource('compras', 'ShoppingCartController', [
+	'only' => ['show']
+]);
+
+Route::resource('orders', 'OrdersController', [
+	'only' => ['index', 'update']
+]);
+
+Route::get('/home', 'HomeController@index');
+
+Route::get('products/images/{filename}',function($filename){
+	$path = storage_path("app/images/$filename");
+	
+	if(!\File::exists($path)) abort(404);
+	
+	$file = \File::get($path);
+	
+	$type = \File::mimeType($path);
+	
+	$response = Response::make($file,200);
+	
+	$response->header("Content-Type",$type);
+	
+	return $response;
+});

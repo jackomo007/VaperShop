@@ -60,25 +60,29 @@
                     <div class="sign-popup-title text-center">
                         <h4 itemprop="headline">INICIA SESIÓN</h4>
                     </div>
-                    <form class="sign-form">
+                    <form <form method="POST" action="{{ route('login') }}" class="sign-form">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-lg-12">
-                                <input class="brd-rd3" type="text" placeholder="Usuario o Correo Electrónico">
+                                <input class="brd-rd3" type="text" name="email" placeholder="Usuario o Correo Electrónico">
                             </div>
                             <div class="col-md-12 col-sm-12 col-lg-12">
-                                <input class="brd-rd3" type="password" placeholder="Contraseña">
+                                <input class="brd-rd3" type="password" name="password" placeholder="Contraseña">
                             </div>
                             <div class="col-md-12 col-sm-12 col-lg-12">
                                 <button class="red-bg brd-rd3" type="submit">INICIA SESIÓN</button>
                             </div>
+                         </div>
+                    </form>
+                        <div class="row">
                             <div class="col-md-12 col-sm-12 col-lg-12">
-                                <a class="sign-btn" href="register.html" title="" itemprop="url">Todavía no eres
+                                <a class="sign-btn" href="{{ url('/registro') }}" title="" itemprop="url">Todavía no eres
                                     miembro?
                                     Regístrate</a>
                                 <a class="recover-btn" href="#" title="" itemprop="url">Recuperar mi contraseña</a>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

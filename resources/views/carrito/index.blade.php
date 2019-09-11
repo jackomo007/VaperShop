@@ -39,15 +39,20 @@
                                     <div class="statement-table">
                                         <table>
                                             <thead>
-                                                <tr><th>#</th><th>PRODUCTO</th><th>PRECIO POR UNIDAD</th><th>CANTIDAD</th><th>COSTO TOTAL</th></tr>
+                                                <tr><th>Nº</th><th>PRODUCTO</th><th>PRECIO POR UNIDAD</th><th>CANTIDAD</th><th>OPCIONES</th></tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>#1</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
-                                                <tr><td>#2</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
-                                                <tr><td>#3</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
-                                                <tr><td>#4</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
-                                                <tr><td>#5</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
-                                                <tr><td></td></td><td></td><td>TOTAL</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
+                                                 @foreach($products as $product)
+                                                    <tr>
+                                                        <td>$i</td><td></td>
+                                                        <td> {{$product->title}} </td>
+                                                        <td>{{$product->price_sale}}</td>
+                                                        <td>{{$product->quantity}}</td>
+                                                        <td>@include('in_shopping_carts.delete', [$product->id])</td>
+                                                    </tr> 
+                                                @endforeach
+
+                                                <tr><td></td><td></td><td>TOTAL</td><td>4</td><td><span class="red-clr">S/{{$total}}</span></td></tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -56,7 +61,7 @@
                                     <div class="loc-map2">
                                         <div class="loc-map brd-rd3" id="loc-map"></div>
                                         <div class="loc-srch" style="left: 300px;">
-                                            <button href="finalizacompra.html"class="brd-rd3 red-bg">Finalizar Compra</button>
+                                            @include("shopping_carts.form")
                                         </div>
                                     </div>
                                 </div>
