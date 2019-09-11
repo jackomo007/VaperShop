@@ -31,9 +31,8 @@ Route::get('/productos/editar', function () {
     return view('productos.editar');
 });
 
-Route::get('/clientes', function () {
-    return view('clientes.index');
-});
+Route::get('/cliente', 'ClientController@index')->name('client.index');
+Route::put('/cliente/{cliente}', 'ClientController@update')->name('client.update');
 
 Route::get('/carrito', function () {
     return view('carrito.index');

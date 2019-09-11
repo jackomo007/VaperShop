@@ -35,11 +35,17 @@
                                         <div class="profile-sidebar brd-rd5 wow fadeIn" data-wow-delay="0.2s">
                                             <div class="profile-sidebar-inner brd-rd5">
                                                 <div class="user-info red-bg">
-                                                    <img class="brd-rd50" src="/../../../../images/resource/user-avatar.jpg" alt="user-avatar.jpg" itemprop="image">
+                                                    <img class="brd-rd50" width="90" height="90" src="/../../../../images/logo2.png" alt="user-avatar.jpg" itemprop="image">
                                                     <div class="user-info-inner">
                                                         <h5 itemprop="headline"><a href="#" title="" itemprop="url">MI CUENTA</a></h5>
-                                                        <span><a href="#" title="" itemprop="url">dum3@chimpgroou.com</a></span>
-                                                        <a class="brd-rd3 sign-out-btn yellow-bg" href="#" title="" itemprop="url"><i class="fa fa-sign-out"></i> CERRAR SESIÓN</a>
+                                                        <span><a href="#" title="" itemprop="url">{{ $user->email }}</a></span>
+                                                        <a class="brd-rd3 sign-out-btn yellow-bg" href="{{ url('/logout') }}"
+                                                        onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();" title="" itemprop="url"><i class="fa fa-sign-out"></i> CERRAR SESIÓN</a>
+
+                                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                                        {{ csrf_field() }}
+                                                    </form>
                                                     </div>
                                                 </div>
                                                 <ul class="nav nav-tabs">
@@ -55,7 +61,7 @@
                                             <div class="tab-pane fade in active" id="estado">
                                                 <div class="dashboard-wrapper brd-rd5">
                                                     <div class="welcome-note yellow-bg brd-rd5">
-                                                        <h4 itemprop="headline">BIENVENIDO A TU CUENTA</h4>
+                                                        <h4 itemprop="headline">SALUDOS {{ $user->name }} BIENVENID@ A TU CUENTA</h4>
                                                         <p itemprop="description">Revisa tus movimientos y las informaciones de tu perfil</p>
                                                         <img src="images/resource/welcome-note-img.png" alt="welcome-note-img.png" itemprop="image">
                                                         <a class="remove-noti" href="#" title="" itemprop="url"><img src="images/close-icon.png" alt="close-icon.png" itemprop="image"></a>
@@ -194,59 +200,38 @@
                                                     <h4 itemprop="headline">EDITAR PERFIL</h4>
                                                     <div class="account-settings-inner">
                                                         <div class="row">
-                                                            <div class="col-md-4 col-sm-4 col-lg-4">
-                                                                <div class="profile-info text-center">
-                                                                    <div class="profile-thumb brd-rd50">
-                                                                        <img id="profile-display" src="images/resource/profile-img1.jpg" alt="profile-img1.jpg" itemprop="image">
-                                                                    </div>
-                                                                    <a class="red-clr change-password" href="#" title="" itemprop="url">Cambiar Contraseña</a>
-                                                                    <div class="profile-img-upload-btn">
-                                                                        <label class="fileContainer brd-rd5 yellow-bg">
-                                                                            SUBIR FOTO
-                                                                            <input id="profile-upload" type="file"/>
-                                                                        </label>
-                                                                    </div>
-                                                                    <p itemprop="description">Sube una foto o elige una de estas</p>
-                                                                    <div class="default-img-lst">
-                                                                        <img class="brd-rd50" src="images/resource/profile-thumb1.jpg" alt="profile-thumb1.jpg" itemprop="image">
-                                                                        <img class="brd-rd50" src="images/resource/profile-thumb2.jpg" alt="profile-thumb2.jpg" itemprop="image">
-                                                                        <img class="brd-rd50" src="images/resource/profile-thumb3.jpg" alt="profile-thumb3.jpg" itemprop="image">
-                                                                        <img class="brd-rd50" src="images/resource/profile-thumb4.jpg" alt="profile-thumb4.jpg" itemprop="image">
-                                                                        <img class="brd-rd50" src="images/resource/profile-thumb5.jpg" alt="profile-thumb5.jpg" itemprop="image">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
                                                             <div class="col-md-8 col-sm-8 col-lg-8">
                                                                 <div class="profile-info-form-wrap">
-                                                                    <form class="profile-info-form">
+                                                                    <form class="profile-info-form" action="/cliente/{{ $user->id }}/edit">
+                                                                        @csrf
+                                                                        @method('PUT')
                                                                         <div class="row mrg20">
                                                                             <div class="col-md-12 col-sm-12 col-lg-12">
                                                                                 <label>Nombre<sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Nombre">
+                                                                                <input class="brd-rd3" type="text" placeholder="Nombre" value="{{ $user->name }}">
                                                                             </div>
                                                                             <div class="col-md-12 col-sm-12 col-lg-12">
                                                                                 <label>Apellidos <sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Apellidos">
+                                                                                <input class="brd-rd3" type="text" placeholder="Apellidos" value="{{ $user->surname }}">
                                                                             </div>
                                                                             <div class="col-md-12 col-sm-12 col-lg-12">
                                                                                 <label>Teléfono<sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Teléfono">
-                                                                            </div><div class="col-md-12 col-sm-12 col-lg-12">
-                                                                                <label>Correo Electrónico<sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Email">
-                                                                            </div><div class="col-md-12 col-sm-12 col-lg-12">
+                                                                                <input class="brd-rd3" type="text" placeholder="Teléfono" value="{{ $user->phoneNumber }}">
+                                                                            </div>
+                                                                            <div class="col-md-12 col-sm-12 col-lg-12">
                                                                                 <label>Dirección<sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Dirección">
+                                                                                <input class="brd-rd3" type="text" placeholder="Dirección" value="{{ $user->address }}">
                                                                             </div>
                                                                         </div>
                                                                     </form>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-12 col-sm-12 col-lg-12">
+                                                            <div  style="margin-top:20px" class="col-md-12 col-sm-12 col-lg-12">
                                                                 <div class="loc-map2">
                                                                     <div class="loc-map brd-rd3" id="loc-map"></div>
                                                                     <div class="loc-srch">
-                                                                        <button class="brd-rd3 red-bg" type="submit">Actualizar</button>
+                                                                        <button class="brd-rd3 red-bg type="submit">Actualizar</button>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -2,7 +2,6 @@
     @if(Auth::check())
         <div class="topbar">
             <div class="container">
-                <a class="log-popup-btn" href="#" title="Login" itemprop="url">MI CARRITO</a>
                 <div class="social1">
                     <a href="#" title="Login" itemprop="url">MI CARRITO</a>
                     <a href="#" title="#" itemprop="url" target="_blank"><i class="fa fa-cart-arrow-down">
@@ -48,7 +47,7 @@
                         </li>
                         <li><a href="{{ url('/contacto') }}" title="CONTÁCTANOS" itemprop="url">CONTÁCTANOS</a></li>
                     </ul>
-                    @if(Auth::check()) 
+                    @if(!Auth::check())
                         <a class="red-bg brd-rd4" href="{{ url('/registro') }}" title="REGÍSTRATE" itemprop="url">REGÍSTRATE AQUÍ</a>
                     @endif
                 </div>
@@ -78,7 +77,9 @@
         </div>
         <div class="topbar-register">
             <a class="log-popup-btn" href="#" title="Login" itemprop="url">INICIA SESIÓN</a><br><br>
+            @if(!Auth::check())
             <a href="{{ url('/registro') }}" title="REGÍSTRATE" itemprop="url">REGÍSTRATE</a>
+            @endif
         </div>
     </div>
 </div><!-- Responsive Menu -->

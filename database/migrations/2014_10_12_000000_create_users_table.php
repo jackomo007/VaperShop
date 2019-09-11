@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('surname');
             $table->integer('id_type');
             $table->integer('id_number');
-            $table->integer('telefone');
-            $table->integer('telefone_secondary');
+            $table->string('phoneNumber');
+            $table->string('phoneNumber_secondary');
             $table->string('address');
             $table->boolean('admin')->nullable();
             $table->string('email')->unique();
