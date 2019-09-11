@@ -48,7 +48,7 @@
                         </li>
                         <li><a href="{{ url('/contacto') }}" title="CONTÁCTANOS" itemprop="url">CONTÁCTANOS</a></li>
                     </ul>
-                    @if(Auth::check()) 
+                    @if(!Auth::check())
                         <a class="red-bg brd-rd4" href="{{ url('/registro') }}" title="REGÍSTRATE" itemprop="url">REGÍSTRATE AQUÍ</a>
                     @endif
                 </div>
@@ -78,7 +78,9 @@
         </div>
         <div class="topbar-register">
             <a class="log-popup-btn" href="#" title="Login" itemprop="url">INICIA SESIÓN</a><br><br>
+            @if(!Auth::check())
             <a href="{{ url('/registro') }}" title="REGÍSTRATE" itemprop="url">REGÍSTRATE</a>
+            @endif
         </div>
     </div>
 </div><!-- Responsive Menu -->
