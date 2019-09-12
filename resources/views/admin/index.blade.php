@@ -24,11 +24,12 @@
                                         <div class="user-info-inner">
                                             <h5 itemprop="headline"><a href="#" title=""
                                                     itemprop="url">ADMINISTRADOR</a></h5>
-                                            <span><a href="#" title=""
-                                                    itemprop="url">{{ $user->email }}</a></span>
-                                            <a class="brd-rd3 sign-out-btn yellow-bg" href="#" title=""
-                                                itemprop="url"><i class="fa fa-sign-out"></i> CERRAR
-                                                SESIÓN</a>
+                                            <span><a href="#" title="" itemprop="url">{{ $user->email }}</a></span>
+                                            <a class="brd-rd3 sign-out-btn yellow-bg" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="" itemprop="url">
+                                                <i class="fa fa-sign-out"></i> CERRAR SESIÓN</a>
+                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
                                         </div>
                                     </div>
                                     <ul class="nav nav-tabs">
@@ -58,36 +59,37 @@
                                         <div class="dashboard-title">
                                             <h4 itemprop="headline">REGISTRA TU CATEGORÍA</h4>
                                         </div>
-                                        <form class="restaurant-info-form brd-rd5">
+                                        @if (\Session::get('success'))
+                                            <div class="alert alert-success">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <p style="margin-left: 30%;">{{ \Session::get('success') }}</p>
+                                            </div>
+                                        @endif
+                                        <form class="restaurant-info-form brd-rd5" method="POST" action="/categoria">
+                                            @csrf
                                             <div class="row mrg20">
                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                     <label>Nombre de Categoría<sup>*</sup></label>
-                                                    <input class="brd-rd3" type="text">
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                                    <label>Agregar Subcategoría</label>
-                                                    <input class="brd-rd3" type="text">
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                                    <label></label>
-                                                    <input class="brd-rd3" type="text">
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                                    <label></label>
-                                                    <input class="brd-rd3" type="text">
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                                    <label></label>
-                                                    <input class="brd-rd3" type="text">
+                                                    <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+
+                                                    @error('name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                                     <label>Descripción de la Categoría</label>
-                                                    <input class="brd-rd3" type="text">
+                                                    <input id="description" type="text" class="brd-rd3 @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" autocomplete="description" autofocus>
+                                                    @error('description')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                                     <div class="step-buttons">
-                                                        <a class="brd-rd3 red-bg" href="#" title=""
-                                                            itemprop="url">Agregar Categoría</a>
+                                                        <button type="submit" class="btn btn-danger">Agregar Categoria</button>
                                                     </div>
                                                 </div>
                                             </div>

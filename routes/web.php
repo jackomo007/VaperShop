@@ -34,6 +34,10 @@ Route::get('/productos/editar', function () {
 Route::get('/cliente', 'ClientController@index')->name('client.index');
 Route::put('/cliente/{cliente}', 'ClientController@update')->name('client.update');
 
+Route::post('/categoria', 'CategoryController@store')->name('client.store');
+
+
+
 Route::get('/carrito', function () {
     return view('carrito.index');
 });
