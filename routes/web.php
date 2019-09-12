@@ -38,9 +38,7 @@ Route::get('/carrito', function () {
     return view('carrito.index');
 });
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::get('/admin', 'AdminController@index')->name('admin.index');
 
 Auth::routes();
 
