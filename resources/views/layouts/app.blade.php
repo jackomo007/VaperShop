@@ -19,6 +19,8 @@
         <link rel="stylesheet" href="{{ asset('css/yellow-color.css') }}">
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
         <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+
 
 </head>
 <body itemscope>
@@ -105,7 +107,7 @@
     </main>
 
      <!-- Scripts -->
-        <script src="/js/app.js" defer></script>
+        {{-- <script src="/js/app.js" defer></script> --}}
         <!-- Main Wrapper -->
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
@@ -117,7 +119,12 @@
         <!-- jQuery sticky menu -->
         <script src="/js/owl.carousel.min.js"></script>
         <script src="/js/jquery.sticky.js"></script>
-
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            } );
+            </script>
 </body>
 
 </html>
