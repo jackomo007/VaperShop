@@ -38,11 +38,11 @@
                                         </div>
                                     </div>
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a onclick="categorias()"  style="cursor: pointer;" data-toggle="tab"><i class="fa fa-superpowers"></i>CATEGORIAS</a></li>
-                                        <li><a onclick="subCategorias()"  style="cursor: pointer;" data-toggle="tab"><i class="fa fa-superpowers"></i> SUBCATEGORÍAS</a></li>
-                                        <li><a onclick="productos()"  style="cursor: pointer;" data-toggle="tab"><i class="fa fa-shopping-basket"></i>PRODUCTOS</a></li>
-                                        <li><a onclick="clientes()"  style="cursor: pointer;" data-toggle="tab"><i class="fa fa-user-circle-o"></i>CLIENTES</a></li>
-                                        <li><a onclick="otras()"  style="cursor: pointer;" data-toggle="tab"><i class="fa fa-cog"></i>OTRAS CONFIGURACIONES</a></li>
+                                        <li class="active"><a href="#categorias" style="cursor: pointer;" data-toggle="tab"><i class="fa fa-superpowers"></i>CATEGORIAS</a></li>
+                                        <li><a href="#sub-categorias" style="cursor: pointer;" data-toggle="tab"><i class="fa fa-superpowers"></i> SUBCATEGORÍAS</a></li>
+                                        <li><a  href="#productos" style="cursor: pointer;" data-toggle="tab"><i class="fa fa-shopping-basket"></i>PRODUCTOS</a></li>
+                                        <li><a  href="#clientes" style="cursor: pointer;" data-toggle="tab"><i class="fa fa-user-circle-o"></i>CLIENTES</a></li>
+                                        <li><a  href="#otros" style="cursor: pointer;" data-toggle="tab"><i class="fa fa-cog"></i>OTRAS CONFIGURACIONES</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -102,11 +102,18 @@
                                         <div class="row">
                                             <button class="btn btn-success"><li><a href="#clientes" data-toggle="tab"><i class="fa fa-user-circle-o"></i> Nuevo Regitro</a></li></button>
                                         </div>
-                                        <div id="tabela"></table>
+                                        <div id="tabla_categoria"></div>
                                     </div>
                                 </div>
 
+                                <div class="tab-pane fade" id="sub-categorias">
+                                    <div class="dashboard-wrapper brd-rd5" style="padding:0px">
+                                        <div class="tabs-wrp brd-rd5">
+                                            <h4 itemprop="headline">AGREGAR PRODUCTOS</h4>
 
+                                        <div id="tabla_sub_categoria"></div>
+                                    </div>
+                                </div>
 
                                 <div class="tab-pane fade" id="productos">
                                     <div class="tabs-wrp brd-rd5">
