@@ -15,7 +15,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = new Category;
+
+        $all = $category->list();
+
+        return $all;
     }
 
     /**
