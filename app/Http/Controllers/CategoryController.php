@@ -82,19 +82,24 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        //
+         Category::where('id',$request->cat_id)->update([
+                'name' => $request->cat_name,
+                'description' => $request->cat_description,
+            ]);
+
+            return back()->with('success', 'Categoria actualizada con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
-        //
+        Category::where('id', $request->id)->delete();
+        return 200;
     }
 }

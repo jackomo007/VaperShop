@@ -34,10 +34,6 @@ Route::get('/productos/editar', function () {
 Route::get('/cliente', 'ClientController@index')->name('client.index');
 Route::put('/cliente/{cliente}', 'ClientController@update')->name('client.update');
 
-Route::post('/categoria', 'CategoryController@store')->name('category.store');
-
-
-
 Route::get('/carrito', function () {
     return view('carrito.index');
 });
@@ -45,6 +41,9 @@ Route::get('/carrito', function () {
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 
 Route::get('/categoria', 'CategoryController@index')->name('category.index');
+Route::post('/categoria', 'CategoryController@store')->name('category.store');
+Route::put('/categoria', 'CategoryController@update')->name('category.update');
+Route::delete('/categoria', 'CategoryController@destroy')->name('category.destroy');
 
 Auth::routes();
 
