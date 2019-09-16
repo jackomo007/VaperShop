@@ -75,35 +75,35 @@ $(document).on("click", ".registrar_categoria", function () {
 });
 
 
-
 $(document).on("click", ".eliminar_categoria", function () {
     event.preventDefault();
 
     var id = $(this).attr("cat-cod");
-    var formData = {id:id};
+    var formData = { id: id };
 
     $.ajax({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    url: 'http://127.0.0.1:8000/categoria',
-    type: 'DELETE',
-    data: formData,
-    success: function (result) {
-        if(result == 200){
-            document.getElementById("alerta").style.display = "block";
-            setTimeout(function() {  
-                document.getElementById("alerta").style.display = "none"; 
-                location.reload();
-            }, 3000);
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: 'http://127.0.0.1:8000/categoria',
+        type: 'DELETE',
+        data: formData,
+        success: function (result) {
+            if (result == 200) {
+                document.getElementById("alerta").style.display = "block";
+                setTimeout(function () {
+                    document.getElementById("alerta").style.display = "none";
+                    location.reload();
+                }, 3000);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
         }
-    },
-    error: function (xhr, ajaxOptions, thrownError) {
-        alert(xhr.status);
-        alert(thrownError);
-    }
     });
 });
+
 
 $("#subCategoria_wrapper").remove();
 $("#tabla_sub_categoria").append("<table id='subCategoria' class='width:100%' style='width: 100%;' >" +
@@ -121,7 +121,7 @@ var data_table = $("#subCategoria").DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "http://10.0.0.193:8000/sub-categoria",
+        url: "http://127.0.0.1:8000/sub-categoria",
         dataSrc: '',
         mDataProp: '',
         type: 'GET',
@@ -159,3 +159,115 @@ var data_table = $("#subCategoria").DataTable({
 });
 $("select").addClass("browser-default");
 
+$.ajax({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: 'http://127.0.0.1:8000/categoria/all',
+    type: 'GET',
+    success: function (retorno) {
+        var tamR = retorno.length;
+        var nani = ' <label>Categoría a la que pertenece la Sub Categoria<sup>*</sup></label>'+
+                    '<select id="category_id" class="form-control" name="category_id"></select>';
+            $("#categoria_padre").append(nani);
+        for (var i = 0; i < tamR; i++) {
+            var html = '<option value="' + retorno[i].id + '">' + retorno[i].name + '</option>';
+            $("#category_id").append(html);
+        }
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        alert(thrownError);
+    }
+});
+
+
+$(document).on("click", ".editar-sub-categoria", function () {
+    event.preventDefault();
+    document.getElementById("registrar_sub").style.display = "none";
+    document.getElementById("actualizar_sub").style.display = "block";
+
+    $("#sub_cat_id").val("");
+    $("#e_sub_cat_name").val("");
+    $("#e_sub_cat_description").val("");
+
+    var categoria = $(this).attr("sub_category_id");
+
+    actualizar_sub_categoria(categoria);
+
+    $("#sub_cat_id").val($(this).attr("sub_cat-cod"));
+    $("#e_sub_cat_name").val($(this).attr("sub_cat-nome"));
+    $("#e_sub_cat_description").val($(this).attr("sub_cat-description"));
+});
+
+
+$(document).on("click", ".registrar_sub_categoria", function () {
+    event.preventDefault();
+    document.getElementById("registrar_sub").style.display = "block";
+    document.getElementById("actualizar_sub").style.display = "none";
+});
+
+
+$(document).on("click", ".eliminar_sub_categoria", function () {
+    event.preventDefault();
+
+    var id = $(this).attr("sub_cat-cod");
+    var formData = { id: id };
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: 'http://127.0.0.1:8000/sub-categoria',
+        type: 'DELETE',
+        data: formData,
+        success: function (result) {
+            if (result == 200) {
+                document.getElementById("alerta").style.display = "block";
+                setTimeout(function () {
+                    document.getElementById("alerta").style.display = "none";
+                    location.reload();
+                }, 3000);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        }
+    });
+});
+
+function actualizar_sub_categoria(categoria){
+    $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: 'http://127.0.0.1:8000/categoria/all',
+    type: 'GET',
+    success: function (retorno) {
+         $("#e_categoria_padre").empty();
+        var tamR = retorno.length;
+        var nani = ' <label>Categoría a la que pertenece la Sub Categoria<sup>*</sup></label>'+
+                    '<select id="e_sub_cat_category_id" class="form-control" name="e_sub_cat_category_id">'+
+                    '</select>';
+            $("#e_categoria_padre").append(nani);
+        
+        for (var i = 0; i < tamR; i++) {
+            if(categoria == retorno[i].id ){
+                var actual = '<option value="'+categoria+'">'+retorno[i].name+'</option>'; 
+                $("#e_sub_cat_category_id").append(actual);
+            }            
+        }
+
+        for (var i = 0; i < tamR; i++) {
+            var html = '<option value="' + retorno[i].id + '">'+ retorno[i].name +'</option>';
+            $("#e_sub_cat_category_id").append(html);
+        }
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        alert(thrownError);
+    }
+});
+
+}

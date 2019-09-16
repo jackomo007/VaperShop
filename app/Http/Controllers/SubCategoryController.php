@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\SubCategory;
 use Illuminate\Http\Request;
-use App\Rules\CategoriaExistente;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = new Category;
+        $sub_category = new SubCategory;
 
-        $all = $category->list();
+        $all = $sub_category->list();
 
         return $all;
     }
@@ -40,26 +39,26 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:2|',
-            'name' => new CategoriaExistente,
+         $this->validate($request, [
+            'sub_cat_name' => 'required|min:2|',
         ]);
 
-        Category::create([
-            'name' => $request->name,
-            'description' => $request->description,
+        SubCategory::create([
+            'name' => $request->sub_cat_name,
+            'description' => $request->sub_cat_description,
+            'category_id' => $request->category_id,
         ]);
 
-        return back()->with('success', 'Categoria registrada con exito');
+        return back()->with('success', 'Sub Categoria registrada con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(SubCategory $subCategory)
     {
         //
     }
@@ -67,10 +66,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(SubCategory $subCategory)
     {
         //
     }
@@ -79,34 +78,29 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-         Category::where('id',$request->cat_id)->update([
-                'name' => $request->cat_name,
-                'description' => $request->cat_description,
-            ]);
+         SubCategory::where('id',$request->e_sub_cat_id)->update([
+            'name' => $request->e_sub_cat_name,
+            'description' => $request->e_sub_cat_description,
+            'category_id' => $request->e_sub_cat_category_id,
+        ]);
 
-            return back()->with('success', 'Categoria actualizada con exito');
+        return back()->with('success', 'Sub categoria actualizada con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-        Category::where('id', $request->id)->delete();
+        SubCategory::where('id', $request->id)->delete();
         return 200;
-    }
-
-     public function all()
-    {
-        $category =Category::get();
-
-        return $category;
     }
 }

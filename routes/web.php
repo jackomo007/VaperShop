@@ -40,10 +40,16 @@ Route::get('/carrito', function () {
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 
+Route::get('/categoria/all', 'CategoryController@all')->name('category.all');
 Route::get('/categoria', 'CategoryController@index')->name('category.index');
 Route::post('/categoria', 'CategoryController@store')->name('category.store');
 Route::put('/categoria', 'CategoryController@update')->name('category.update');
 Route::delete('/categoria', 'CategoryController@destroy')->name('category.destroy');
+
+Route::get('/sub-categoria', 'SubCategoryController@index')->name('sub.category.index');
+Route::post('/sub-categoria', 'SubCategoryController@store')->name('sub.category.store');
+Route::put('/sub-categoria', 'SubCategoryController@update')->name('sub.category.update');
+Route::delete('/sub-categoria', 'SubCategoryController@destroy')->name('sub.category.destroy');
 
 Auth::routes();
 

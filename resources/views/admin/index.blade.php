@@ -145,7 +145,7 @@
                                             <div class="col-md-4">
                                                 <button class="btn btn-success registrar_categoria">
                                                     <li style="list-style: none;">
-                                                        <a href="#clientes" data-toggle="tab">
+                                                        <a data-toggle="tab">
                                                             <i class="fa fa-plus"></i> 
                                                         Nuevo Regitro</a>
                                                     </li>
@@ -159,59 +159,110 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="sub-categorias">
-                                    <div class="dashboard-wrapper brd-rd5" style="padding:0px">
-                                        <div class="tabs-wrp brd-rd5">
-                                            <h4 itemprop="headline">AGREGAR PRODUCTOS</h4>
+                                     <div class="dashboard-wrapper brd-rd5" style="padding:0px">
+                                       
+                                        @if (\Session::get('success'))
+                                            <div class="alert alert-success">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <p style="margin-left: 30%;">{{ \Session::get('success') }}</p>
+                                            </div>
+                                        @endif
+                                         <div id="alerta" class="alert alert-success" style="display:none">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <p style="margin-left: 30%;">Categoria Eliminada con Exito!</p>
+                                        </div>
+                                        <div id="registrar_sub">
+                                             <div class="dashboard-title">
+                                                <h4 itemprop="headline">REGISTRAR SUB-CATEGORÍA</h4>
+                                            </div>
+                                            <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/sub-categoria">
+                                                @csrf
+                                                <div class="row mrg20">
+                                                    <div id="categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
+                                                       
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-lg-6">
+                                                        <label>Nombre de la Sub Categoría<sup>*</sup></label>
+                                                        <input id="sub_cat_name" type="text" class="form-control @error('sub_cat_name') is-invalid @enderror" name="sub_cat_name" value="{{ old('sub_cat_name') }}" required autocomplete="sub_cat_name">
+
+                                                        @error('sub_cat_name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-lg-12">
+                                                        <label>Descripción de la Categoría</label>
+                                                        <input id="sub_cat_description" type="text" class="brd-rd3 @error('sub_cat_description') is-invalid @enderror" name="sub_cat_description" value="{{ old('sub_cat_description') }}" autocomplete="sub_cat_description" >
+                                                        @error('sub_cat_description')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-lg-12">
+                                                        <div class="step-buttons">
+                                                            <button type="submit" class="btn btn-danger">Agregar Sub Categoria</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        
+                                        <div id="actualizar_sub" style="display:none">
+                                            <div class="dashboard-title">
+                                                <h4 itemprop="headline">ACTUALIZAR SUB CATEGORÍA</h4>
+                                            </div>
+                                            <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/categoria">
+                                                @csrf
+                                                @method('PUT')
+                                                <input id="e_sub_cat_id" name="e_sub_cat_id" type="hidden">
+                                                <div class="row mrg20">
+                                                     <div id="e_categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
+                                                       
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-lg-6">
+                                                        <label>Nombre de Sub Categoría<sup>*</sup></label>
+                                                        <input id="e_sub_cat_name" type="text" class="form-control @error('e_sub_cat_name') is-invalid @enderror" name="e_sub_cat_name" value="{{ old('e_sub_cat_name') }}" required autocomplete="e_sub_cat_name">
+
+                                                        @error('e_sub_cat_name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-lg-12">
+                                                        <label>Descripción de la Sub Categoría</label>
+                                                        <input id="e_sub_cat_description" type="text" class="brd-rd3 @error('e_sub_cat_description') is-invalid @enderror" name="e_sub_cat_description" value="{{ old('e_sub_cat_description') }}" autocomplete="e_sub_cat_description" >
+                                                        @error('e_sub_cat_description')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-lg-12">
+                                                        <div class="step-buttons">
+                                                            <button type="submit" class="btn btn-danger">Actualizar Sub Categoria</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button class="btn btn-success registrar_sub_categoria">
+                                                    <li style="list-style: none;">
+                                                        <a data-toggle="tab">
+                                                            <i class="fa fa-plus"></i> 
+                                                        Nuevo Registro</a>
+                                                    </li>
+                                                </button>
+                                            </div>
+                                        </div>
 
                                         <div id="tabla_sub_categoria"></div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="productos">
-                                    <div class="tabs-wrp brd-rd5">
-                                        <h4 itemprop="headline">AGREGAR PRODUCTOS</h4>
-                                        <form class="restaurant-info-form brd-rd5">
-                                            <div class="row mrg20">
-                                                <div class="col-md-6 col-sm-6 col-lg-6">
-                                                    <label>Nombre de Producto<sup>*</sup></label>
-                                                    <input class="brd-rd3" type="text">
-                                                </div>
-                                                <div class="col-md-6 col-sm-6 col-lg-6">
-                                                    <label>Precio<sup>*</sup></label>
-                                                    <input class="brd-rd3" type="text">
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                                    <label>Categoría del Producto <sup>*</sup></label>
-                                                    <div class="select-wrp">
-                                                        <select>
-                                                            <option>Lácteos</option>
-                                                            <option>Huevos</option>
-                                                            <option>Abarrotes</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                                    <label>Subcategoría <sup>*</sup></label>
-                                                    <div class="select-wrp">
-                                                        <select>
-                                                            <option>Queso</option>
-                                                            <option>Leche en polvo</option>
-                                                            <option>Leche Líquida</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                                    <label>Descripción</label>
-                                                    <input class="brd-rd3" type="email">
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-lg-12">
-                                                    <div class="step-buttons">
-                                                        <a class="brd-rd3 red-bg" href="#" title=""
-                                                            itemprop="url">Agregar Producto</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form><!-- Review List -->
+                                    
                                     </div>
                                 </div>
 

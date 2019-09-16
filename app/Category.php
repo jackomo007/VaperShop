@@ -35,4 +35,9 @@ class Category extends Model
             return false;
         }
     }
+
+    public function subCategories()
+    {
+        return $this->hasMany('App\SubCategory');
+    }
 }
