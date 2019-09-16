@@ -119,6 +119,7 @@
         <!-- jQuery sticky menu -->
         <script src="/js/owl.carousel.min.js"></script>
         <script src="/js/jquery.sticky.js"></script>
+        <script src="/js/jquery.mask.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
         <script src="/js/admin.js"></script>
 

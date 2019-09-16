@@ -17,8 +17,7 @@ class SubCategoryController extends Controller
         $sub_category = new SubCategory;
 
         $all = $sub_category->list();
-
-        return $all;
+        return $all != false  ? $all : [];
     }
 
     /**
@@ -49,7 +48,7 @@ class SubCategoryController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        return back()->with('success', 'Sub Categoria registrada con exito');
+        return back()->with('success-sub-category', 'Sub Categoria registrada con exito');
     }
 
     /**
@@ -89,7 +88,7 @@ class SubCategoryController extends Controller
             'category_id' => $request->e_sub_cat_category_id,
         ]);
 
-        return back()->with('success', 'Sub categoria actualizada con exito');
+        return back()->with('success-sub-category', 'Sub categoria actualizada con exito');
     }
 
     /**

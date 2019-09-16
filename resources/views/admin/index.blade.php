@@ -58,11 +58,11 @@
                                             <img src="images/resource/welcome-note-img.png" alt="welcome-note-img.png" itemprop="image">
                                             <a class="remove-noti" href="#" title="" itemprop="url"><img src="images/close-icon.png" alt="close-icon.png" itemprop="image"></a>
                                         </div>
-                                       
-                                        @if (\Session::get('success'))
+
+                                        @if (\Session::get('success-category'))
                                             <div class="alert alert-success">
                                                 <button type="button" class="close" data-dismiss="alert">×</button>
-                                                <p style="margin-left: 30%;">{{ \Session::get('success') }}</p>
+                                                <p style="margin-left: 30%;">{{ \Session::get('success-category') }}</p>
                                             </div>
                                         @endif
                                          <div id="alerta" class="alert alert-success" style="display:none">
@@ -103,7 +103,7 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        
+
                                         <div id="actualizar" style="display:none">
                                             <div class="dashboard-title">
                                                 <h4 itemprop="headline">ACTUALIZAR CATEGORÍA</h4>
@@ -146,7 +146,7 @@
                                                 <button class="btn btn-success registrar_categoria">
                                                     <li style="list-style: none;">
                                                         <a data-toggle="tab">
-                                                            <i class="fa fa-plus"></i> 
+                                                            <i class="fa fa-plus"></i>
                                                         Nuevo Regitro</a>
                                                     </li>
                                                 </button>
@@ -154,17 +154,17 @@
                                         </div>
 
                                         <div id="tabla_categoria"></div>
-                                    
+
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="sub-categorias">
                                      <div class="dashboard-wrapper brd-rd5" style="padding:0px">
-                                       
-                                        @if (\Session::get('success'))
+
+                                        @if (\Session::get('success-sub-category'))
                                             <div class="alert alert-success">
                                                 <button type="button" class="close" data-dismiss="alert">×</button>
-                                                <p style="margin-left: 30%;">{{ \Session::get('success') }}</p>
+                                                <p style="margin-left: 30%;">{{ \Session::get('success-sub-category') }}</p>
                                             </div>
                                         @endif
                                          <div id="alerta" class="alert alert-success" style="display:none">
@@ -179,7 +179,7 @@
                                                 @csrf
                                                 <div class="row mrg20">
                                                     <div id="categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
-                                                       
+
                                                     </div>
                                                     <div class="col-md-6 col-sm-6 col-lg-6">
                                                         <label>Nombre de la Sub Categoría<sup>*</sup></label>
@@ -208,7 +208,7 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        
+
                                         <div id="actualizar_sub" style="display:none">
                                             <div class="dashboard-title">
                                                 <h4 itemprop="headline">ACTUALIZAR SUB CATEGORÍA</h4>
@@ -219,7 +219,7 @@
                                                 <input id="e_sub_cat_id" name="e_sub_cat_id" type="hidden">
                                                 <div class="row mrg20">
                                                      <div id="e_categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
-                                                       
+
                                                     </div>
                                                     <div class="col-md-6 col-sm-6 col-lg-6">
                                                         <label>Nombre de Sub Categoría<sup>*</sup></label>
@@ -254,7 +254,7 @@
                                                 <button class="btn btn-success registrar_sub_categoria">
                                                     <li style="list-style: none;">
                                                         <a data-toggle="tab">
-                                                            <i class="fa fa-plus"></i> 
+                                                            <i class="fa fa-plus"></i>
                                                         Nuevo Registro</a>
                                                     </li>
                                                 </button>
@@ -262,9 +262,133 @@
                                         </div>
 
                                         <div id="tabla_sub_categoria"></div>
-                                    
+
                                     </div>
                                 </div>
+
+                                <div class="tab-pane fade" id="productos">
+                                    <div class="dashboard-wrapper brd-rd5" style="padding:0px">
+
+                                       @if (\Session::get('success-product'))
+                                           <div class="alert alert-success">
+                                               <button type="button" class="close" data-dismiss="alert">×</button>
+                                               <p style="margin-left: 30%;">{{ \Session::get('success-product') }}</p>
+                                           </div>
+                                       @endif
+                                        <div id="alerta" class="alert alert-success" style="display:none">
+                                           <button type="button" class="close" data-dismiss="alert">×</button>
+                                           <p style="margin-left: 30%;">Categoria Eliminada con Exito!</p>
+                                       </div>
+                                       <div id="registrar_sub">
+                                            <div class="dashboard-title">
+                                               <h4 itemprop="headline">REGISTRAR PRODUCTOS</h4>
+                                           </div>
+                                           <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/producto">
+                                               @csrf
+                                               <div class="row mrg20">
+                                                   <div id="sub_categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
+
+                                                   </div>
+                                                   <div class="col-md-6 col-sm-6 col-lg-6">
+                                                       <label>Nombre del Producto<sup>*</sup></label>
+                                                       <input id="title" type="text" class="form-control brd-rd3 @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title">
+                                                       @error('title')
+                                                           <span class="invalid-feedback" role="alert">
+                                                               <strong>{{ $message }}</strong>
+                                                           </span>
+                                                       @enderror
+                                                   </div>
+                                                   <div class="col-md-12 col-sm-12 col-lg-12">
+                                                       <label>Descripción del Producto</label>
+                                                       <input id="product_description" type="text" class="brd-rd3 @error('product_description') is-invalid @enderror" name="product_description" value="{{ old('product_description') }}" autocomplete="product_description" >
+                                                       @error('product_description')
+                                                           <span class="invalid-feedback" role="alert">
+                                                               <strong>{{ $message }}</strong>
+                                                           </span>
+                                                       @enderror
+                                                   </div>
+                                                   <div class="col-md-6 col-sm-6 col-lg-6">
+                                                    <label>Precio del Producto (Soles)</label>
+                                                    <input id="pricing" type="text" dir="rtl" class="form-control brd-rd3 @error('pricing') is-invalid @enderror" name="pricing" required value="{{ old('pricing') }}" >
+                                                    @error('pricing')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                   <div class="col-md-12 col-sm-12 col-lg-12">
+                                                       <div class="step-buttons">
+                                                           <button type="submit" class="btn btn-danger">Agregar Producto</button>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </form>
+                                       </div>
+
+                                       <div id="actualizar_sub" style="display:none">
+                                           <div class="dashboard-title">
+                                               <h4 itemprop="headline">ACTUALIZAR PRODUCTO</h4>
+                                           </div>
+                                           <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/product">
+                                               @csrf
+                                               @method('PUT')
+                                               <input id="e_sub_cat_id" name="e_sub_cat_id" type="hidden">
+                                               <div class="row mrg20">
+                                                <div id="e_sub_categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
+
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                                    <label>Nombre del Producto<sup>*</sup></label>
+                                                    <input id="e_title" type="text" class="form-control @error('e_title') is-invalid @enderror" name="e_title" value="{{ old('e_title') }}" required autocomplete="e_title">
+                                                    @error('e_title')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-lg-12">
+                                                    <label>Descripción del Producto</label>
+                                                    <input id="e_product_description" type="text" class="brd-rd3 @error('e_product_description') is-invalid @enderror" name="e_product_description" value="{{ old('e_product_description') }}" autocomplete="e_product_description" >
+                                                    @error('e_product_description')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                                 <label>Precio del Producto</label>
+                                                 <input id="e_pricing" type="number" class="brd-rd3 @error('e_pricing') is-invalid @enderror" name="e_pricing" value="{{ old('e_pricing') }}" >
+                                                 @error('e_pricing')
+                                                     <span class="invalid-feedback" role="alert">
+                                                         <strong>{{ $message }}</strong>
+                                                     </span>
+                                                 @enderror
+                                             </div>
+                                                <div class="col-md-12 col-sm-12 col-lg-12">
+                                                    <div class="step-buttons">
+                                                        <button type="submit" class="btn btn-danger">Actualizar Producto</button>
+                                                    </div>
+                                                </div>
+                                               </div>
+                                           </form>
+                                       </div>
+
+                                       <div class="row">
+                                           <div class="col-md-4">
+                                               <button class="btn btn-success registrar_sub_categoria">
+                                                   <li style="list-style: none;">
+                                                       <a data-toggle="tab">
+                                                           <i class="fa fa-plus"></i>
+                                                       Nuevo Registro</a>
+                                                   </li>
+                                               </button>
+                                           </div>
+                                       </div>
+
+                                       <div id="tabla_sub_categoria"></div>
+
+                                   </div>
+                               </div>
 
                                 <div class="tab-pane fade" id="clientes">
                                     <div class="tabs-wrp account-settings brd-rd5">

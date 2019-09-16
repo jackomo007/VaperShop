@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
         $all = $category->list();
 
-        return $all;
+        return $all != false  ? $all : [];
     }
 
     /**
@@ -50,7 +50,7 @@ class CategoryController extends Controller
             'description' => $request->description,
         ]);
 
-        return back()->with('success', 'Categoria registrada con exito');
+        return back()->with('success-category', 'Categoria registrada con exito');
     }
 
     /**
@@ -89,7 +89,7 @@ class CategoryController extends Controller
                 'description' => $request->cat_description,
             ]);
 
-            return back()->with('success', 'Categoria actualizada con exito');
+            return back()->with('success-category', 'Categoria actualizada con exito');
     }
 
     /**
