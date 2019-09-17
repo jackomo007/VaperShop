@@ -14,7 +14,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+
+        return view('admin.producto',['user' => $user]);
+    }
+
+    public function table()
+    {
+        $product = new Product();
+
+        $all = $product->list();
+        return $all != false  ? $all : [];
     }
 
     /**
@@ -35,7 +45,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:2|',
+            'pricing' => 'required',
+        ]);
+
+        $pricing = str_replace(".","",$request->pricing);
+        $pricing = str_replace(",",".",$pricing);
+
+        Product::create([
+            'title' => $request->title,
+            'description' => $request->product_description,
+            'pricing' => $pricing,
+            'sub_category_id' => $request->sub_category_id,
+        ]);
+
+        return back()->with('success-product', 'Producto registrado con exito');
     }
 
     /**
@@ -69,7 +94,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        Product::where('id',$request->e_sub_cat_id)->update([
+            'name' => $request->e_sub_cat_name,
+            'description' => $request->e_sub_cat_description,
+            'category_id' => $request->e_sub_cat_category_id,
+        ]);
+
+        return back()->with('success-product', 'Producto actualizado con exito');
     }
 
     /**
@@ -78,8 +109,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request)
     {
-        //
+        Product::where('id', $request->id)->delete();
+        return 200;
     }
 }

@@ -109,4 +109,11 @@ class SubCategoryController extends Controller
         SubCategory::where('id', $request->id)->delete();
         return 200;
     }
+
+    public function all()
+    {
+        $sub_category =SubCategory::get();
+
+        return $sub_category;
+    }
 }

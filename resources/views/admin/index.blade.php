@@ -18,7 +18,7 @@
     <section>
             <div class="col-md-12 col-sm-12 col-lg-12">
                 <div class="dashboard-tabs-wrapper">
-                    
+
                     <div class="row">
                         <div class="col-md-4 col-sm-12 col-lg-4">
                             <div class="profile-sidebar brd-rd5 wow fadeIn" data-wow-delay="0.2s">
@@ -39,11 +39,11 @@
                                         </div>
                                     </div>
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a  href="{{ url('/admin/categoria') }}" style="cursor: pointer;"><i class="fa fa-superpowers"></i>CATEGORIAS</a></li>
-                                        <li ><a  href="{{ url('/admin/sub-categoria') }}"  style="cursor: pointer;" ><i class="fa fa-superpowers"></i> SUBCATEGORÍAS</a></li>
-                                        <li><a  href="/admin/sub-categoria" style="cursor: pointer;"><i class="fa fa-shopping-basket"></i>PRODUCTOS</a></li>
-                                        <li ><a  style="cursor: pointer;"><i class="fa fa-picture-o"></i>CARROUSEL</a></li>
-                                        <li ><a  style="cursor: pointer;"><i class="fa fa-cog"></i>OTRAS CONFIGURACIONES</a></li>
+                                        <li id="ca"><a  href="{{ url('/admin/categoria') }}" style="cursor: pointer;"><i class="fa fa-superpowers"></i>CATEGORIAS</a></li>
+                                        <li id="sc"><a  href="{{ url('/admin/sub-categoria') }}"  style="cursor: pointer;" ><i class="fa fa-superpowers"></i> SUBCATEGORÍAS</a></li>
+                                        <li id="pr"><a  href="{{ url('/admin/producto') }}" style="cursor: pointer;"><i class="fa fa-shopping-basket"></i>PRODUCTOS</a></li>
+                                        <li id="cr"><a  style="cursor: pointer;"><i class="fa fa-picture-o"></i>CARROUSEL</a></li>
+                                        <li id="oc"><a  style="cursor: pointer;"><i class="fa fa-cog"></i>OTRAS CONFIGURACIONES</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -52,11 +52,11 @@
                             <div id="marco" class="tab-content">
 
                                     @yield('contenido_admin')
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
     </section>

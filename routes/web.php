@@ -41,7 +41,7 @@ Route::get('/carrito', function () {
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/categoria', 'CategoryController@index')->name('category.index');
 Route::get('/admin/sub-categoria', 'SubCategoryController@index')->name('sub.category.index');
-Route::get('/admin/productos', 'SubCategoryController@index')->name('sub.category.index');
+Route::get('/admin/producto', 'ProductController@index')->name('sub.category.index');
 
 
 
@@ -51,10 +51,16 @@ Route::post('/categoria', 'CategoryController@store')->name('category.store');
 Route::put('/categoria', 'CategoryController@update')->name('category.update');
 Route::delete('/categoria', 'CategoryController@destroy')->name('category.destroy');
 
+Route::get('/sub-categoria/all', 'SubCategoryController@all')->name('sub.category.all');
 Route::get('/sub-categoria', 'SubCategoryController@table')->name('sub.category.table');
 Route::post('/sub-categoria', 'SubCategoryController@store')->name('sub.category.store');
 Route::put('/sub-categoria', 'SubCategoryController@update')->name('sub.category.update');
 Route::delete('/sub-categoria', 'SubCategoryController@destroy')->name('sub.category.destroy');
+
+Route::get('/producto', 'ProductController@table')->name('product.table');
+Route::post('/producto', 'ProductController@store')->name('product.store');
+Route::put('/producto', 'ProductController@update')->name('product.update');
+Route::delete('/producto', 'ProductController@destroy')->name('product.destroy');
 
 Auth::routes();
 
