@@ -15,6 +15,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+
+        return view('admin.categoria',['user' => $user]);
+    }
+
+    public function table()
+    {
         $category = new Category;
 
         $all = $category->list();

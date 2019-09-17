@@ -12,12 +12,19 @@ class SubCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function table()
     {
         $sub_category = new SubCategory;
 
         $all = $sub_category->list();
         return $all != false  ? $all : [];
+    }
+
+    public function index()
+    {
+        $user = auth()->user();
+
+        return view('admin.sub_categoria',['user' => $user]);
     }
 
     /**
