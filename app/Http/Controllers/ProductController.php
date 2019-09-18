@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -53,12 +54,23 @@ class ProductController extends Controller
         $pricing = str_replace(".","",$request->pricing);
         $pricing = str_replace(",",".",$pricing);
 
-        Product::create([
+        $product = Product::create([
             'title' => $request->title,
             'description' => $request->product_description,
             'pricing' => $pricing,
             'sub_category_id' => $request->sub_category_id,
         ]);
+
+        if ($request->hasFile('imagen_producto')) {
+            $file = $request->file('imagen_producto');
+            $image = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/images/productos/', $image);
+
+            DB::table('images')->insert(['image' => $image, 'product_id' => $product->id]);
+        } else {
+            $image = "producto.jpg";
+            DB::table('images')->insert(['image' => $image, 'product_id' => $product->id]);
+        }
 
         return back()->with('success-product', 'Producto registrado con exito');
     }

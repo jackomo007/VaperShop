@@ -1,5 +1,7 @@
 <?php
 
+use App\Product;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +26,9 @@ Route::get('/registro', function () {
 });
 
 Route::get('/productos', function () {
-    return view('productos.index');
+    $products = Product::get();
+    $user = auth()->user();
+    return view('productos.index',['user' => $user, 'products' => $products]);
 });
 
 Route::get('/productos/editar', function () {

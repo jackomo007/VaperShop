@@ -23,7 +23,7 @@
                             <h4 itemprop="headline">REGISTRAR PRODUCTOS</h4>
                         </div>
 
-                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/producto">
+                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/producto" enctype="multipart/form-data">
                             @csrf
                             <div class="row mrg20">
                                 <div id="sub_categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
@@ -55,7 +55,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <label>Imagen del Producto</label>
+                                    <input id="imagen_producto" type="file" class=" brd-rd3" name="imagen_producto" >
+                                    </div>
                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                     <div class="step-buttons">
                                         <button type="submit" class="btn btn-danger">Agregar Producto</button>

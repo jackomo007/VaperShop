@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $table = 'products';
 
-    /**
+/**
 * The attributes that are mass assignable.
 *
 * @var array
@@ -47,6 +47,11 @@ public function list()
 public function subCategory()
 {
    return $this->belongsTo('App\SubCategory');
+}
+
+public function imageProduct()
+{
+   return $this->hasOne('App\Image');
 }
 
 public function mascaraDinheiro($valorDinheiro)

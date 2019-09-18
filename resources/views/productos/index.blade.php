@@ -259,6 +259,7 @@
                                 </div>
                                 <!--Sidebar -->
                             </div>
+
                             <div class="col-md-9 col-sm-12 col-lg-9">
                                 <div class="blog-detail-wrapper">
                                     <div class="tab-pane fade in active" id="tab1-1">
@@ -267,150 +268,55 @@
                                             <button type="submit"><i class="fa fa-search"></i></button>
                                         </form>
                                         <div class="dishes-list-wrapper">
+
+                                            @foreach ($products as $product)
                                             <div class="col-md-4 col-sm-6 col-lg-4">
-                                                <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
-                                                    <div>
-                                                        <a href="#" title="" itemprop="url"><img
-                                                                src="images/resource/popular-dish-img1.jpg"
-                                                                alt="popular-dish-img1.jpg" itemprop="image"></a>
-                                                    </div>
-                                                    <div class="popular-dish-info">
-                                                        <h4 itemprop="headline"><a href="food-detail.html" title=""
-                                                                itemprop="url">Chili Spicy Food</a></h4>
-                                                        <span class="price">S/85.00</span>
-                                                        <div class="qty-wrap">
-                                                            <input class="qty" type="text" value="1">
+                                                    <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
+                                                        <div>
+                                                            <img src="/images/productos/{{ $product->imageProduct->image }}" alt="producto" >
                                                         </div>
-                                                        <a class="brd-rd4 " href="food-detail.html"
-                                                            title="Agrega al Carrito" itemprop="url">Agregar</a>
-                                                    </div>
-                                                </div><!-- Popular Dish Box -->
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-lg-4">
-                                                <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
-                                                    <div>
-                                                        <a href="#" title="" itemprop="url"><img
-                                                                src="images/resource/popular-dish-img1.jpg"
-                                                                alt="popular-dish-img1.jpg" itemprop="image"></a>
-                                                    </div>
-                                                    <div class="popular-dish-info">
-                                                        <h4 itemprop="headline"><a href="food-detail.html" title=""
-                                                                itemprop="url">Chili Spicy Food</a></h4>
-                                                        <span class="price">S/85.00</span>
-                                                        <div class="qty-wrap">
-                                                            <input class="qty" type="text" value="1">
+                                                        <div class="popular-dish-info">
+                                                            <h4 itemprop="headline"><a href="food-detail.html" title=""
+                                                                    itemprop="url">{{ $product->title }}</a></h4>
+                                                            <span class="price">S/{{ $product->pricing }}</span>
+                                                            <div class="qty-wrap">
+                                                                <input class="qty" type="text" value="1">
+                                                            </div>
+                                                            <a class="brd-rd4 " href="food-detail.html"
+                                                                title="Agrega al Carrito" itemprop="url">Agregar</a>
                                                         </div>
-                                                        <a class="brd-rd4 " href="food-detail.html"
-                                                            title="Agrega al Carrito" itemprop="url">Agregar</a>
                                                     </div>
-                                                </div><!-- Popular Dish Box -->
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-lg-4">
-                                                <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
-                                                    <div>
-                                                        <a href="#" title="" itemprop="url"><img
-                                                                src="images/resource/popular-dish-img1.jpg"
-                                                                alt="popular-dish-img1.jpg" itemprop="image"></a>
-                                                    </div>
-                                                    <div class="popular-dish-info">
-                                                        <h4 itemprop="headline"><a href="food-detail.html" title=""
-                                                                itemprop="url">Chili Spicy Food</a></h4>
-                                                        <span class="price">S/85.00</span>
-                                                        <div class="qty-wrap">
-                                                            <input class="qty" type="text" value="1">
-                                                        </div>
-                                                        <a class="brd-rd4 " href="food-detail.html"
-                                                            title="Agrega al Carrito" itemprop="url">Agregar</a>
-                                                    </div>
-                                                </div><!-- Popular Dish Box -->
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-lg-4">
-                                                <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
-                                                    <div>
-                                                        <a href="#" title="" itemprop="url"><img
-                                                                src="images/resource/popular-dish-img1.jpg"
-                                                                alt="popular-dish-img1.jpg" itemprop="image"></a>
-                                                    </div>
-                                                    <div class="popular-dish-info">
-                                                        <h4 itemprop="headline"><a href="food-detail.html" title=""
-                                                                itemprop="url">Chili Spicy Food</a></h4>
-                                                        <span class="price">S/85.00</span>
-                                                        <div class="qty-wrap">
-                                                            <input class="qty" type="text" value="1">
-                                                        </div>
-                                                        <a class="brd-rd4 " href="food-detail.html"
-                                                            title="Agrega al Carrito" itemprop="url">Agregar</a>
-                                                    </div>
-                                                </div><!-- Popular Dish Box -->
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-lg-4">
-                                                <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
-                                                    <div>
-                                                        <a href="#" title="" itemprop="url"><img
-                                                                src="images/resource/popular-dish-img1.jpg"
-                                                                alt="popular-dish-img1.jpg" itemprop="image"></a>
-                                                    </div>
-                                                    <div class="popular-dish-info">
-                                                        <h4 itemprop="headline"><a href="food-detail.html" title=""
-                                                                itemprop="url">Chili Spicy Food</a></h4>
-                                                        <span class="price">S/85.00</span>
-                                                        <div class="qty-wrap">
-                                                            <input class="qty" type="text" value="1">
-                                                        </div>
-                                                        <a class="brd-rd4 " href="food-detail.html"
-                                                            title="Agrega al Carrito" itemprop="url">Agregar</a>
-                                                    </div>
-                                                </div><!-- Popular Dish Box -->
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-lg-4">
-                                                <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
-                                                    <div>
-                                                        <a href="#" title="" itemprop="url"><img
-                                                                src="images/resource/popular-dish-img1.jpg"
-                                                                alt="popular-dish-img1.jpg" itemprop="image"></a>
-                                                    </div>
-                                                    <div class="popular-dish-info">
-                                                        <h4 itemprop="headline"><a href="food-detail.html" title=""
-                                                                itemprop="url">Chili Spicy Food</a></h4>
-                                                        <span class="price">S/85.00</span>
-                                                        <div class="qty-wrap">
-                                                            <input class="qty" type="text" value="1">
-                                                        </div>
-                                                        <a class="brd-rd4 " href="food-detail.html"
-                                                            title="Agrega al Carrito" itemprop="url">Agregar</a>
-                                                    </div>
-                                                </div><!-- Popular Dish Box -->
-                                            </div>
-                                            <!-- Popular Dish Box -->
+                                                </div>
+                                            @endforeach
+
                                         </div>
                                     </div>
-                                </div>
-                                <div class="pagination-wrapper text-center">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item prev"><a class="page-link brd-rd2" href="#"
-                                                itemprop="url">ANTERIOR</a></li>
-                                        <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">1</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">2</a>
-                                        </li>
-                                        <li class="page-item active"><span class="page-link brd-rd2">3</span></li>
-                                        <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">4</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">5</a>
-                                        </li>
-                                        <li class="page-item">........</li>
-                                        <li class="page-item"><a class="page-link brd-rd2" href="#"
-                                                itemprop="url">18</a>
-                                        </li>
-                                        <li class="page-item next"><a class="page-link brd-rd2" href="#"
-                                                itemprop="url">PRÓXIMA</a></li>
-                                    </ul>
-                                </div><!-- Pagination Wrapper -->
-                            </div>
-                            <!-- Section Box -->
+
+                                    <div class="pagination-wrapper text-center">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item prev"><a class="page-link brd-rd2" href="#"
+                                                    itemprop="url">ANTERIOR</a></li>
+                                            <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">1</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">2</a>
+                                            </li>
+                                            <li class="page-item active"><span class="page-link brd-rd2">3</span></li>
+                                            <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">4</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">5</a>
+                                            </li>
+                                            <li class="page-item">........</li>
+                                            <li class="page-item"><a class="page-link brd-rd2" href="#"
+                                                    itemprop="url">18</a>
+                                            </li>
+                                            <li class="page-item next"><a class="page-link brd-rd2" href="#"
+                                                    itemprop="url">PRÓXIMA</a></li>
+                                        </ul>
+                                    </div>
+
+                             </div>
                         </div>
                     </div>
-
                 </div>
         </section>
 @endsection
