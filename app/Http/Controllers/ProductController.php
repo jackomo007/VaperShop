@@ -94,10 +94,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        Product::where('id',$request->e_sub_cat_id)->update([
-            'name' => $request->e_sub_cat_name,
-            'description' => $request->e_sub_cat_description,
-            'category_id' => $request->e_sub_cat_category_id,
+        $pricing = str_replace(".","",$request->e_pricing);
+        $pricing = str_replace(",",".",$pricing);
+
+        Product::where('id',$request->e_pro_id)->update([
+            'title' => $request->e_title,
+            'description' => $request->e_product_description,
+            'pricing' => $pricing,
+            'sub_category_id' => $request->e_sub_category_id,
         ]);
 
         return back()->with('success-product', 'Producto actualizado con exito');

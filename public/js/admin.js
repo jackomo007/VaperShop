@@ -1,5 +1,5 @@
-function activo(div){
-    document.getElementById(div).style.color= '#ea1b25';
+function activo(div) {
+    document.getElementById(div).style.color = '#ea1b25';
 }
 
 // CATEGORIAS
@@ -266,8 +266,10 @@ function actualizar_sub_categoria(categoria) {
             }
 
             for (var i = 0; i < tamR; i++) {
-                var html = '<option value="' + retorno[i].id + '">' + retorno[i].name + '</option>';
-                $("#e_sub_cat_category_id").append(html);
+                if (categoria != retorno[i].id) {
+                    var html = '<option value="' + retorno[i].id + '">' + retorno[i].name + '</option>';
+                    $("#e_sub_cat_category_id").append(html);
+                }
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -279,7 +281,7 @@ function actualizar_sub_categoria(categoria) {
 }
 
 // PRODUCTOS
-$("#pricing, #e_pricing").mask('0.000,00');
+$("#pricing, #e_pricing").mask('0.000,00',{reverse: true});
 
 $("#Producto_wrapper").remove();
 $("#tabla_producto").append("<table id='Producto' class='width:100%' style='width: 100%;' >" +
@@ -363,17 +365,18 @@ $(document).on("click", ".editar-producto", function () {
     document.getElementById("registrar_producto").style.display = "none";
     document.getElementById("actualizar_producto").style.display = "block";
 
-    $("#producto_id").val("");
+    $("#e_pro_id").val("");
     $("#e_title").val("");
     $("#e_product_description").val("");
     $("#e_pricing").val("");
+    $("#sub_category_id").val("");
 
-    var producto = $(this).attr("producto_id");
+    var sub_categoria = $(this).attr("sub_category_id");
 
-    actualizar_producto(producto);
+    actualizar_producto(sub_categoria);
 
-    $("#producto_id").val($(this).attr("pro-cod"));
-    $("#e_title").val($(this).attr("pro-e_title"));
+    $("#e_pro_id").val($(this).attr("pro-cod"));
+    $("#e_title").val($(this).attr("pro-title"));
     $("#e_product_description").val($(this).attr("pro-description"));
     $("#e_pricing").val($(this).attr("pro-pricing"));
 });
@@ -401,9 +404,9 @@ $(document).on("click", ".eliminar_producto", function () {
         data: formData,
         success: function (result) {
             if (result == 200) {
-                document.getElementById("alerta").style.display = "block";
+                document.getElementById("alerta-producto").style.display = "block";
                 setTimeout(function () {
-                    document.getElementById("alerta").style.display = "none";
+                    document.getElementById("alerta-producto").style.display = "none";
                     location.reload();
                 }, 3000);
             }
@@ -415,7 +418,7 @@ $(document).on("click", ".eliminar_producto", function () {
     });
 });
 
-function actualizar_producto(producto) {
+function actualizar_producto(sub_categoria) {
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -431,15 +434,17 @@ function actualizar_producto(producto) {
             $("#e_sub_categoria_padre").append(nani);
 
             for (var i = 0; i < tamR; i++) {
-                if (producto == retorno[i].id) {
-                    var actual = '<option value="' + producto + '">' + retorno[i].name + '</option>';
-                    $("#e_sub_cat_category_id").append(actual);
+                if (sub_categoria == retorno[i].id) {
+                    var actual = '<option value="' + sub_categoria + '">' + retorno[i].name + '</option>';
+                    $("#e_sub_category_id").append(actual);
                 }
             }
 
             for (var i = 0; i < tamR; i++) {
-                var html = '<option value="' + retorno[i].id + '">' + retorno[i].name + '</option>';
-                $("#e_sub_cat_category_id").append(html);
+                if (sub_categoria != retorno[i].id) {
+                    var html = '<option value="' + retorno[i].id + '">' + retorno[i].name + '</option>';
+                    $("#e_sub_category_id").append(html);
+                }
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {

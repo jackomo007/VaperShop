@@ -13,7 +13,7 @@
                         </div>
                     @endif
 
-                    <div id="alerta" class="alert alert-success" style="display:none">
+                    <div id="alerta-producto" class="alert alert-success" style="display:none">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <p style="margin-left: 30%;">Producto Eliminado con Exito!</p>
                     </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                 <label>Precio del Producto (Soles)<sup>*</sup></label>
-                                <input id="pricing" type="text" dir="rtl" class="form-control brd-rd3 @error('pricing') is-invalid @enderror" name="pricing" required value="{{ old('pricing') }}" >
+                                <input id="pricing" type="text" class="form-control brd-rd3 @error('pricing') is-invalid @enderror" name="pricing" required value="{{ old('pricing') }}" >
                                 @error('pricing')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -69,10 +69,10 @@
                         <div class="dashboard-title">
                             <h4 itemprop="headline">ACTUALIZAR PRODUCTO</h4>
                         </div>
-                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/product">
+                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/producto">
                             @csrf
                             @method('PUT')
-                            <input id="e_sub_cat_id" name="e_sub_cat_id" type="hidden">
+                            <input id="e_pro_id" name="e_pro_id" type="hidden">
                             <div class="row mrg20">
                             <div id="e_sub_categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
 
@@ -97,7 +97,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6 col-lg-6">
                                 <label>Precio del Producto</label>
-                                <input id="e_pricing" type="number" class="brd-rd3 @error('e_pricing') is-invalid @enderror" name="e_pricing" value="{{ old('e_pricing') }}" >
+                                <input id="e_pricing" type="text" class="brd-rd3 @error('e_pricing') is-invalid @enderror" name="e_pricing" value="{{ old('e_pricing') }}" >
                                 @error('e_pricing')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
