@@ -373,12 +373,12 @@ $(document).on("click", ".editar-producto", function () {
 
     var sub_categoria = $(this).attr("sub_category_id");
 
-    actualizar_producto(sub_categoria);
-
     $("#e_pro_id").val($(this).attr("pro-cod"));
     $("#e_title").val($(this).attr("pro-title"));
     $("#e_product_description").val($(this).attr("pro-description"));
     $("#e_pricing").val($(this).attr("pro-pricing"));
+
+    actualizar_producto(sub_categoria);
 });
 
 
@@ -419,6 +419,26 @@ $(document).on("click", ".eliminar_producto", function () {
 });
 
 function actualizar_producto(sub_categoria) {
+    var id = $("#e_pro_id").val();
+    var formData = { id: id };
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: 'http://127.0.0.1:8000/producto/image',
+        type: 'POST',
+        data: formData,
+        success: function (result) {
+            var img =  '<img width="150" height="200" style="margin: -10%;" src="/images/productos/'+result.image+'" alt="producto" ></img>';
+            $("#productoIMG").append(img);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        }
+    });
+
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -452,5 +472,5 @@ function actualizar_producto(sub_categoria) {
             alert(thrownError);
         }
     });
-
 }
+

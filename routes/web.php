@@ -1,7 +1,5 @@
 <?php
 
-use App\Product;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,16 +21,6 @@ Route::get('/contacto', function () {
 
 Route::get('/registro', function () {
     return view('principal.registro');
-});
-
-Route::get('/productos', function () {
-    $products = Product::paginate(12);
-    $user = auth()->user();
-    return view('productos.index',['user' => $user, 'products' => $products]);
-});
-
-Route::get('/productos/editar', function () {
-    return view('productos.editar');
 });
 
 Route::get('/cliente', 'ClientController@index')->name('client.index');
@@ -57,6 +45,7 @@ Route::delete('/categoria', 'CategoryController@destroy')->name('category.destro
 
 Route::get('/sub-categoria/all', 'SubCategoryController@all')->name('sub.category.all');
 Route::get('/sub-categoria', 'SubCategoryController@table')->name('sub.category.table');
+Route::get('/productos', 'ProductController@show')->name('product.show');
 Route::post('/sub-categoria', 'SubCategoryController@store')->name('sub.category.store');
 Route::put('/sub-categoria', 'SubCategoryController@update')->name('sub.category.update');
 Route::delete('/sub-categoria', 'SubCategoryController@destroy')->name('sub.category.destroy');
@@ -64,6 +53,7 @@ Route::delete('/sub-categoria', 'SubCategoryController@destroy')->name('sub.cate
 Route::get('/producto/all', 'SubCategoryController@all')->name('product.all');
 Route::get('/producto', 'ProductController@table')->name('product.table');
 Route::post('/producto', 'ProductController@store')->name('product.store');
+Route::post('/producto/image', 'ProductController@productImage')->name('product.image');
 Route::put('/producto', 'ProductController@update')->name('product.update');
 Route::delete('/producto', 'ProductController@destroy')->name('product.destroy');
 

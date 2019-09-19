@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show the view to manage the resource
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,16 +26,6 @@ class ProductController extends Controller
 
         $all = $product->list();
         return $all != false  ? $all : [];
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -76,35 +66,24 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a list of the resource.
      *
-     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
+        $products = Product::paginate(12);
+        $user = auth()->user();
+        return view('productos.index',['user' => $user, 'products' => $products]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
         $pricing = str_replace(".","",$request->e_pricing);
         $pricing = str_replace(",",".",$pricing);
@@ -122,7 +101,6 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
@@ -130,4 +108,11 @@ class ProductController extends Controller
         Product::where('id', $request->id)->delete();
         return 200;
     }
+
+    public function productImage(Request $request)
+    {
+        $product = Product::where('id', $request->id)->first();
+        return $product->imageProduct;
+    }
+
 }
