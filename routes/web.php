@@ -26,7 +26,7 @@ Route::get('/registro', function () {
 });
 
 Route::get('/productos', function () {
-    $products = Product::get();
+    $products = Product::paginate(15);
     $user = auth()->user();
     return view('productos.index',['user' => $user, 'products' => $products]);
 });

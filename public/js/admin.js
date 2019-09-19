@@ -174,7 +174,7 @@ $.ajax({
     success: function (retorno) {
         var tamR = retorno.length;
         var nani = ' <label>Categoría a la que pertenece la Sub Categoria<sup>*</sup></label>' +
-            '<select id="category_id" class="form-control" name="category_id"></select>';
+            '<select id="category_id" class="form-control" name="category_id" selected="selected"></select>';
         $("#categoria_padre").append(nani);
         for (var i = 0; i < tamR; i++) {
             var html = '<option value="' + retorno[i].id + '">' + retorno[i].name + '</option>';
@@ -193,7 +193,7 @@ $(document).on("click", ".editar-sub-categoria", function () {
     document.getElementById("registrar_sub").style.display = "none";
     document.getElementById("actualizar_sub").style.display = "block";
 
-    $("#sub_cat_id").val("");
+    $("#e_sub_cat_id").val("");
     $("#e_sub_cat_name").val("");
     $("#e_sub_cat_description").val("");
 
@@ -201,7 +201,7 @@ $(document).on("click", ".editar-sub-categoria", function () {
 
     actualizar_sub_categoria(categoria);
 
-    $("#sub_cat_id").val($(this).attr("sub_cat-cod"));
+    $("#e_sub_cat_id").val($(this).attr("sub_cat-cod"));
     $("#e_sub_cat_name").val($(this).attr("sub_cat-nome"));
     $("#e_sub_cat_description").val($(this).attr("sub_cat-description"));
 });
@@ -281,7 +281,7 @@ function actualizar_sub_categoria(categoria) {
 }
 
 // PRODUCTOS
-$("#pricing, #e_pricing").mask('0.000,00',{reverse: true});
+$("#pricing, #e_pricing").mask('0.000,00', { reverse: true });
 
 $("#Producto_wrapper").remove();
 $("#tabla_producto").append("<table id='Producto' class='width:100%' style='width: 100%;' >" +

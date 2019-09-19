@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'phoneNumber' => $data['phoneNumber'],
             'address' => $data['address'],
             'phoneNumber_secondary' => $data['phoneNumber_secondary'],
-            'admin' => false,
+            'admin' => true,
         ]);
     }
 }

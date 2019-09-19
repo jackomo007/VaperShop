@@ -62,12 +62,12 @@
                             <h4 itemprop="headline">ACTUALIZAR SUB CATEGORÍA</h4>
                         </div>
 
-                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/categoria">
+                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/sub-categoria">
                             @csrf
                             @method('PUT')
                             <input id="e_sub_cat_id" name="e_sub_cat_id" type="hidden">
                             <div class="row mrg20">
-                                    <div id="e_categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
+                                    <div id="e_categoria_padre" name="e_categoria_padre"class="col-md-6 col-sm-6 col-lg-6">
 
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-lg-6">

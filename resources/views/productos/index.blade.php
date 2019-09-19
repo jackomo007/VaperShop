@@ -273,12 +273,14 @@
                                             <div class="col-md-4 col-sm-6 col-lg-4">
                                                     <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
                                                         <div>
-                                                            <img src="/images/productos/{{ $product->imageProduct->image }}" alt="producto" >
+                                                            <img width="200" height="200" style="margin-left: 10%;" src="/images/productos/{{ $product->imageProduct->image }}" alt="producto" >
                                                         </div>
                                                         <div class="popular-dish-info">
-                                                            <h4 itemprop="headline"><a href="food-detail.html" title=""
-                                                                    itemprop="url">{{ $product->title }}</a></h4>
-                                                            <span class="price">S/{{ $product->pricing }}</span>
+                                                            {{--  <h4 itemprop="headline"><a href="food-detail.html" title=""
+                                                                    itemprop="url">{{ $product->title }}</a></h4>  --}}
+                                                            <h4 itemprop="headline"><a href="#" title=""
+                                                            itemprop="url">{{ $product ? $product->description : '' }}</a></h4>
+                                                            <span class="price">S/ {{ $product->pricing }}</span>
                                                             <div class="qty-wrap">
                                                                 <input class="qty" type="text" value="1">
                                                             </div>
@@ -294,7 +296,8 @@
 
                                     <div class="pagination-wrapper text-center">
                                         <ul class="pagination justify-content-center">
-                                            <li class="page-item prev"><a class="page-link brd-rd2" href="#"
+                                            {{ $products->links() }}
+                                            {{--  <li class="page-item prev"><a class="page-link brd-rd2" href="#"
                                                     itemprop="url">ANTERIOR</a></li>
                                             <li class="page-item"><a class="page-link brd-rd2" href="#" itemprop="url">1</a>
                                             </li>
@@ -310,7 +313,7 @@
                                                     itemprop="url">18</a>
                                             </li>
                                             <li class="page-item next"><a class="page-link brd-rd2" href="#"
-                                                    itemprop="url">PRÓXIMA</a></li>
+                                                    itemprop="url">PRÓXIMA</a></li>  --}}
                                         </ul>
                                     </div>
 
