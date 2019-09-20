@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-lg-12">
                         <div class="row">
-                                    
+
                             <div class="pagination-wrapper" id="carrito">
                                 <div class="tabs-wrp brd-rd5">
                                     <h4 itemprop="headline">MI CARRITO DE COMPRAS</h4>
@@ -42,7 +42,7 @@
                                                 <tr><th>#</th><th>PRODUCTO</th><th>PRECIO POR UNIDAD</th><th>CANTIDAD</th><th>COSTO TOTAL</th></tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>#1</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
+                                                <tr><td>#1</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td> <td>@include('carrito.delete', ["product" => $product])</td> </tr>
                                                 <tr><td>#2</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
                                                 <tr><td>#3</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
                                                 <tr><td>#4</td><td>LECHE</td><td>S/3.00</td><td>4</td><td><span class="red-clr">S/12.00</span></td></tr>
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

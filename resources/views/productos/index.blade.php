@@ -281,11 +281,16 @@
                                                             <h4 itemprop="headline"><a href="#" title=""
                                                             itemprop="url">{{ $product ? $product->description : '' }}</a></h4>
                                                             <span class="price">S/ {{ $product->pricing }}</span>
+                                                            <form action="/carrito" method = 'POST'>
                                                             <div class="qty-wrap">
-                                                                <input class="qty" type="text" value="1">
+                                                                <input class="qty" type="text" id="quantity" name="quantity">
                                                             </div>
-                                                            <a class="brd-rd4 " href="food-detail.html"
-                                                                title="Agrega al Carrito" itemprop="url">Agregar</a>
+
+                                                                @csrf
+                                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                                <input type="hidden" name="price_sale" value="{{$product->pricing}}">
+                                                                <button type="submit" class="btn btn-danger">Agregar al carrito</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

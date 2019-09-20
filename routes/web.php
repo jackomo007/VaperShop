@@ -57,6 +57,12 @@ Route::post('/producto/image', 'ProductController@productImage')->name('product.
 Route::put('/producto', 'ProductController@update')->name('product.update');
 Route::delete('/producto', 'ProductController@destroy')->name('product.destroy');
 
+Route::post('/carrito', 'InShoppingCartController@store')->name('carrito.store');
+Route::delete('/carrito', 'InShoppingCartController@destroy')->name('carrito.destroy');
+Route::get('/carrito', 'ShoppingCartController@show')->name('product.show');
+Route::get('/carrito/completed', 'ShoppingCartController@index')->name('product.show');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

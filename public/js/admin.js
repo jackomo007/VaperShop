@@ -419,6 +419,7 @@ $(document).on("click", ".eliminar_producto", function () {
 });
 
 function actualizar_producto(sub_categoria) {
+    $("#productoIMG").empty();
     var id = $("#e_pro_id").val();
     var formData = { id: id };
 
