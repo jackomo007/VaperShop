@@ -8,7 +8,7 @@ class ShoppingCart extends Model
 {
     protected $table = 'shopping_carts';
 
-    protected $fillable = ['status'];
+    protected $fillable = ['status','custom_id'];
 
     public function approve(){
         $this->updateCustomIDAndStatus();
@@ -29,17 +29,8 @@ class ShoppingCart extends Model
         return $this->hasMany('App\InShoppingCart');
     }
 
-    public function products(){
-        return $this->belongsToMany('App\Product', 'in_shopping_carts') ->withPivot('id');
-    }
-
     public function order(){
         return $this->hasOne("App\Order")->first();
-    }
-
-
-    public function productsSize(){
-    	return $this->products()->count();
     }
 
     public function total(){
@@ -65,9 +56,21 @@ class ShoppingCart extends Model
     }
 
     public static function createWithoutSession(){
-
         return ShoppingCart::create([
-            "status" => "incompleted"
+            "status" => "incompleted",
+            "custom_id", auth()->user()->id
         ]);
+    }
+
+     public function makeSession(){
+        $shopping_cart = ShoppingCart::where('custom_id', auth()->user()->id)
+                        ->where('status','incompleted')
+                        ->first();
+
+        if(!$shopping_cart){
+            $shopping_cart = $this->createWithoutSession();
+        }
+
+        return $shopping_cart;
     }
 }

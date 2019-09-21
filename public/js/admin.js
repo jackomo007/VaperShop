@@ -431,7 +431,7 @@ function actualizar_producto(sub_categoria) {
         type: 'POST',
         data: formData,
         success: function (result) {
-            var img =  '<img width="150" height="200" style="margin: -10%;" src="/images/productos/'+result.image+'" alt="producto" ></img>';
+            var img = '<img width="150" height="200" style="margin: -10%;" src="/images/productos/' + result.image + '" alt="producto" ></img>';
             $("#productoIMG").append(img);
         },
         error: function (xhr, ajaxOptions, thrownError) {

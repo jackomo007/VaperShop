@@ -10,7 +10,15 @@ class InShoppingCart extends Model
 
     protected $fillable = ["product_id", "shopping_cart_id","quantity","price_sale"];
 
-    public static function productsCount($shopping_cart_id){
-    	return InShoppingCart::where("shopping_cart_id",$shopping_cart_id)->count();
+    public function productsInCart()
+    {
+        $user = auth()->user();
+        if(!isset($user)){
+            return 0;
+        }
+
+        $activeCart = ShoppingCart::where('status','incompleted')->where('custom_id',$user)->first();
+        $productsInCart = InShoppingCart::where('shopping_cart_id', $activeCart->id)->count();
+        return $productsInCart;
     }
 }

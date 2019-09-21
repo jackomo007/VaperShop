@@ -25,6 +25,8 @@ class InShoppingCartController extends Controller
             "quantity" => $request->quantity,
             "price_sale" => $request->price_sale
         ]);
+
+        return redirect("/productos");
     }
 
     /**

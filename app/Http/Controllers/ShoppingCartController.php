@@ -29,16 +29,4 @@ class ShoppingCartController extends Controller
         return view("carrito.index", ["products" => $products,"total" => $total]);
 
     }
-
-    public function makeSession(){
-        $shopping_cart = ShoppingCart::where('custom_id', auth()->user()->id)
-                        ->where('status','incompleted')
-                        ->first();
-
-        if(!$shopping_cart){
-            $shopping_cart = ShoppingCart::createWithoutSession();
-        }
-
-        return $shopping_cart;
-    }
 }

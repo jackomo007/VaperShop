@@ -2,17 +2,18 @@
     @if(Auth::check())
         <div class="topbar">
             <div class="container">
-
-                {{-- HACER QUE CARGUE ESTA DIV CON JAVASCRIPT A CADA MOMENTO QUE SE CARGUE LA PAGINA --}}
                 <div class="social1">
                     <a href="#" title="Login" itemprop="url">MI CARRITO</a>
                     <a href="#" title="#" itemprop="url" target="_blank">
                         <i class="fa fa-cart-arrow-down">
-                            <p style="color:white;font-size:12px">0</p>
+                            @if(isset($productsCount))
+                                <p style="color:white;font-size:12px">{{ $productsCount }}</p>
+                            @else
+                                <p style="color:white;font-size:12px">0</p>
+                            @endif
                         </i>
                     </a>
                 </div>
-
             </div>
         </div>
     @else
