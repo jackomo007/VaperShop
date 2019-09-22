@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\InShoppingCart;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -156,4 +157,5 @@ public function mascaraDinheiro($valorDinheiro)
 
     return $valor;
 }
+
 }

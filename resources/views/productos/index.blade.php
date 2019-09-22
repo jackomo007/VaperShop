@@ -283,7 +283,7 @@
                                                             <span class="price">S/ {{ $product->pricing }}</span>
                                                             <form action="/carrito" method = 'POST'>
                                                             <div class="qty-wrap">
-                                                                <input class="qty" type="text" id="quantity" name="quantity">
+                                                                <input class="qty" type="text" id="quantity" name="quantity" placeholder="0">
                                                             </div>
 
                                                                 @csrf

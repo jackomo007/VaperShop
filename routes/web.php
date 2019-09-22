@@ -26,15 +26,10 @@ Route::get('/registro', function () {
 Route::get('/cliente', 'ClientController@index')->name('client.index');
 Route::put('/cliente/{cliente}', 'ClientController@update')->name('client.update');
 
-Route::get('/carrito', function () {
-    return view('carrito.index');
-});
-
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/categoria', 'CategoryController@index')->name('category.index');
 Route::get('/admin/sub-categoria', 'SubCategoryController@index')->name('sub.category.index');
 Route::get('/admin/producto', 'ProductController@index')->name('sub.category.index');
-
 
 
 Route::get('/categoria/all', 'CategoryController@all')->name('category.all');
@@ -45,10 +40,11 @@ Route::delete('/categoria', 'CategoryController@destroy')->name('category.destro
 
 Route::get('/sub-categoria/all', 'SubCategoryController@all')->name('sub.category.all');
 Route::get('/sub-categoria', 'SubCategoryController@table')->name('sub.category.table');
-Route::get('/productos', 'ProductController@show')->name('product.show');
 Route::post('/sub-categoria', 'SubCategoryController@store')->name('sub.category.store');
 Route::put('/sub-categoria', 'SubCategoryController@update')->name('sub.category.update');
 Route::delete('/sub-categoria', 'SubCategoryController@destroy')->name('sub.category.destroy');
+
+Route::get('/productos', 'ProductController@show')->name('product.show');
 
 Route::get('/producto/all', 'SubCategoryController@all')->name('product.all');
 Route::get('/producto', 'ProductController@table')->name('product.table');
@@ -59,8 +55,10 @@ Route::delete('/producto', 'ProductController@destroy')->name('product.destroy')
 
 Route::post('/carrito', 'InShoppingCartController@store')->name('carrito.store');
 Route::delete('/carrito', 'InShoppingCartController@destroy')->name('carrito.destroy');
-Route::get('/carrito', 'ShoppingCartController@show')->name('product.show');
-Route::get('/carrito/completed', 'ShoppingCartController@index')->name('product.show');
+
+Route::put('/carrito', 'ShoppingCartController@close')->name('product.close');
+Route::get('/carrito/completed', 'ShoppingCartController@show')->name('product.show');
+Route::get('/carrito', 'ShoppingCartController@index')->name('product.index');
 
 
 Auth::routes();

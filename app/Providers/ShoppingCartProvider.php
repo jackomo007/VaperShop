@@ -26,7 +26,12 @@ class ShoppingCartProvider extends ServiceProvider
     {
        view()->composer("*",function($view){
             $in_shopping_cart = new InShoppingCart;
-            $productsCount = $in_shopping_cart->productsInCart();
+            $in_shopping_cart = $in_shopping_cart->productsInCart();
+            if($in_shopping_cart){
+                $productsCount = $in_shopping_cart->count();
+            }else{
+                $productsCount = 0;
+            }
 			$view->with("productsCount", $productsCount);
 		});
     }

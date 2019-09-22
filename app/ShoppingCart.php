@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class ShoppingCart extends Model
@@ -58,7 +59,7 @@ class ShoppingCart extends Model
     public static function createWithoutSession(){
         return ShoppingCart::create([
             "status" => "incompleted",
-            "custom_id", auth()->user()->id
+            "custom_id", Auth::user()->id
         ]);
     }
 

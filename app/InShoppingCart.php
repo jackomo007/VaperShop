@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class InShoppingCart extends Model
@@ -13,12 +14,19 @@ class InShoppingCart extends Model
     public function productsInCart()
     {
         $user = auth()->user();
-        if(!isset($user)){
+        if(isset($user)){        
+            $activeCart = ShoppingCart::where('status','incompleted')->where('custom_id',$user->id)->first();
+            if(isset($activeCart)){
+                $productsInCart = InShoppingCart::where('shopping_cart_id', $activeCart->id)->get();
+                return $productsInCart;
+            }
             return 0;
         }
+        return 0;
+    }
 
-        $activeCart = ShoppingCart::where('status','incompleted')->where('custom_id',$user)->first();
-        $productsInCart = InShoppingCart::where('shopping_cart_id', $activeCart->id)->count();
-        return $productsInCart;
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

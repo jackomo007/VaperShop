@@ -20,7 +20,7 @@ var data_table = $("#Admin").DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "http://127.0.0.1:8000/categoria",
+        url: "/categoria",
         dataSrc: '',
         mDataProp: '',
         type: 'GET',
@@ -90,7 +90,7 @@ $(document).on("click", ".eliminar_categoria", function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/categoria',
+        url: '/categoria',
         type: 'DELETE',
         data: formData,
         success: function (result) {
@@ -127,7 +127,7 @@ var data_table = $("#subCategoria").DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "http://127.0.0.1:8000/sub-categoria",
+        url: "/sub-categoria",
         dataSrc: '',
         mDataProp: '',
         type: 'GET',
@@ -169,7 +169,7 @@ $.ajax({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
-    url: 'http://127.0.0.1:8000/categoria/all',
+    url: '/categoria/all',
     type: 'GET',
     success: function (retorno) {
         var tamR = retorno.length;
@@ -224,7 +224,7 @@ $(document).on("click", ".eliminar_sub_categoria", function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/sub-categoria',
+        url: '/sub-categoria',
         type: 'DELETE',
         data: formData,
         success: function (result) {
@@ -248,7 +248,7 @@ function actualizar_sub_categoria(categoria) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/categoria/all',
+        url: '/categoria/all',
         type: 'GET',
         success: function (retorno) {
             $("#e_categoria_padre").empty();
@@ -299,7 +299,7 @@ var data_table = $("#Producto").DataTable({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "http://127.0.0.1:8000/producto",
+        url: "/producto",
         dataSrc: '',
         mDataProp: '',
         type: 'GET',
@@ -341,7 +341,7 @@ $.ajax({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
-    url: 'http://127.0.0.1:8000/sub-categoria/all',
+    url: '/sub-categoria/all',
     type: 'GET',
     success: function (retorno) {
         var tamR = retorno.length;
@@ -399,7 +399,7 @@ $(document).on("click", ".eliminar_producto", function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/producto',
+        url: '/producto',
         type: 'DELETE',
         data: formData,
         success: function (result) {
@@ -427,7 +427,7 @@ function actualizar_producto(sub_categoria) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/producto/image',
+        url: '/producto/image',
         type: 'POST',
         data: formData,
         success: function (result) {
@@ -444,7 +444,7 @@ function actualizar_producto(sub_categoria) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'http://127.0.0.1:8000/producto/all',
+        url: '/producto/all',
         type: 'GET',
         success: function (retorno) {
             $("#e_sub_categoria_padre").empty();

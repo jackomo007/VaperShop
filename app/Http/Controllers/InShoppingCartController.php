@@ -32,12 +32,11 @@ class InShoppingCartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy($id) {
-        InShoppingCart::destroy($id);
-        return redirect("/productos");
+    public function destroy(Request $request) {
+        InShoppingCart::where('product_id', $request->id)->delete();
+        return redirect("/carrito");
     }
 }

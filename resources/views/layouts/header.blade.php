@@ -3,13 +3,13 @@
         <div class="topbar">
             <div class="container">
                 <div class="social1">
-                    <a href="#" title="Login" itemprop="url">MI CARRITO</a>
-                    <a href="#" title="#" itemprop="url" target="_blank">
-                        <i class="fa fa-cart-arrow-down">
+                    <a href="#" title="Login" itemprop="url"></a>
+                    <a href="{{ url('/carrito') }}" title="#" itemprop="url">
+                        <i class="fa fa-cart-arrow-down" style="font-size: 32px;margin-top: -5px;">
                             @if(isset($productsCount))
-                                <p style="color:white;font-size:12px">{{ $productsCount }}</p>
+                                <p style="color:#000000;font-size:12px;line-height: 0px; background-color: #ffb300;border-radius: 50%;padding: 1em 0.8em;">{{ $productsCount }}</p>
                             @else
-                                <p style="color:white;font-size:12px">0</p>
+                                <p style="color:white;font-size:12px;line-height: 0px; background-color: none;border-radius: 50%;padding: 1em 0.8em;">0</p>
                             @endif
                         </i>
                     </a>
@@ -63,23 +63,35 @@
             <h1 itemprop="headline"><a href="{{ url('/') }}" title="INICIO" itemprop="url"><img
                         src="{{ asset('/images/logo.png') }}" alt="logo.png" itemprop="image"></a></h1>
         </div>
+        <div style="display:inline-flex;margin-top:7%;margin-left:40%;">
+            <a href="{{ url('/carrito') }}" title="#" itemprop="url">
+                <i class="fa fa-cart-arrow-down" style="font-size: 32px;margin-top: -5px;">
+                    @if(isset($productsCount))
+                        <p style="color:#000000;font-size:12px;line-height: 0px; background-color: #ffb300;border-radius: 50%;padding: 1em 0.8em;">{{ $productsCount }}</p>
+                    @else
+                        <p style="color:white;font-size:12px;line-height: 0px; background-color: none;border-radius: 50%;padding: 1em 0.8em;">0</p>
+                    @endif
+                </i>
+            </a>
+        </div>
         <span class="menu-btn yellow-bg brd-rd4"><i class="fa fa-align-justify"></i></span>
     </div>
     <div class="responsive-menu">
         <span class="menu-close red-bg brd-rd3"><i class="fa fa-close"></i></span>
         <div class="menu-lst">
-            <ul>
-                <li class="menu-item-has-children"><a href="{{ url('/') }}" title="INICIO" itemprop="url">
+           <ul>
+                <li><a href="{{ url('/') }}" title="INICIO" itemprop="url">
                         INICIO</a>
                 </li>
-                <li class="menu-item-has-children"><a href="{{ url('/productos') }}" title="PRODUCTOS" itemprop="url">PRODUCTOS</a>
+                <li><a href="{{ url('/productos') }}" title="PRODUCTOS"
+                        itemprop="url">PRODUCTOS</a>
                 </li>
-                <li><a href="{{ url('/productos') }}" title="CONTACTÁNOS" itemprop="url">CONTÁCTANOS</a></li>
+                <li><a href="{{ url('/contacto') }}" title="CONTÁCTANOS" itemprop="url">CONTÁCTANOS</a></li>
             </ul>
         </div>
         <div class="topbar-register">
-            <a class="log-popup-btn" href="#" title="Login" itemprop="url">INICIA SESIÓN</a><br><br>
             @if(!Auth::check())
+            <a class="log-popup-btn" href="#" title="Login" itemprop="url">INICIA SESIÓN</a><br><br>
             <a href="{{ url('/registro') }}" title="REGÍSTRATE" itemprop="url">REGÍSTRATE</a>
             @endif
         </div>
