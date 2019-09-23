@@ -2,12 +2,12 @@
 
 @section('content')
 
-    @include('layouts.slider') 
+    @include('layouts.slider')
     <!-- End slider area -->
 
     <section>
         <div class="block blackish opac50">
-            <div class="fixed-bg" style="background-image: url({{ asset('/images/parallax2.jpg);"></div>
+            <div class="fixed-bg" style="background-image: /images/parallax2.jpg;"></div>
             <div class="restaurant-searching style2 text-center">
                 <div class="restaurant-searching-inner">
                     <span>VaPer <i>Shop</i> </span>
@@ -22,7 +22,7 @@
         </div>
     </section>
     <!-- top returents -->
-    
+
     <section>
         <div class="block opac35">
             <div class="container">

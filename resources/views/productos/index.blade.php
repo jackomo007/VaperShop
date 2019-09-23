@@ -68,6 +68,12 @@
                             </div>
 
                             <div class="col-md-9 col-sm-12 col-lg-9">
+                                @if (\Session::get('error-cart'))
+                                    <div style="background-color: #d9524f;" class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <p style="color:white">{{ \Session::get('error-cart') }}</p>
+                                    </div>
+                                @endif
                                 <div class="blog-detail-wrapper">
                                     <div class="tab-pane fade in active" id="tab1-1">
                                         <form method="POST" action="/productos/search" class="search-dish">

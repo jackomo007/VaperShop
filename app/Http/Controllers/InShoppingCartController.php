@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ShoppingCart;
 use App\InShoppingCart;
+use App\Stock;
 use Illuminate\Http\Request;
 
 class InShoppingCartController extends Controller
@@ -16,6 +17,16 @@ class InShoppingCartController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'quantity' => 'required|min:1|',
+        ]);
+
+        $stock = Stock::where('product_id',$request->product_id)->first();
+
+        if($stock->quantity < $request->quantity){
+            return back()->with('error-cart', 'Cantidad de producto no disponible, por favor seleccione una cantidad menor.');
+        }
+
         $shopping_cart = new ShoppingCart;
         $shopping_cart = $shopping_cart->makeSession();
 

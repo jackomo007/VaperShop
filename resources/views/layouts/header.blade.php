@@ -2,11 +2,11 @@
     @if(Auth::check())
         <div class="topbar">
             <div class="container">
-                       
+
                             <img width="50" heigth="80" src="{{ asset('/images/logo.png') }}" alt="logo.png" itemprop="image" style="margin-top: 0.5%;position: fixed;"></a>
-                        
+
                 <div class="social1">
-                    @if(Auth::user()->admin)  
+                    @if(Auth::user()->admin)
                     <a href="{{ url('/admin') }}" title="Administrar recursos" itemprop="url">Gestion</a>
                     <a href="{{ url('/productos') }}" title="Lista de productos" itemprop="url">Productos</a>
                     @endif
@@ -37,7 +37,8 @@
             </div>
         </div>
     @endif
-@if(!Auth::user()->admin)    
+@if(Auth::user())
+@if(!Auth::user()->admin)
     <!-- Topbar -->
     <div class="logo-menu-sec">
         <div class="container">
@@ -63,6 +64,7 @@
             </nav><!-- Navigation -->
         </div>
     </div><!-- Logo Menu Section -->
+@endif
 @endif
 </header>
 <div class="responsive-header">

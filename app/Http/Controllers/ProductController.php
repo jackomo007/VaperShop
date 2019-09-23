@@ -103,6 +103,18 @@ class ProductController extends Controller
             'sub_category_id' => $request->e_sub_category_id,
         ]);
 
+        Stock::where('product_id',$request->e_pro_id)->update([
+            'quantity' => $request->e_quantity
+        ]);
+
+        if ($request->hasFile('e_imagen_producto')) {
+            $file = $request->file('e_imagen_producto');
+            $image = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/images/productos/', $image);
+
+            DB::table('images')->where('product_id',$request->e_pro_id)->update(['image' => $image]);
+        }
+
         return back()->with('success-product', 'Producto actualizado con exito');
     }
 
@@ -123,7 +135,7 @@ class ProductController extends Controller
         return $product->imageProduct;
     }
 
-    public function filter($filter) 
+    public function filter($filter)
     {
         $products = Product::where('sub_category_id', $filter)->paginate(12);
         $user = auth()->user();
@@ -131,7 +143,7 @@ class ProductController extends Controller
         return view('productos.index',['user' => $user, 'products' => $products, 'categories' => $categories]);
     }
 
-     public function search(Request $request) 
+     public function search(Request $request)
     {
         $products = Product::where('description', 'like', '%' . $request->search. '%' )->paginate(12);
         $user = auth()->user();

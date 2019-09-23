@@ -25,7 +25,7 @@ class ShoppingCartController extends Controller
                                                     ->select('in_shopping_carts.*', 'products.title')
                                                     ->get();
         $total = $products->sum("price_sale");
-        
+
         return view("carrito.index", ["products" => $products, 'total' => $total]);
     }
 
@@ -34,5 +34,12 @@ class ShoppingCartController extends Controller
         $shopping_cart = ShoppingCart::where('id',$request->shopping_cart)->update([
             'status' => 'completed'
         ]);
+    }
+
+    public function destroy(Request $request)
+    {
+        // $shopping_cart = ShoppingCart::where('id',$request->shopping_cart)->update([
+        //     'status' => 'completed'
+        // ]);
     }
 }
