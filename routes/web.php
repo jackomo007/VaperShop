@@ -45,6 +45,8 @@ Route::put('/sub-categoria', 'SubCategoryController@update')->name('sub.category
 Route::delete('/sub-categoria', 'SubCategoryController@destroy')->name('sub.category.destroy');
 
 Route::get('/productos', 'ProductController@show')->name('product.show');
+Route::get('/productos/{filter}/filter', 'ProductController@filter')->name('product.filter');
+Route::post('/productos/search', 'ProductController@search')->name('product.search');
 
 Route::get('/producto/all', 'SubCategoryController@all')->name('product.all');
 Route::get('/producto', 'ProductController@table')->name('product.table');

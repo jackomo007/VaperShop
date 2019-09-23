@@ -3,6 +3,7 @@
 namespace App;
 
 use App\InShoppingCart;
+use App\Stock;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -33,11 +34,12 @@ public function list()
        for ($i= 0; $i <= $total-1; $i++) {
 
         $pricing = $this->mascaraDinheiro($product[$i]->pricing);
+        $quantity = $this->stock($product[$i]->id);
 
            $array[$i]["id"]                 = "<td><h6 class='mini-title upper'>".$product[$i]->id."</b></h6></td>";
            $array[$i]["title"]               = "<td class='hide-on-small-only'><h6 class='mini-title upper'>".$product[$i]->title."</b></h6></td>";
            $array[$i]["price"]        = "<td class='hide-on-small-only'><h6 class='mini-title upper'>".$pricing."</b></h6></td>";
-           $array[$i]["actions"]            = "<button class='btn btn-warning'><i class='fa fa-pencil  editar-producto'  pro-cod=".$product[$i]->id." pro-title='".$product[$i]->title."' pro-description='".$product[$i]->description."' pro-pricing='".$pricing."' sub_category_id='".$product[$i]->sub_category_id."' ></i></btn><button class='btn btn-danger' style='margin-left: 5px;'><i class='fa fa-times eliminar_producto' pro-cod=".$product[$i]->id."></i></btn>";
+           $array[$i]["actions"]            = "<button class='btn btn-warning'><i class='fa fa-pencil  editar-producto'  pro-cod=".$product[$i]->id." pro-quan=".$quantity->quantity." pro-title='".$product[$i]->title."' pro-description='".$product[$i]->description."' pro-pricing='".$pricing."' sub_category_id='".$product[$i]->sub_category_id."' ></i></btn><button class='btn btn-danger' style='margin-left: 5px;'><i class='fa fa-times eliminar_producto' pro-cod=".$product[$i]->id."></i></btn>";
        }
        return $array;
    } else  {
@@ -48,6 +50,11 @@ public function list()
 public function subCategory()
 {
    return $this->belongsTo('App\SubCategory');
+}
+
+public function stock($product)
+{
+   return Stock::where('product_id',$product)->first();
 }
 
 public function imageProduct()

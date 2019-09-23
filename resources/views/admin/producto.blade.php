@@ -57,6 +57,15 @@
                                 @enderror
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-lg-6">
+                                <label>Cantidad del Producto <sup>*</sup></label>
+                                <input id="quantity" type="number" min="1" class="form-control brd-rd3 @error('quantity') is-invalid @enderror" name="quantity" required value="{{ old('quantity') }}" >
+                                @error('quantity')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-lg-6">
                                     <label>Imagen del Producto</label>
                                     <input id="imagen_producto" type="file" class=" brd-rd3" name="imagen_producto" >
                                 </div>
@@ -120,6 +129,15 @@
                                                                         <label>Descripción del Producto</label>
                                                                         <input id="e_product_description" type="text" class="brd-rd3 @error('e_product_description') is-invalid @enderror" name="e_product_description" value="{{ old('e_product_description') }}" autocomplete="e_product_description" >
                                                                         @error('e_product_description')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                    <div class="col-md-6 col-sm-6 col-lg-6">
+                                                                        <label>Cantidad del Producto <sup>*</sup></label>
+                                                                        <input id="e_quantity" type="text" class="form-control brd-rd3 @error('e_quantity') is-invalid @enderror" name="e_quantity" required value="{{ old('e_quantity') }}" >
+                                                                        @error('e_quantity')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
                                                                             </span>

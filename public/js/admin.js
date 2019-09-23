@@ -370,6 +370,7 @@ $(document).on("click", ".editar-producto", function () {
     $("#e_product_description").val("");
     $("#e_pricing").val("");
     $("#sub_category_id").val("");
+    $("#e_quantity").val("");
 
     var sub_categoria = $(this).attr("sub_category_id");
 
@@ -377,6 +378,7 @@ $(document).on("click", ".editar-producto", function () {
     $("#e_title").val($(this).attr("pro-title"));
     $("#e_product_description").val($(this).attr("pro-description"));
     $("#e_pricing").val($(this).attr("pro-pricing"));
+    $("#e_quantity").val($(this).attr("pro-quan"));
 
     actualizar_producto(sub_categoria);
 });

@@ -12,8 +12,9 @@
                 <div class="restaurant-searching-inner">
                     <span>VaPer <i>Shop</i> </span>
                     <h2 itemprop="headline">Recibe tus compras en la comodidad de tu hogar</h2>
-                    <form class="restaurant-search-form2 brd-rd30">
-                        <input class="brd-rd30" type="text" placeholder="QUÉ QUIERES BUSCAR?">
+                    <form method="POST" action="/productos/search" class="restaurant-search-form2 brd-rd30">
+                        @csrf
+                        <input class="brd-rd30"  name="search"  type="text" placeholder="QUÉ QUIERES BUSCAR?">
                         <button class="brd-rd30 red-bg" type="submit">BUSCAR</button>
                     </form>
                 </div>

@@ -2,8 +2,14 @@
     @if(Auth::check())
         <div class="topbar">
             <div class="container">
+                       
+                            <img width="50" heigth="80" src="{{ asset('/images/logo.png') }}" alt="logo.png" itemprop="image" style="margin-top: 0.5%;position: fixed;"></a>
+                        
                 <div class="social1">
-                    <a href="#" title="Login" itemprop="url"></a>
+                    @if(Auth::user()->admin)  
+                    <a href="{{ url('/admin') }}" title="Administrar recursos" itemprop="url">Gestion</a>
+                    <a href="{{ url('/productos') }}" title="Lista de productos" itemprop="url">Productos</a>
+                    @endif
                     <a href="{{ url('/carrito') }}" title="#" itemprop="url">
                         <i class="fa fa-cart-arrow-down" style="font-size: 32px;margin-top: -5px;">
                             @if(isset($productsCount))
@@ -31,6 +37,7 @@
             </div>
         </div>
     @endif
+@if(!Auth::user()->admin)    
     <!-- Topbar -->
     <div class="logo-menu-sec">
         <div class="container">
@@ -56,6 +63,7 @@
             </nav><!-- Navigation -->
         </div>
     </div><!-- Logo Menu Section -->
+@endif
 </header>
 <div class="responsive-header">
     <div class="responsive-logomenu">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
+use App\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -51,6 +53,11 @@ class ProductController extends Controller
             'sub_category_id' => $request->sub_category_id,
         ]);
 
+        Stock::create([
+            'quantity' => $request->quantity,
+            'product_id' => $product->id,
+        ]);
+
         if ($request->hasFile('imagen_producto')) {
             $file = $request->file('imagen_producto');
             $image = time() . $file->getClientOriginalName();
@@ -74,7 +81,8 @@ class ProductController extends Controller
     {
         $products = Product::paginate(12);
         $user = auth()->user();
-        return view('productos.index',['user' => $user, 'products' => $products]);
+        $categories = Category::get();
+        return view('productos.index',['user' => $user, 'products' => $products, 'categories' => $categories]);
     }
 
     /**
@@ -115,4 +123,19 @@ class ProductController extends Controller
         return $product->imageProduct;
     }
 
+    public function filter($filter) 
+    {
+        $products = Product::where('sub_category_id', $filter)->paginate(12);
+        $user = auth()->user();
+        $categories = Category::get();
+        return view('productos.index',['user' => $user, 'products' => $products, 'categories' => $categories]);
+    }
+
+     public function search(Request $request) 
+    {
+        $products = Product::where('description', 'like', '%' . $request->search. '%' )->paginate(12);
+        $user = auth()->user();
+        $categories = Category::get();
+        return view('productos.index',['user' => $user, 'products' => $products, 'categories' => $categories]);
+    }
 }

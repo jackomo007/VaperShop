@@ -51,6 +51,13 @@
                                                     <td>@include('carrito.delete', ["product" => $product])</td> 
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total a pagar:</td> 
+                                                <td style="font-size:large">S/ {{$total}}</td> 
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

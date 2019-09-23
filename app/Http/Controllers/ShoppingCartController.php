@@ -21,12 +21,12 @@ class ShoppingCartController extends Controller
     public function index(Request $request){
 
         $products =  new InShoppingCart;
-        $products =   DB::table('in_shopping_carts')
-            ->join('products', 'in_shopping_carts.product_id', '=', 'products.id')
-            ->select('in_shopping_carts.*', 'products.title')
-            ->get();
-
-        return view("carrito.index", ["products" => $products]);
+        $products =   DB::table('in_shopping_carts')->join('products', 'in_shopping_carts.product_id', '=', 'products.id')
+                                                    ->select('in_shopping_carts.*', 'products.title')
+                                                    ->get();
+        $total = $products->sum("price_sale");
+        
+        return view("carrito.index", ["products" => $products, 'total' => $total]);
     }
 
     public function close(Request $request)
