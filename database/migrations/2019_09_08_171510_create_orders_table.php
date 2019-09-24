@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
 			$table->integer("shopping_cart_id")->unsigned();
 			$table->unsignedBigInteger("user_id");
 			$table->string("status")->default("creado");
-			$table->integer("total");
+			$table->decimal("total",9,2);
 
             $table->foreign("shopping_cart_id")->references("id")->on("shopping_carts");
 			$table->foreign("user_id")->references("id")->on("users");

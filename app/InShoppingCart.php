@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\ShoppingCart;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class InShoppingCart extends Model
@@ -13,7 +15,7 @@ class InShoppingCart extends Model
     public function productsInCart()
     {
         $user = auth()->user();
-        if(isset($user)){        
+        if(isset($user)){
             $activeCart = ShoppingCart::where('status','incompleted')->where('custom_id',$user->id)->first();
             if(isset($activeCart)){
                 $productsInCart = InShoppingCart::where('shopping_cart_id', $activeCart->id)->get();
@@ -22,6 +24,27 @@ class InShoppingCart extends Model
             return 0;
         }
         return 0;
+    }
+
+    public function productsCart($cart)
+    {
+        $products = DB::table('in_shopping_carts')->join('products', 'in_shopping_carts.product_id', '=', 'products.id')
+                                                    ->where('in_shopping_carts.shopping_cart_id',$cart)
+                                                    ->select('in_shopping_carts.*', 'products.title')
+                                                    ->get();
+
+        return $products;
+    }
+
+    public function totalCart($products)
+    {
+        foreach ($products as $product){
+            $suma[] = $product->price_sale * $product->quantity;
+        }
+
+        $total = array_sum($suma);
+
+        return  $total;
     }
 
     public function products()

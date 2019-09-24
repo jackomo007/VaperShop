@@ -31,7 +31,6 @@ Route::get('/admin/categoria', 'CategoryController@index')->name('category.index
 Route::get('/admin/sub-categoria', 'SubCategoryController@index')->name('sub.category.index');
 Route::get('/admin/producto', 'ProductController@index')->name('sub.category.index');
 
-
 Route::get('/categoria/all', 'CategoryController@all')->name('category.all');
 Route::get('/categoria', 'CategoryController@table')->name('category.table');
 Route::post('/categoria', 'CategoryController@store')->name('category.store');
@@ -62,6 +61,11 @@ Route::put('/carrito', 'ShoppingCartController@close')->name('carrito.close');
 Route::get('/carrito/completed', 'ShoppingCartController@show')->name('carrito.show');
 Route::get('/carrito', 'ShoppingCartController@index')->name('carrito.index');
 Route::get('/carrito/empty', 'ShoppingCartController@destroy')->name('carrito.empty');
+
+Route::get('/order', 'OrderController@index')->name('order.index');
+Route::post('/order', 'OrderController@store')->name('order.store');
+Route::put('/order', 'OrderController@update')->name('order.update');
+Route::delete('/order/{order}', 'OrderController@destroy')->name('order.destroy');
 
 
 Auth::routes();

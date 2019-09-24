@@ -16,7 +16,7 @@ class CreateShoppingCartsTable extends Migration
         Schema::create('shopping_carts', function (Blueprint $table) {
             $table->increments("id");
             $table->string('status');
-            $table->string('customid')->unique()->nullable();
+            $table->string('custom_id')->unique()->nullable();
 			$table->timestamps();
         });
     }

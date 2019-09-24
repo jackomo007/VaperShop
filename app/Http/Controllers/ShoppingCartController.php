@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ShoppingCart;
 use App\InShoppingCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,24 +10,27 @@ use Illuminate\Support\Facades\DB;
 class ShoppingCartController extends Controller
 {
 
+    public function index(){
+        $user = auth()->user();
+
+        $shoppingCart = new ShoppingCart;
+        $userCart = $shoppingCart->getUserCart($user);
+        $cart =  new InShoppingCart;
+        $products =   $cart->productsCart($userCart->id);
+        $total = $cart->totalCart($products);
+
+        return view("carrito.index", ["products" => $products, 'total' => $total]);
+    }
+
     public function show(){
 
-        $shopping_cart = ShoppingCart::where('custom_id',auth()->user()->id)->where('status','incomplete')->first();
+        $cart = new ShoppingCart;
+
+        $shopping_cart = $cart->getUserCart(auth()->user());
 
         $order = $shopping_cart->order();
 
         return view("carrito.completed", ["shopping_cart" => $shopping_cart, "order" => $order]);
-    }
-
-    public function index(Request $request){
-
-        $products =  new InShoppingCart;
-        $products =   DB::table('in_shopping_carts')->join('products', 'in_shopping_carts.product_id', '=', 'products.id')
-                                                    ->select('in_shopping_carts.*', 'products.title')
-                                                    ->get();
-        $total = $products->sum("price_sale");
-
-        return view("carrito.index", ["products" => $products, 'total' => $total]);
     }
 
     public function close(Request $request)

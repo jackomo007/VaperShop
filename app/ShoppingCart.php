@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class ShoppingCart extends Model
@@ -11,20 +10,9 @@ class ShoppingCart extends Model
 
     protected $fillable = ['status','custom_id'];
 
-    public function approve(){
-        $this->updateCustomIDAndStatus();
-    }
-
     public function generateCustomID(){
         return md5("$this->id $this->update_at");
     }
-
-    public function updateCustomIDAndStatus(){
-        $this->status = "approved";
-        $this->customid = $this->generateCustomID();
-        $this->save();
-    }
-
 
     public function inShoppingCarts(){
         return $this->hasMany('App\InShoppingCart');
@@ -33,15 +21,6 @@ class ShoppingCart extends Model
     public function order(){
         return $this->hasOne("App\Order")->first();
     }
-
-    public function total(){
-        return $this->products()->sum("pricing");
-    }
-
-    public function totalUSD(){
-        return $this->products()->sum("pricing") / 100;
-    }
-
 
     public static function findOrCreateBySessionID($shopping_cart_id){
         if($shopping_cart_id)
@@ -59,18 +38,23 @@ class ShoppingCart extends Model
     public static function createWithoutSession(){
         return ShoppingCart::create([
             "status" => "incompleted",
-            "custom_id", Auth::user()->id
+            "custom_id" => auth()->user()->id
         ]);
     }
 
      public function makeSession(){
-        $shopping_cart = ShoppingCart::where('custom_id', auth()->user()->id)
-                        ->where('status','incompleted')
-                        ->first();
+        $shopping_cart = $this->getUserCart(auth()->user());
 
         if(!$shopping_cart){
             $shopping_cart = $this->createWithoutSession();
         }
+
+        return $shopping_cart;
+    }
+
+    public function getUserCart($user)
+    {
+        $shopping_cart = ShoppingCart::where('custom_id', $user->id)->where('status','incompleted')->first();
 
         return $shopping_cart;
     }
