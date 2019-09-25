@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\InShoppingCart;
 use App\Order;
+use App\InShoppingCart;
+use App\ShoppingCart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -19,7 +21,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->get();
+        $orders = DB::table('orders')->join('users', 'orders.user_id', '=', 'users.id')
+                                                    ->select('orders.*', 'users.name')
+                                                    ->get();
 
         return view('order.index',['orders' => $orders]);
     }
@@ -40,6 +44,19 @@ class OrderController extends Controller
         ]);
 
         return redirect("/order");
+    }
+
+    public function show(Request $request)
+    {
+       $order = Order::find($request->id);
+
+       $cart = new ShoppingCart;
+       $cart = $cart->getUserCart($order->user_id);
+
+       $products = new InShoppingCart;
+       $products = $products->productsCart($cart->id);
+
+        return $products ? $products : [];
     }
 
     /**

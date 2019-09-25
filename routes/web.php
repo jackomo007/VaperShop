@@ -63,7 +63,7 @@ Route::get('/carrito', 'ShoppingCartController@index')->name('carrito.index');
 Route::get('/carrito/empty', 'ShoppingCartController@destroy')->name('carrito.empty');
 
 Route::get('/order', 'OrderController@index')->name('order.index');
-Route::get('/order/{order}', 'OrderController@show')->name('order.show');
+Route::post('/order/{order}', 'OrderController@show')->name('order.show');
 Route::post('/order', 'OrderController@store')->name('order.store');
 Route::put('/order', 'OrderController@update')->name('order.update');
 Route::delete('/order/{order}', 'OrderController@destroy')->name('order.destroy');

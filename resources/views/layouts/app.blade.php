@@ -123,6 +123,7 @@
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
         @if(Auth::check())
             <script src="/js/admin.js"></script>
+            <script src="/js/order.js"></script>
         @endif
 </body>
 

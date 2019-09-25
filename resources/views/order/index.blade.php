@@ -43,16 +43,22 @@
                                         <tbody>
                                             @foreach($orders as $order)
                                                 <tr>
-                                                    <td>{{$order->user_id}}</td>
+                                                    <td>{{$order->name}}</td>
                                                     <td>S/ {{$order->total}}</td>
-                                                    <td> {{$order->status}}</td>
+                                                    <td><select name="estatus_order" id="estatus_order">
+                                                        <option value="{{$order->status}}">{{$order->status}}</option>
+                                                        <option value="Espera Pagamento">Espera Pagamento</option>
+                                                        <option value="Concluido">Conlcuido</option>
+                                                    </select></td>
                                                     <td>
-                                                        <a class="btn btn-info" href="{{ route('order.show',$order->id) }}">Ver Detalles</a>
+                                                        <button type="button" class="btn btn-info" onclick="ver_detalles({{ $order->id }})"data-toggle="modal" data-target="#exampleModal">
+                                                            Ver detalles
+                                                        </button>
                                                         <a class="btn btn-primary" href="{{ route('order.update',$order->id) }}">Actualizar Estado</a>
                                                         <form style="display: contents;" action="order/{{ $order->id}}" method="POST">
                                                             @csrf
                                                             @method('delete')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="submit" class="btn btn-danger">Eliminar</button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -79,4 +85,25 @@
             </div>
         </div><!-- Section Box -->
     </section>
+
+
+          <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Orden de Compra</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div id="detalles_orden" class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
 @endsection
