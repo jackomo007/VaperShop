@@ -13,4 +13,9 @@ class Order extends Model
     public function sendMail($email){
       Mail::to($email)->send(new OrderCreated($this));
     }
+
+    public function cliente()
+    {
+      return $this->belongsTo('App\User');
+    }
 }

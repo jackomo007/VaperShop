@@ -21,7 +21,7 @@ class OrderController extends Controller
     {
         $orders = Order::latest()->get();
 
-        return view('orders.index',['orders' => $orders]);
+        return view('order.index',['orders' => $orders]);
     }
 
     public function store(Request $request)

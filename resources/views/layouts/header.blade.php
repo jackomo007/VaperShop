@@ -37,34 +37,32 @@
             </div>
         </div>
     @endif
-@if(Auth::user())
-@if(!Auth::user()->admin)
-    <!-- Topbar -->
-    <div class="logo-menu-sec">
-        <div class="container">
-            <div class="logo">
-                <h1 itemprop="headline"><a href="{{ url('/') }}" title="Home" itemprop="url"><img
-                            src="{{ asset('/images/logo2.png') }}" alt="logo.png" itemprop="image"></a></h1>
-            </div>
-            <nav>
-                <div class="menu-sec">
-                    <ul>
-                        <li class="menu-item-has-children"><a href="{{ url('/') }}" title="INICIO" itemprop="url">
-                                INICIO</a>
-                        </li>
-                        <li class="menu-item-has-children"><a href="{{ url('/productos') }}" title="PRODUCTOS"
-                                itemprop="url">PRODUCTOS</a>
-                        </li>
-                        <li><a href="{{ url('/contacto') }}" title="CONTÁCTANOS" itemprop="url">CONTÁCTANOS</a></li>
-                    </ul>
-                    @if(!Auth::check())
-                        <a class="red-bg brd-rd4" href="{{ url('/registro') }}" title="REGÍSTRATE" itemprop="url">REGÍSTRATE AQUÍ</a>
-                    @endif
+@if(!Auth::check())
+        <!-- Topbar -->
+        <div class="logo-menu-sec">
+            <div class="container">
+                <div class="logo">
+                    <h1 itemprop="headline"><a href="{{ url('/') }}" title="Home" itemprop="url"><img
+                                src="{{ asset('/images/logo2.png') }}" alt="logo.png" itemprop="image"></a></h1>
                 </div>
-            </nav><!-- Navigation -->
-        </div>
-    </div><!-- Logo Menu Section -->
-@endif
+                <nav>
+                    <div class="menu-sec">
+                        <ul>
+                            <li class="menu-item-has-children"><a href="{{ url('/') }}" title="INICIO" itemprop="url">
+                                    INICIO</a>
+                            </li>
+                            <li class="menu-item-has-children"><a href="{{ url('/productos') }}" title="PRODUCTOS"
+                                    itemprop="url">PRODUCTOS</a>
+                            </li>
+                            <li><a href="{{ url('/contacto') }}" title="CONTÁCTANOS" itemprop="url">CONTÁCTANOS</a></li>
+                        </ul>
+                        @if(!Auth::check())
+                            <a class="red-bg brd-rd4" href="{{ url('/registro') }}" title="REGÍSTRATE" itemprop="url">REGÍSTRATE AQUÍ</a>
+                        @endif
+                    </div>
+                </nav><!-- Navigation -->
+            </div>
+        </div><!-- Logo Menu Section -->
 @endif
 </header>
 <div class="responsive-header">

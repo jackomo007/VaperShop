@@ -7,7 +7,7 @@
             <div class="page-title-wrapper text-center">
                 <div class="col-md-12 col-sm-12 col-lg-12">
                     <div class="page-title-inner">
-                        <h1 itemprop="headline">MIS ORDDENES DE COMPRA</h1>
+                        <h1 itemprop="headline">MIS ORDENES DE COMPRA</h1>
                     </div>
                 </div>
             </div>
@@ -43,13 +43,12 @@
                                         <tbody>
                                             @foreach($orders as $order)
                                                 <tr>
-                                                    <td>{{$order->name}}</td>
+                                                    <td>{{$order->user_id}}</td>
                                                     <td>S/ {{$order->total}}</td>
                                                     <td> {{$order->status}}</td>
-                                                    <td><span class="red-clr">S/ {{$order->price_sale*$order->quantity}}</span></td>
                                                     <td>
                                                         <a class="btn btn-info" href="{{ route('order.show',$order->id) }}">Ver Detalles</a>
-                                                        <a class="btn btn-primary" href="{{ route('order.edit',$order->id) }}">Editar Estado</a>
+                                                        <a class="btn btn-primary" href="{{ route('order.update',$order->id) }}">Actualizar Estado</a>
                                                         <form style="display: contents;" action="order/{{ $order->id}}" method="POST">
                                                             @csrf
                                                             @method('delete')
