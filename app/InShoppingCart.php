@@ -16,7 +16,7 @@ class InShoppingCart extends Model
     {
         $user = auth()->user();
         if(isset($user)){
-            $activeCart = ShoppingCart::where('status','incompleted')->where('custom_id',$user->id)->first();
+            $activeCart = ShoppingCart::where('status','incompleted')->where('user_id',$user->id)->first();
             if(isset($activeCart)){
                 $productsInCart = InShoppingCart::where('shopping_cart_id', $activeCart->id)->get();
                 return $productsInCart;
@@ -47,8 +47,13 @@ class InShoppingCart extends Model
         return  $total;
     }
 
-    public function products()
+   public function products()
+   {
+       return $this->belongsTo('App\Product', 'product_id', 'id');
+   }
+
+     public function shoppingCart()
     {
-        return $this->hasMany('App\Product');
+        return $this->belongsTo('App\ShoppingCart');
     }
 }

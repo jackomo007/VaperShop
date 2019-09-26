@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Order;
-use App\InShoppingCart;
 use App\ShoppingCart;
+use App\InShoppingCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -50,8 +51,9 @@ class OrderController extends Controller
     {
        $order = Order::find($request->id);
 
+       $user = User::find($order->user_id);
        $cart = new ShoppingCart;
-       $cart = $cart->getUserCart($order->user_id);
+       $cart = $cart->getUserCart($user);
 
        $products = new InShoppingCart;
        $products = $products->productsCart($cart->id);

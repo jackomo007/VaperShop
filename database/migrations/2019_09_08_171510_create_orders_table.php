@@ -16,12 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments("id");
 			$table->integer("shopping_cart_id")->unsigned();
-			$table->unsignedBigInteger("user_id");
 			$table->string("status")->default("creado");
 			$table->decimal("total",9,2);
 
             $table->foreign("shopping_cart_id")->references("id")->on("shopping_carts");
-			$table->foreign("user_id")->references("id")->on("users");
             $table->timestamps();
         });
     }
@@ -37,9 +35,6 @@ class CreateOrdersTable extends Migration
         {
             $table->dropForeign('orders_shopping_cart_id_foreign');
             $table->dropColumn('shopping_cart_id');
-
-            $table->dropForeign('orders_user_id_foreign');
-            $table->dropColumn('user_id');
         });
 
         Schema::dropIfExists('orders');

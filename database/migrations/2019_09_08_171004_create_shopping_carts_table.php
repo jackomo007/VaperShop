@@ -16,8 +16,10 @@ class CreateShoppingCartsTable extends Migration
         Schema::create('shopping_carts', function (Blueprint $table) {
             $table->increments("id");
             $table->string('status');
-            $table->string('custom_id')->unique()->nullable();
-			$table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            
+            $table->foreign("user_id")->references("id")->on("users");
+            $table->timestamps();
         });
     }
 
@@ -28,6 +30,10 @@ class CreateShoppingCartsTable extends Migration
      */
     public function down()
     {
+         Schema::table('shopping_carts', function(Blueprint $table)
+        {
+            $table->dropColumn('user_id');
+        });
         Schema::dropIfExists('shopping_carts');
     }
 }

@@ -47,14 +47,19 @@ public function list()
    }
 }
 
+public function stock($product)
+{
+   return Stock::where('product_id',$product)->first();
+}
+
 public function subCategory()
 {
    return $this->belongsTo('App\SubCategory');
 }
 
-public function stock($product)
+public function inCart()
 {
-   return Stock::where('product_id',$product)->first();
+   return $this->hasMany('App\InShoppingCart');
 }
 
 public function imageProduct()
