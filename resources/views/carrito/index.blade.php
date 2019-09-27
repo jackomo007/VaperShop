@@ -17,7 +17,7 @@
     <div class="bread-crumbs-wrapper">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html" title="" itemprop="url">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="/" title="" itemprop="url">Inicio</a></li>
                 <li class="breadcrumb-item active">MI CARRITO</li>
             </ol>
         </div>
@@ -65,8 +65,8 @@
                             <div class="col-md-12 col-sm-12 col-lg-12">
                                 <div class="loc-map2">
                                     <div class="loc-map brd-rd3" id="loc-map"></div>
-                                    @if($products->isNotEmpty())
-                                        @include('carrito.finalizar', ["shopping_cart" => $product->shopping_cart_id])
+                                    @if($products !== [])
+                                        @include('carrito.finalizar', ["shopping_cart" => $product->shopping_cart_id, "price" => $product->price_sale])
                                     @else
                                      <div class="loc-srch" style="left: 300px;">
                                         <button class="btn btn-default"><a href="{{ url('/productos') }}" style="color:red">El carrito esta vacío, haz click aqui para volver a los productos.</a></button>
@@ -80,4 +80,63 @@
             </div>
         </div><!-- Section Box -->
     </section>
+
+     <!-- Modal -->
+    <div class="modal fade" id="finalizar-compra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Finalizar Compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="compra" class="modal-body">
+                <form action="/order" method="POST">
+                    @csrf
+                    <div class="price-header" style="padding: 25px 55px 0px;text-align: center;">
+                        <h6 itemprop="headline">EL TOTAL DE SUS COMPRAS</h6>
+                        <h3 itemprop="headline">ES</h3>
+                        <div class="price-header" id="big-price"></div>
+                    </div>
+                    <ul class="price-body">
+                        <li><input type="hidden" name="id_cart" id="id_cart"></li>
+                        <li>
+                            <div class="input-field brd-rd2"><i style="margin-left:-5%;" class="fa fa-map-marker"></i> <input
+                                    style="border-style: none;box-shadow: none;"
+                                    class="form-control"
+                                    type="text"
+                                    name="address"
+                                    placeholder="INDIQUE A QUE DIRECCIÓN A DONDE SE HARÁ LA ENTREGA">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="input-field brd-rd2"><i class="fa fa-handshake-o"></i> <input
+                                    style="border-style: none;box-shadow: none;"
+                                    class="form-control"
+                                    type="text"
+                                    name="guest"
+                                    placeholder="INDIQUE LA PERSONA QUE RECIBIRÁ LA ENTREGA">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="input-field brd-rd2"><i class="fa fa-money"></i> <input
+                                    style="border-style: none;box-shadow: none;"
+                                    class="form-control"
+                                    type="text"
+                                    name="change"
+                                    placeholder="INDIQUE LA CANTIDAD EXACTA DE DINERO PARA EL CAMBIO">
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="row">
+                        <div class="col-md-7"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
+                        
+                        <div class="col-md-2"><button type="submit" class="btn btn-danger">Finalizar Compra</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
 @endsection

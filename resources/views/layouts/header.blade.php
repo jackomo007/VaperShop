@@ -7,6 +7,7 @@
 
                 <div class="social1">
                     @if(Auth::user()->admin)
+                    <a href="{{ url('/order') }}" title="Administrar recursos" itemprop="url">Ordenes de Compra</a>
                     <a href="{{ url('/admin') }}" title="Administrar recursos" itemprop="url">Gestion</a>
                     <a href="{{ url('/productos') }}" title="Lista de productos" itemprop="url">Productos</a>
                     @endif

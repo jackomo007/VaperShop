@@ -43,7 +43,7 @@
                                         <tbody>
                                             @foreach($orders as $order)
                                                 <tr>
-                                                    <td>{{$order->name}}</td>
+                                                    <td>{{$order->shopping_cart->user->name}}</td>
                                                     <td>S/ {{$order->total}}</td>
                                                     <td><select name="estatus_order" id="estatus_order">
                                                         <option value="{{$order->status}}">{{$order->status}}</option>
@@ -74,7 +74,7 @@
                                         @include('carrito.finalizar', ["shopping_cart" => $order->shopping_cart_id])
                                     @else
                                      <div class="loc-srch" style="left: 300px;">
-                                        <button class="btn btn-default"><a href="{{ url('/order') }}" style="color:red">El carrito esta vacío, haz click aqui para volver a los orderos.</a></button>
+                                        <button class="btn btn-default"><a href="/admin" style="color:red">No hay ordenes de compra realizadas.</a></button>
                                     </div>
                                     @endif
                                 </div>
@@ -87,7 +87,7 @@
     </section>
 
 
-          <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

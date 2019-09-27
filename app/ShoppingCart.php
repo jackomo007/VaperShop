@@ -14,8 +14,6 @@ class ShoppingCart extends Model
         return md5("$this->id $this->update_at");
     }
 
-    
-
     public static function findOrCreateBySessionID($shopping_cart_id){
         if($shopping_cart_id)
             // Buscar el carrito de compras con este ID

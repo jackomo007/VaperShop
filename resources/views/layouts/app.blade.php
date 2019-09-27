@@ -125,6 +125,8 @@
             <script src="/js/admin.js"></script>
             <script src="/js/order.js"></script>
         @endif
+            <script src="/js/end.js"></script>
+
 </body>
 
 </html>

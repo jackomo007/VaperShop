@@ -22,16 +22,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = DB::table('orders')->join('users', 'orders.user_id', '=', 'users.id')
-                                                    ->select('orders.*', 'users.name')
-                                                    ->get();
+        $orders = Order::get();
 
         return view('order.index',['orders' => $orders]);
     }
 
     public function store(Request $request)
     {
-        $id = $request->shopping_cart;
+        $id = $request->id_cart;
 
         $cart =  new InShoppingCart;
         $products =   $cart->productsCart($id);
@@ -39,12 +37,16 @@ class OrderController extends Controller
 
         Order::create([
             "shopping_cart_id" => $id,
-            "user_id" => auth()->user()->id,
             "total" => $total,
             "status" => "creado"
         ]);
 
-        return redirect("/order");
+        foreach ($products as $product) {
+            $stock = DB::table('stocks')->where('product_id', $product->id)->first();
+            $quantity = $stock->quantity - $product->quantity;
+            DB::table('stocks')->where('product_id', $product->id)->update(['quantity' => $quantity]);
+        }
+       return redirect()->route('carrito.close', ['carrito' => $id]);
     }
 
     public function show(Request $request)

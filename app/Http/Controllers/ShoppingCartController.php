@@ -15,10 +15,15 @@ class ShoppingCartController extends Controller
 
         $shoppingCart = new ShoppingCart;
         $userCart = $shoppingCart->getUserCart($user);
-        $cart =  new InShoppingCart;
-        $products =   $cart->productsCart($userCart->id);
-        $total = $cart->totalCart($products);
-
+        if(null === $userCart){
+            $products = [];
+            $total = 0;
+        }else{
+            $cart =  new InShoppingCart;
+            $products =   $cart->productsCart($userCart->id);
+            $total = $cart->totalCart($products);
+        }
+        
         return view("carrito.index", ["products" => $products, 'total' => $total]);
     }
 
@@ -33,11 +38,13 @@ class ShoppingCartController extends Controller
         return view("carrito.completed", ["shopping_cart" => $shopping_cart, "order" => $order]);
     }
 
-    public function close(Request $request)
+    public function close($carrito)
     {
-        $shopping_cart = ShoppingCart::where('id',$request->shopping_cart)->update([
+        ShoppingCart::where('id',$carrito)->update([
             'status' => 'completed'
         ]);
+
+        return redirect("/order");
     }
 
     public function destroy(Request $request)
