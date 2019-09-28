@@ -66,7 +66,7 @@
                                 <div class="loc-map2">
                                     <div class="loc-map brd-rd3" id="loc-map"></div>
                                     @if($products !== [])
-                                        @include('carrito.finalizar', ["shopping_cart" => $product->shopping_cart_id, "price" => $product->price_sale])
+                                        @include('carrito.finalizar', ["shopping_cart" => $product->shopping_cart_id, "price" => $total])
                                     @else
                                      <div class="loc-srch" style="left: 300px;">
                                         <button class="btn btn-default"><a href="{{ url('/productos') }}" style="color:red">El carrito esta vacío, haz click aqui para volver a los productos.</a></button>

@@ -6,8 +6,10 @@ use App\User;
 use App\Order;
 use App\ShoppingCart;
 use App\InShoppingCart;
+use App\Mail\OrderCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -35,17 +37,16 @@ class OrderController extends Controller
         $products =   $cart->productsCart($id);
         $total = $cart->totalCart($products);
 
-        Order::create([
+        $order = Order::create([
             "shopping_cart_id" => $id,
             "total" => $total,
             "status" => "creado"
         ]);
+        
+        $this->updateStock($products);
 
-        foreach ($products as $product) {
-            $stock = DB::table('stocks')->where('product_id', $product->id)->first();
-            $quantity = $stock->quantity - $product->quantity;
-            DB::table('stocks')->where('product_id', $product->id)->update(['quantity' => $quantity]);
-        }
+        Mail::to('jeal.code47@gmail.com')->send(new OrderCreated($request,$order));
+        
        return redirect()->route('carrito.close', ['carrito' => $id]);
     }
 
@@ -80,5 +81,14 @@ class OrderController extends Controller
     {
         $order->delete();
         return back()->with('success', 'Orden de compra eliminada con exito');
+    }
+
+    public function updateStock($products)
+    {
+        foreach ($products as $product) {
+            $stock = DB::table('stocks')->where('product_id', $product->id)->first();
+            $quantity = $stock->quantity - $product->quantity;
+            DB::table('stocks')->where('product_id', $product->id)->update(['quantity' => $quantity]);
+        }
     }
 }
