@@ -30,7 +30,7 @@
                             <div class="dashboard-title">
                             <h4 itemprop="headline">REGISTRA TU CATEGORÍA</h4>
                         </div>
-                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/categoria">
+                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/categoria" enctype="multipart/form-data">
                             @csrf
                             <div class="row mrg20">
                                 <div class="col-md-6 col-sm-6 col-lg-6">
@@ -52,6 +52,10 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <label>Imagen de la Categoria</label>
+                                    <input id="imagen_categoria" type="file" class=" brd-rd3" name="imagen_categoria" >
+                                </div>
                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                     <div class="step-buttons">
                                         <button type="submit" class="btn btn-danger">Agregar Categoria</button>
@@ -65,7 +69,7 @@
                         <div class="dashboard-title">
                             <h4 itemprop="headline">ACTUALIZAR CATEGORÍA</h4>
                         </div>
-                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/categoria">
+                        <form class="restaurant-info-form brd-rd5" style="padding: 30px;" method="POST" action="/categoria" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <input id="cat_id" name="cat_id" type="hidden">
@@ -88,6 +92,11 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <label>Imagen de la Categoria</label>
+                                   <div id="previa_categoria"></div>
+                                    <input id="e_imagen_categoria" type="file" class=" brd-rd3" name="e_imagen_categoria" >
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                     <div class="step-buttons">

@@ -14,7 +14,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description',
+        'name', 'description','image'
     ];
 
     public function list()
@@ -28,7 +28,7 @@ class Category extends Model
                 $array[$i]["id"]                 = "<td><h6 class='mini-title upper'>".$categories[$i]->id."</b></h6></td>";
                 $array[$i]["name"]               = "<td class='hide-on-small-only'><h6 class='mini-title upper'>".$categories[$i]->name."</b></h6></td>";
                 $array[$i]["description"]        = "<td class='hide-on-small-only'><h6 class='mini-title upper'>".$categories[$i]->description."</b></h6></td>";
-                $array[$i]["actions"]            = "<button class='btn btn-warning'><i class='fa fa-pencil  editar-categoria'  cat-cod=".$categories[$i]->id." cat-nome='".$categories[$i]->name."' cat-description='".$categories[$i]->description."' ></i></btn><button class='btn btn-danger' style='margin-left: 5px;'><i class='fa fa-times eliminar_categoria' cat-cod=".$categories[$i]->id."></i></btn>";
+                $array[$i]["actions"]            = "<button class='btn btn-warning'><i class='fa fa-pencil  editar-categoria'  cat-cod=".$categories[$i]->id." cat-nome='".$categories[$i]->name."' cat-description='".$categories[$i]->description."' cat-image='".$categories[$i]->image."' ></i></btn><button class='btn btn-danger' style='margin-left: 5px;'><i class='fa fa-times eliminar_categoria' cat-cod=".$categories[$i]->id."></i></btn>";
             }
             return $array;
         } else  {

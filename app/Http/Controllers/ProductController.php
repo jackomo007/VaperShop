@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use App\Stock;
+use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -138,9 +139,12 @@ class ProductController extends Controller
     public function filter($filter)
     {
         $products = Product::where('sub_category_id', $filter)->paginate(12);
+        $subCategory = SubCategory::find($products[0]->sub_category_id);
+        $image = $subCategory->category->image;
+
         $user = auth()->user();
         $categories = Category::get();
-        return view('productos.index',['user' => $user, 'products' => $products, 'categories' => $categories]);
+        return view('productos.index',['user' => $user, 'image' => $image, 'products' => $products, 'categories' => $categories]);
     }
 
      public function search(Request $request)

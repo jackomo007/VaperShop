@@ -3,7 +3,11 @@
 @section('content')
     <section>
             <div class="block">
-                <div class="fixed-bg" id="banner-product" style="background-image: url(/images/banners_default/lacteos-huevos.jpg);background-repeat: none;"></div>
+                @if(!isset($image))
+                    <div class="fixed-bg" id="banner-product" style="background-image: url(/images/banners_default/compra-donde-quieras.jpg);background-repeat: none;"></div>
+                @else
+                    <div class="fixed-bg" id="banner-product" style="background-image: url(/images/categorias/{{ $image }});background-repeat: none;"></div>
+                @endif
                 <div class="page-title-wrapper text-center">
                     <div class="col-md-12 col-sm-12 col-lg-12">
                         <div class="page-title-inner">

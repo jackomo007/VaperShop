@@ -50,11 +50,17 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => 'required|min:2|',
             'name' => new CategoriaExistente,
+            'imagen_categoria' => 'required'
         ]);
+
+        $file = $request->file('imagen_categoria');
+        $image = time() . $file->getClientOriginalName();
+        $file->move(public_path() . '/images/categorias/', $image);
 
         Category::create([
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $image
         ]);
 
         return back()->with('success-category', 'Categoria registrada con exito');
@@ -91,10 +97,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request)
     {
-         Category::where('id',$request->cat_id)->update([
+        if ($request->hasFile('e_imagen_categoria')) {
+            $file = $request->file('e_imagen_categoria');
+            $image = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/images/categorias/', $image);
+
+            Category::where('id',$request->cat_id)->update([
+                'name' => $request->cat_name,
+                'description' => $request->cat_description,
+                'image' => $image
+            ]);
+        }else {
+            Category::where('id',$request->cat_id)->update([
                 'name' => $request->cat_name,
                 'description' => $request->cat_description,
             ]);
+        }
 
             return back()->with('success-category', 'Categoria actualizada con exito');
     }

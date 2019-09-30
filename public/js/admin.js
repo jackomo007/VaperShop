@@ -46,7 +46,7 @@ var data_table = $("#Admin").DataTable({
             "previous": '<h6 class="mini-title upper">Anterior</h6>',
             "next": '<h6 class="mini-title upper">Siguiente</h6>'
         },
-        "info": '<h6 class="mini-title upper">Mostrando de <span class="wt2">_START_</span> a <span class="wt2">_END_</span> de <span class="wt2">_TOTAL_</span> lineas</h6>',
+        "info": '<h6 class="mini-title upper">Mostrando de <span class="wt2">_START_</span> a <span class="wt2">_END_</span> de <span class="wt2">_TOTAL_</span> registros</h6>',
         "infoFiltered": '<h6 class="mini-title upper"><span class="wt2">_TOTAL_</span> resultado(s)</h6>',
         "infoEmpty": '<h6 class="mini-title upper">Ningun resultado</h6>',
         "lengthMenu": '<h6 class="mini-title upper black-text">mostrar</h6>_MENU_',
@@ -66,10 +66,13 @@ $(document).on("click", ".editar-categoria", function () {
     $("#cat_id").val("");
     $("#cat_name").val("");
     $("#cat_description").val("");
+    $("#previa_categoria").empty();
 
     $("#cat_id").val($(this).attr("cat-cod"));
     $("#cat_name").val($(this).attr("cat-nome"));
     $("#cat_description").val($(this).attr("cat-description"));
+    var image = '<img id="imagen_actual" src="/images/categorias/'+$(this).attr("cat-image")+'" alt="">';
+    $("#previa_categoria").append(image);
 });
 
 
@@ -153,7 +156,7 @@ var data_table = $("#subCategoria").DataTable({
             "previous": '<h6 class="mini-title upper">Anterior</h6>',
             "next": '<h6 class="mini-title upper">Siguiente</h6>'
         },
-        "info": '<h6 class="mini-title upper">Mostrando de <span class="wt2">_START_</span> a <span class="wt2">_END_</span> de <span class="wt2">_TOTAL_</span> lineas</h6>',
+        "info": '<h6 class="mini-title upper">Mostrando de <span class="wt2">_START_</span> a <span class="wt2">_END_</span> de <span class="wt2">_TOTAL_</span> registros</h6>',
         "infoFiltered": '<h6 class="mini-title upper"><span class="wt2">_TOTAL_</span> resultado(s)</h6>',
         "infoEmpty": '<h6 class="mini-title upper">Ningun resultado</h6>',
         "lengthMenu": '<h6 class="mini-title upper black-text">mostrar</h6>_MENU_',
@@ -325,7 +328,7 @@ var data_table = $("#Producto").DataTable({
             "previous": '<h6 class="mini-title upper">Anterior</h6>',
             "next": '<h6 class="mini-title upper">Siguiente</h6>'
         },
-        "info": '<h6 class="mini-title upper">Mostrando de <span class="wt2">_START_</span> a <span class="wt2">_END_</span> de <span class="wt2">_TOTAL_</span> lineas</h6>',
+        "info": '<h6 class="mini-title upper">Mostrando de <span class="wt2">_START_</span> a <span class="wt2">_END_</span> de <span class="wt2">_TOTAL_</span> registros</h6>',
         "infoFiltered": '<h6 class="mini-title upper"><span class="wt2">_TOTAL_</span> resultado(s)</h6>',
         "infoEmpty": '<h6 class="mini-title upper">Ningun resultado</h6>',
         "lengthMenu": '<h6 class="mini-title upper black-text">mostrar</h6>_MENU_',
