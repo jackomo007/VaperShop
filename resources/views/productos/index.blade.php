@@ -3,11 +3,11 @@
 @section('content')
     <section>
             <div class="block">
-                <div class="fixed-bg" style="background-image: url(/images/topbg.jpg);"></div>
+                <div class="fixed-bg" id="banner-product" style="background-image: url(/images/banners_default/lacteos-huevos.jpg);background-repeat: none;"></div>
                 <div class="page-title-wrapper text-center">
                     <div class="col-md-12 col-sm-12 col-lg-12">
                         <div class="page-title-inner">
-                            <h1 itemprop="headline">Nuestros Productos</h1>
+                            {{-- <h1 itemprop="headline">Nuestros Productos</h1> --}}
                         </div>
                     </div>
                 </div>
