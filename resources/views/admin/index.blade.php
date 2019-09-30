@@ -31,11 +31,8 @@
                                             <h5 itemprop="headline"><a href="#" title=""
                                                     itemprop="url">ADMINISTRADOR</a></h5>
                                             <span><a href="#" title="" itemprop="url">{{ $user->email }}</a></span>
-                                            <a class="brd-rd3 sign-out-btn yellow-bg" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="" itemprop="url">
+                                            <a class="brd-rd3 sign-out-btn yellow-bg" onclick="cerrar_carrito();" title="" style=" cursor: pointer;">
                                                 <i class="fa fa-sign-out"></i> CERRAR SESIÓN</a>
-                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
                                         </div>
                                     </div>
                                     <ul class="nav nav-tabs">

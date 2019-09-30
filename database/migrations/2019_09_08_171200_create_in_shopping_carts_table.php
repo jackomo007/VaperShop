@@ -20,7 +20,7 @@ class CreateInShoppingCartsTable extends Migration
 			$table->integer('quantity');
 			$table->float('price_sale');
 			
-			$table->foreign("shopping_cart_id")->references("id")->on("shopping_carts");
+			$table->foreign("shopping_cart_id")->references("id")->on("shopping_carts")->onDelete('cascade');
 			$table->foreign("product_id")->references("id")->on("products");
             $table->timestamps();
         });

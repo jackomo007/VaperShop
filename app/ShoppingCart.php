@@ -29,7 +29,7 @@ class ShoppingCart extends Model
 
     public static function createWithoutSession(){
         return ShoppingCart::create([
-            "status" => "incompleted",
+            "status" => "incompleto",
             "user_id" => auth()->user()->id
         ]);
     }
@@ -46,7 +46,7 @@ class ShoppingCart extends Model
 
     public function getUserCart($user)
     {
-        $shopping_cart = ShoppingCart::where('user_id', $user->id)->where('status','incompleted')->first();
+        $shopping_cart = ShoppingCart::where('user_id', $user->id)->where('status','incompleto')->first();
 
         return $shopping_cart;
     }

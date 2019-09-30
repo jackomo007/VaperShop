@@ -105,7 +105,7 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Teléfono Secundario</label>
-                                                                    <input id="phoneNumber_secondary" type="text" class=" brd-rd3 @error('phoneNumber_secondary') is-invalid @enderror" name="phoneNumber_secondary" value="{{ old('phoneNumber_secondary') }}" required autocomplete="phoneNumber_secondary" autofocus>
+                                                                    <input id="phoneNumber_secondary" type="text" class=" brd-rd3 @error('phoneNumber_secondary') is-invalid @enderror" name="phoneNumber_secondary" value="{{ old('phoneNumber_secondary') }}"  autocomplete="phoneNumber_secondary" autofocus>
                                                                     @error('phoneNumber_secondary')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -126,7 +126,7 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Correo Electrónico <sup>*</sup></label>
-                                                                    <input id="email" type="text" class=" brd-rd3 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                                                     @error('email')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -135,7 +135,7 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-lg-6">
                                                                     <label>Contraseña <sup>*</sup></label>
-                                                                    <input id="password" type="password" class=" brd-rd3 @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+                                                                    <input id="password" type="password" class=" brd-rd3 @error('password') is-invalid @enderror" min="8" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
                                                                     @error('password')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -164,8 +164,17 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12 col-sm-12 col-lg-12">
+                                                                    @if ($errors->any())
+                                                                    <div class="alert alert-danger">
+                                                                        <ul>
+                                                                            @foreach ($errors->all() as $error)
+                                                                                <li>{{ $error }}</li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
+                                                                    @endif
                                                                     <div class="step-buttons">
-                                                                        <button type="submit" class="btn btn-danger">enviar</button>
+                                                                        <button type="submit" class="btn btn-danger">Registrarme</button>
                                                                     </div>
                                                                 </div>
                                                             </div>

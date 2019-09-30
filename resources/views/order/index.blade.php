@@ -17,7 +17,7 @@
     <div class="bread-crumbs-wrapper">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html" title="" itemprop="url">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="/" title="" itemprop="url">Inicio</a></li>
                 <li class="breadcrumb-item active">MIS ORDENES</li>
             </ol>
         </div>
@@ -45,21 +45,36 @@
                                                 <tr>
                                                     <td>{{$order->shopping_cart->user->name}}</td>
                                                     <td>S/ {{$order->total}}</td>
-                                                    <td><select name="estatus_order" id="estatus_order">
+                                                    <td>
+                                                        @if(Auth::user()->admin)
+                                                        <form style="display: contents;" action="order/{{ $order->id}}" method="POST">
+                                                            @csrf
+                                                            @method('put')
+                                                        <select name="estatus_order" id="estatus_order">
                                                         <option value="{{$order->status}}">{{$order->status}}</option>
                                                         <option value="Espera Pagamento">Espera Pagamento</option>
                                                         <option value="Concluido">Conlcuido</option>
-                                                    </select></td>
+                                                        </select>
+                                                        @else
+                                                        {{$order->status}}
+                                                        @endif
+                                                    </td>
                                                     <td>
-                                                        <button type="button" class="btn btn-info" onclick="ver_detalles({{ $order->id }})"data-toggle="modal" data-target="#exampleModal">
+                                                        @if(Auth::user()->admin)
+                                                         
+                                                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                        </form>
+                                                        @endif
+                                                         <button type="button" class="btn btn-info" onclick="ver_detalles({{ $order->id }})"data-toggle="modal" data-target="#exampleModal">
                                                             Ver detalles
                                                         </button>
-                                                        <a class="btn btn-primary" href="{{ route('order.update',$order->id) }}">Actualizar Estado</a>
+                                                        @if(Auth::user()->admin)
                                                         <form style="display: contents;" action="order/{{ $order->id}}" method="POST">
                                                             @csrf
                                                             @method('delete')
                                                             <button type="submit" class="btn btn-danger">Eliminar</button>
                                                         </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -89,21 +104,35 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Orden de Compra</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="padding-left: 35%;" id="exampleModalLabel">Orden de Compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table" width="100%">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">
+                                Producto
+                            </th>
+                            <th scope="col">
+                                Precio Unitario
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="detalles_orden">
+                        
+                    </tbody>								
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
         </div>
-        <div id="detalles_orden" class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-        </div>
-    </div>
     </div>
 @endsection

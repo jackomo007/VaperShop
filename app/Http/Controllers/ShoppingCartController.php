@@ -41,16 +41,18 @@ class ShoppingCartController extends Controller
     public function close($carrito)
     {
         ShoppingCart::where('id',$carrito)->update([
-            'status' => 'completed'
+            'status' => 'completado'
         ]);
 
         return redirect("/order");
     }
 
-    public function destroy(Request $request)
+    public function empty()
     {
-        // $shopping_cart = ShoppingCart::where('id',$request->shopping_cart)->update([
-        //     'status' => 'completed'
-        // ]);
+        $user = auth()->user();
+        $sp = ShoppingCart::where('user_id',$user->id)->where('status','incompleto')->first();
+        if($sp){
+            $sp->delete();
+        }
     }
 }

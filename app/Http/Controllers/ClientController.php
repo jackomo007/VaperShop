@@ -15,7 +15,8 @@ class ClientController extends Controller
     public function index()
     {
         $user = User::find(auth()->user()->id);
-        return view('clientes.index',['user' => $user]);
+        $orders = $user->carts;
+        return view('clientes.index',['user' => $user, 'orders' => $orders]);
     }
 
     /**

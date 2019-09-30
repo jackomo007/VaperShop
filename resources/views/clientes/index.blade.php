@@ -17,7 +17,7 @@
     <div class="bread-crumbs-wrapper">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html" title="" itemprop="url">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="/" title="" itemprop="url">Inicio</a></li>
                 <li class="breadcrumb-item active">MI PERFIL</li>
             </ol>
         </div>
@@ -39,18 +39,13 @@
                                                     <div class="user-info-inner">
                                                         <h5 itemprop="headline"><a href="#" title="" itemprop="url">MI CUENTA</a></h5>
                                                         <span><a href="#" title="" itemprop="url">{{ $user->email }}</a></span>
-                                                        <a class="brd-rd3 sign-out-btn yellow-bg" href="{{ url('/logout') }}"
-                                                        onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();" title="" itemprop="url"><i class="fa fa-sign-out"></i> CERRAR SESIÓN</a>
-
-                                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                                        {{ csrf_field() }}
-                                                    </form>
+                                                        <a class="brd-rd3 sign-out-btn yellow-bg" onclick="cerrar_carrito();" title="" style=" cursor: pointer;">
+                                                            <i class="fa fa-sign-out"></i> CERRAR SESIÓN</a>
                                                     </div>
                                                 </div>
                                                 <ul class="nav nav-tabs">
                                                     <li class="active"><a href="#estado" data-toggle="tab"><i class="fa fa-dashboard"></i> ESTADO DE COMPRAS</a></li>
-                                                    <li><a href="#shortlists" data-toggle="tab"><i class="fa fa-heart"></i>DETALLES DE COMPRAS EN PROCESO</a></li>
+                                                    {{-- <li><a href="#shortlists" data-toggle="tab"><i class="fa fa-heart"></i>DETALLES DE COMPRAS EN PROCESO</a></li> --}}
                                                     <li><a href="#account-settings" data-toggle="tab"><i class="fa fa-cog"></i>CONFIGURACIONES DE CUENTA</a></li>
                                                 </ul>
                                             </div>
@@ -82,46 +77,16 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
+                                                                            @foreach($orders as $order)
                                                                             <tr>
                                                                                 <td>
-                                                                                    <h5 itemprop="headline"><a href="#" title="" itemprop="url">#8589</a></h5>
+                                                                                    <h5 itemprop="headline"><a href="#" title="" itemprop="url">{{$order->id}}</a></h5>
                                                                                 </td>
-                                                                                <td>17 agosto 2019</td>
-                                                                                <td><span class="brd-rd3 processing">PROCESANDO</span> <a class="detail-link brd-rd50" href="#"
-                                                                                        title="" itemprop="url"><i class="fa fa-chain"></i></a></td>
+                                                                                <td>{{$order->created_at->diffForHumans()}}</td>
+                                                                                <td><span class="brd-rd3 processing">{{$order->status}}</span> <a class="detail-link brd-rd50" href="/order"
+                                                                                        title=""><i class="fa fa-chain"></i></a></td>
                                                                             </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <h5 itemprop="headline"><a href="#" title="" itemprop="url">#8589</a></h5>
-                                                                                </td>
-                                                                                <td>17 agosto 2019</td>
-                                                                                <td><span class="brd-rd3 processing">PROCESANDO</span> <a class="detail-link brd-rd50" href="#"
-                                                                                        title="" itemprop="url"><i class="fa fa-chain"></i></a></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <h5 itemprop="headline"><a href="#" title="" itemprop="url">#8589</a></h5>
-                                                                                </td>
-                                                                                <td>17 agosto 2019</td>
-                                                                                <td><span class="brd-rd3 completed">COMPLETADA</span> <a class="detail-link brd-rd50" href="#"
-                                                                                        title="" itemprop="url"><i class="fa fa-chain"></i></a></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <h5 itemprop="headline"><a href="#" title="" itemprop="url">#8589</a></h5>
-                                                                                </td>
-                                                                                <td>17 agosto 2019</td>
-                                                                                <td><span class="brd-rd3 processing">PROCESANDO</span> <a class="detail-link brd-rd50" href="#"
-                                                                                        title="" itemprop="url"><i class="fa fa-chain"></i></a></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <h5 itemprop="headline"><a href="#" title="" itemprop="url">#8589</a></h5>
-                                                                                </td>
-                                                                                <td>17 agosto 2019</td>
-                                                                                <td><span class="brd-rd3 completed">COMPLETADA</span> <a class="detail-link brd-rd50" href="#"
-                                                                                        title="" itemprop="url"><i class="fa fa-chain"></i></a></td>
-                                                                            </tr>
+                                                                            @endforeach
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -130,7 +95,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="shortlists">
+                                            {{-- <div class="tab-pane fade" id="shortlists">
                                                 <div class="tabs-wrp brd-rd5">
                                                     <h4 itemprop="headline">DETALLES DE COMPRAS ACTUALES</h4>
                                                     <div class="restaurants-list">
@@ -194,7 +159,7 @@
                                                         </ul>
                                                     </div><!-- Pagination Wrapper -->
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="tab-pane fade" id="account-settings">
                                                 <div class="tabs-wrp account-settings brd-rd5">
                                                     <h4 itemprop="headline">EDITAR PERFIL</h4>

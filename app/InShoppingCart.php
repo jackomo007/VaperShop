@@ -16,7 +16,7 @@ class InShoppingCart extends Model
     {
         $user = auth()->user();
         if(isset($user)){
-            $activeCart = ShoppingCart::where('status','incompleted')->where('user_id',$user->id)->first();
+            $activeCart = ShoppingCart::where('status','incompleto')->where('user_id',$user->id)->first();
             if(isset($activeCart)){
                 $productsInCart = InShoppingCart::where('shopping_cart_id', $activeCart->id)->get();
                 return $productsInCart;

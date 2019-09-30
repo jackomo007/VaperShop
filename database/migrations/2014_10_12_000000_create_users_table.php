@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->integer('id_type');
             $table->integer('id_number');
             $table->string('phoneNumber');
-            $table->string('phoneNumber_secondary');
+            $table->string('phoneNumber_secondary')->nullable();
             $table->string('address');
-            $table->boolean('admin')->nullable();
+            $table->boolean('admin');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
-    public function __construct(){
-        $this->middleware("auth");
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -53,14 +49,9 @@ class OrderController extends Controller
     public function show(Request $request)
     {
        $order = Order::find($request->id);
-
-       $user = User::find($order->user_id);
-       $cart = new ShoppingCart;
-       $cart = $cart->getUserCart($user);
-
-       $products = new InShoppingCart;
-       $products = $products->productsCart($cart->id);
-
+       foreach($order->shopping_cart->inShoppingCart as $product){
+           $products[] = $product->products;
+       }
         return $products ? $products : [];
     }
 
@@ -73,7 +64,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $order->update(['status' => $request->status]);
+        $order->update(['status' => $request->estatus_order]);
         return back()->with('success', 'Estado de la compra actualizado con exito');
     }
 

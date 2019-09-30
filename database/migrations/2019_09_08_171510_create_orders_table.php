@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
 			$table->string("status")->default("creado");
 			$table->decimal("total",9,2);
 
-            $table->foreign("shopping_cart_id")->references("id")->on("shopping_carts");
+            $table->foreign("shopping_cart_id")->references("id")->on("shopping_carts")->onDelete('cascade');
             $table->timestamps();
         });
     }
