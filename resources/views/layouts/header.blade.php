@@ -1,10 +1,9 @@
 <header class="stick">
     @if(Auth::check())
-        <div class="topbar">
-                {{-- <div class="topbar" style="background:linear-gradient(30deg, rgba(81,168,177,1) 20%, rgba(109,253,243,1) 10%, rgba(2,47,87,1) 80%)"> --}}
+                <div class="topbar" style="background:linear-gradient(30deg, rgba(81,168,177,1) 25%, rgba(109,253,243,1) 5%, rgba(2,47,87,1) 80%)">
             <div class="container">
                 @if(Auth::user()->admin)
-                    <img width="50" heigth="80" src="{{ asset('/images/logo.png') }}" alt="logo.png" itemprop="image" style="margin-top: 0.2%;width: 9%;position: fixed; border-radius: 5%;"></a>
+                    <img width="50" heigth="80" src="{{ asset('/images/logo.png') }}" alt="logo.png" itemprop="image" style="margin-top: 0%;width: 9%;position: fixed;"></a>
                 @endif
                 <div class="social1">
                     @if(Auth::user()->admin)
