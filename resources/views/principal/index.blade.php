@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-lg-4">
                                     <div class="step-box wow fadeIn" data-wow-delay="0.2s">
-                                        <i><img src="/images/resource/setp-img1.png" alt="setp-img1.png"
+                                        <i><img src="/images/resource/setp-img3.png" alt="setp-img1.png"
                                                 itemprop="image"> <span class="brd-rd50 red-bg">1</span></i>
                                         <div class="setp-box-inner">
                                             <h4 itemprop="headline">Regístrate o inicia sesión</h4>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-lg-4">
                                     <div class="step-box wow fadeIn" data-wow-delay="0.4s">
-                                        <i><img src="/images/resource/setp-img2.png" alt="setp-img2.png"
+                                        <i><img src="/images/resource/setp-img1.png" alt="setp-img2.png"
                                                 itemprop="image"> <span class="brd-rd50 red-bg">2</span></i>
                                         <div class="setp-box-inner">
                                             <h4 itemprop="headline">Escoge los productos que quieras</h4>

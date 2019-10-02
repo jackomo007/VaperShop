@@ -664,7 +664,7 @@ header {
 }
 .social1 > a {
   font-size: 18px;
-  color: #b3b3b3;
+  color: rgb(209, 217, 224);
   float: left;
 }
 .social1 > a + a {margin-left: 15px;}
@@ -1849,8 +1849,8 @@ footer {
   margin: 10px 4px 0;
   line-height: 27px;
   width: 27px;
-  color: #999;
-  background-color: rgba(255,255,255,0.05);
+  /* color: #999; */
+  /* background-color: rgba(255,255,255,0.05); */
   font-size: 12px;
 }
 .social2 > a:hover {color: #fff;}

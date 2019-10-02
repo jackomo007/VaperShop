@@ -68,7 +68,7 @@
 							</table>
 							<table class="table" width="100%">
 								<thead>
-									<tr class="table-danger">
+									<tr class="table-warning">
 										<th scope="col">
 											&nbsp;
 										</th>

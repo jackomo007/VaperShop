@@ -38,12 +38,16 @@ class InShoppingCart extends Model
 
     public function totalCart($products)
     {
-        foreach ($products as $product){
-            $suma[] = $product->price_sale * $product->quantity;
+        if( sizeof($products) != 0 ){
+            foreach ($products as $product){
+                $suma[] = $product->price_sale * $product->quantity;
+            }
+
+            $total = array_sum($suma);
+        }else{
+            $total = 0;
         }
-
-        $total = array_sum($suma);
-
+        
         return  $total;
     }
 

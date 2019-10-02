@@ -1,12 +1,12 @@
 function activo(div) {
-    document.getElementById(div).style.color = '#ea1b25';
+    document.getElementById(div).style.color = 'orange';
 }
 
 // CATEGORIAS
 
 $("#Admin_wrapper").remove();
 $("#tabla_categoria").append("<table id='Admin' class='width:100%' >" +
-    "<thead style='background-color: #4CAF50; color: white;'>" +
+    "<thead style='background-color: orange; color: white;'>" +
     "<td class='empresa-codigo'><h6 class='mini-title upper'>Código</h6></td>" +
     "<td class='empresa-nome hide-on-small-only'><h6 class='mini-title upper'>Nombre</h6></td>" +
     "<td class='empresa-email hide-on-small-only'><h6 class='mini-title upper'>Descripcion</h6></td>" +
@@ -71,7 +71,7 @@ $(document).on("click", ".editar-categoria", function () {
     $("#cat_id").val($(this).attr("cat-cod"));
     $("#cat_name").val($(this).attr("cat-nome"));
     $("#cat_description").val($(this).attr("cat-description"));
-    var image = '<img id="imagen_actual" src="/images/categorias/'+$(this).attr("cat-image")+'" alt="">';
+    var image = '<img id="imagen_actual" src="/images/categorias/' + $(this).attr("cat-image") + '" alt="">';
     $("#previa_categoria").append(image);
 });
 
@@ -116,7 +116,7 @@ $(document).on("click", ".eliminar_categoria", function () {
 
 $("#subCategoria_wrapper").remove();
 $("#tabla_sub_categoria").append("<table id='subCategoria' class='width:100%' style='width: 100%;' >" +
-    "<thead style='background-color: #4CAF50; color: white;'>" +
+    "<thead style='background-color: orange; color: white;'>" +
     "<td class='empresa-codigo'><h6 class='mini-title upper'>Código</h6></td>" +
     "<td class='empresa-nome hide-on-small-only'><h6 class='mini-title upper'>Nombre</h6></td>" +
     "<td class='empresa-email hide-on-small-only'><h6 class='mini-title upper'>Descripcion</h6></td>" +
@@ -288,7 +288,7 @@ $("#pricing, #e_pricing").mask('0.000,00', { reverse: true });
 
 $("#Producto_wrapper").remove();
 $("#tabla_producto").append("<table id='Producto' class='width:100%' style='width: 100%;' >" +
-    "<thead style='background-color: #4CAF50; color: white;'>" +
+    "<thead style='background-color: orange; color: white;'>" +
     "<td class='empresa-codigo'><h6 class='mini-title upper'>Código</h6></td>" +
     "<td class='empresa-nome hide-on-small-only'><h6 class='mini-title upper'>Nombre</h6></td>" +
     "<td class='empresa-email hide-on-small-only'><h6 class='mini-title upper'>Precio</h6></td>" +

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Order;
+use App\Stock;
 use App\ShoppingCart;
 use App\InShoppingCart;
 use App\Mail\OrderCreated;
@@ -28,7 +29,6 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $id = $request->id_cart;
-
         $cart =  new InShoppingCart;
         $products =   $cart->productsCart($id);
         $total = $cart->totalCart($products);
@@ -77,9 +77,10 @@ class OrderController extends Controller
     public function updateStock($products)
     {
         foreach ($products as $product) {
-            $stock = DB::table('stocks')->where('product_id', $product->id)->first();
+            $s = new Stock;
+            $stock = $s->where('product_id', $product->product_id)->first();
             $quantity = $stock->quantity - $product->quantity;
-            DB::table('stocks')->where('product_id', $product->id)->update(['quantity' => $quantity]);
+            $s->where('product_id', $product->product_id)->update(['quantity' => $quantity]);
         }
     }
 }

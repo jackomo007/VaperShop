@@ -35,7 +35,7 @@
                                         <div class="profile-sidebar brd-rd5 wow fadeIn" data-wow-delay="0.2s">
                                             <div class="profile-sidebar-inner brd-rd5">
                                                 <div class="user-info red-bg">
-                                                    <img class="brd-rd50" width="90" height="90" src="/../../../../images/logo2.png" alt="user-avatar.jpg" itemprop="image">
+                                                    {{-- <img class="brd-rd50" width="90" height="90" src="/../../../../images/logo2.png" alt="user-avatar.jpg" itemprop="image"> --}}
                                                     <div class="user-info-inner">
                                                         <h5 itemprop="headline"><a href="#" title="" itemprop="url">MI CUENTA</a></h5>
                                                         <span><a href="#" title="" itemprop="url">{{ $user->email }}</a></span>

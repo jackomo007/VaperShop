@@ -24,9 +24,9 @@
                             <div class="profile-sidebar brd-rd5 wow fadeIn" data-wow-delay="0.2s">
                                 <div class="profile-sidebar-inner brd-rd5">
                                     <div class="user-info red-bg">
-                                        <img class="brd-rd50"
+                                        {{-- <img class="brd-rd50"
                                             src="{{URL::asset('images/resource/user-avatar.jpg')}}"
-                                            alt="user-avatar.jpg" itemprop="image">
+                                            alt="user-avatar.jpg" itemprop="image"> --}}
                                         <div class="user-info-inner">
                                             <h5 itemprop="headline"><a href="#" title=""
                                                     itemprop="url">ADMINISTRADOR</a></h5>

@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-lg-12">
                                     <div class="step-buttons">
-                                        <button type="submit" class="btn btn-danger">Agregar Producto</button>
+                                        <button type="submit" class="btn btn-warning">Agregar Producto</button>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
 
                                                                     <div class="col-md-12 col-sm-12 col-lg-12">
                                                                         <div class="step-buttons">
-                                                                            <button type="submit" class="btn btn-danger">Actualizar Producto</button>
+                                                                            <button type="submit" class="btn btn-warning">Actualizar Producto</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -165,7 +165,7 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <button class="btn btn-success registrar_producto">
+                            <button class="btn btn-warning registrar_producto">
                                 <li style="list-style: none;">
                                     <a data-toggle="tab">
                                         <i class="fa fa-plus"></i>

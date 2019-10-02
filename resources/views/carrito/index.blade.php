@@ -42,15 +42,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($products as $product)
-                                                <tr>
-                                                    <td>{{$product->title}}</td>
-                                                    <td>S/ {{$product->price_sale}}</td>
-                                                    <td> {{$product->quantity}}</td>
-                                                    <td><span class="red-clr">S/ {{$product->price_sale*$product->quantity}}</span></td> 
-                                                    <td>@include('carrito.delete', ["product" => $product])</td> 
-                                                </tr>
-                                            @endforeach
+                                            @if(sizeof($products) != 0)
+                                                @foreach($products as $product)
+                                                    <tr>
+                                                        <td>{{$product->title}}</td>
+                                                        <td>S/ {{$product->price_sale}}</td>
+                                                        <td> {{$product->quantity}}</td>
+                                                        <td><span class="red-clr">S/ {{$product->price_sale*$product->quantity}}</span></td> 
+                                                        <td>@include('carrito.delete', ["product" => $product])</td> 
+                                                    </tr>
+                                                @endforeach
+                                            @endif
                                             <tr>
                                                 <td></td>
                                                 <td></td>
@@ -65,7 +67,7 @@
                             <div class="col-md-12 col-sm-12 col-lg-12">
                                 <div class="loc-map2">
                                     <div class="loc-map brd-rd3" id="loc-map"></div>
-                                    @if($products !== [])
+                                    @if(sizeof($products) != 0)
                                         @include('carrito.finalizar', ["shopping_cart" => $product->shopping_cart_id, "price" => $total])
                                     @else
                                      <div class="loc-srch" style="left: 300px;">
@@ -132,7 +134,7 @@
                     <div class="row">
                         <div class="col-md-7"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
                         
-                        <div class="col-md-2"><button type="submit" class="btn btn-danger">Finalizar Compra</button></div>
+                        <div class="col-md-2"><button type="submit" class="btn btn-warning">Finalizar Compra</button></div>
                     </div>
                 </form>
             </div>

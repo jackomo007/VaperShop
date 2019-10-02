@@ -107,7 +107,7 @@
                                                                 @csrf
                                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                                 <input type="hidden" name="price_sale" value="{{$product->pricing}}">
-                                                                <button type="submit" class="btn btn-danger">Agregar al carrito</button>
+                                                                <button type="submit" class="btn btn-warning">Agregar al carrito</button>
                                                             </form>
                                                         </div>
                                                     </div>

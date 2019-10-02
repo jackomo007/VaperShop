@@ -174,7 +174,7 @@
                                                                     </div>
                                                                     @endif
                                                                     <div class="step-buttons">
-                                                                        <button type="submit" class="btn btn-danger">Registrarme</button>
+                                                                        <button type="submit" class="btn btn-warning">Registrarme</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
