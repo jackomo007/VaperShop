@@ -24,7 +24,7 @@ Route::get('/registro', function () {
 });
 
 Route::get('/cliente', 'ClientController@index')->name('client.index');
-Route::put('/cliente/{cliente}', 'ClientController@update')->name('client.update');
+Route::put('/cliente/{cliente}/edit', 'ClientController@update')->name('client.update');
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/categoria', 'CategoryController@index')->name('category.index');

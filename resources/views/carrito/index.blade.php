@@ -122,13 +122,19 @@
                             </div>
                         </li>
                         <li>
-                            <div class="input-field brd-rd2"><i class="fa fa-money"></i> <input
-                                    style="border-style: none;box-shadow: none;"
-                                    class="form-control"
-                                    type="text"
-                                    name="change"
-                                    placeholder="INDIQUE LA CANTIDAD EXACTA DE DINERO PARA EL CAMBIO">
+                            <div class="input-field brd-rd2">
+                                <i class="fa fa-money"></i> 
+                                <label>SELECCIONE EL METODO DE PAGO </label><sup>*</sup>
                             </div>
+                            <div class="row">
+                                <select name="change" id="change" onchange="pagamento()">
+                                    <option value="0">Seleccione</option>                                        
+                                    <option value="1">Efectivo</option>
+                                    <option value="2">Transferencia Bancaria</option>
+                                </select>
+                            </div>
+                            <div id="pagamento" class="row" style="margin-top: 5%;"></div>
+                            
                         </li>
                     </ul>
                     <div class="row">

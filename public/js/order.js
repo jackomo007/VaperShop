@@ -63,3 +63,14 @@ function close_session() {
         }
     });
 }
+
+function pagamento(){
+    if (document.getElementById("change").value == 1){
+        $("#pagamento").empty();
+        var pago = '<br><input name="payment" class="form-control" type="text" placeholder="Indique la cantidad exacta a pagar">';
+        $("#pagamento").append(pago);
+    }else{
+        $("#pagamento").empty();
+    }
+   
+}

@@ -10,7 +10,7 @@
             <div class="fixed-bg" style="background-image: /images/parallax2.jpg;"></div>
             <div class="restaurant-searching style2 text-center">
                 <div class="restaurant-searching-inner">
-                    <span>VaPer <i>Shop</i> </span>
+                    <span>VaPer <i style="color:orange">Shop</i> </span>
                     <h2 itemprop="headline">Recibe tus compras en la comodidad de tu hogar</h2>
                     <form method="POST" action="/productos/search" class="restaurant-search-form2 brd-rd30">
                         @csrf

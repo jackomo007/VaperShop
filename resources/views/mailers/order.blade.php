@@ -30,7 +30,7 @@
 											Persona
 										</th>
 										<th scope="col">
-											Cambio
+											Pagamento
 										</th>
 									</tr>
 								</thead>
@@ -38,7 +38,11 @@
 									<tr>
 										<td>{{$data->address}}</td>
 										<td>{{$data->guest}}</td>
-										<td>S/ {{$order->change}}</td>
+										@if($data->change === "1")
+											<td>S/ {{$data->pagamento}}</td>
+										@else
+											<td>Transferencia</td>
+										@endif
 									</tr>
 								</tbody>								
 							</table>

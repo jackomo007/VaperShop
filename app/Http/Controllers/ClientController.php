@@ -71,7 +71,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::where('id',$id)->update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'phoneNumber' => $request->phoneNumber,
+            'address' => $request->address,
+        ]);
+
+        return back()->with('success-client', 'Sus datos fueron actualizados con éxito.');
     }
 
     /**

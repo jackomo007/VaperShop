@@ -164,42 +164,48 @@
                                                 <div class="tabs-wrp account-settings brd-rd5">
                                                     <h4 itemprop="headline">EDITAR PERFIL</h4>
                                                     <div class="account-settings-inner">
+                                                        @if (\Session::get('success-client'))
+                                                            <div class="alert alert-success">
+                                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                                <p style="margin-left: 30%;">{{ \Session::get('success-client') }}</p>
+                                                            </div>
+                                                        @endif
                                                         <div class="row">
-
+                                                            <form class="profile-info-form" action="/cliente/{{ $user->id }}/edit" method="POST">
+                                                                @csrf
+                                                                @method('PUT')
                                                             <div class="col-md-8 col-sm-8 col-lg-8">
                                                                 <div class="profile-info-form-wrap">
-                                                                    <form class="profile-info-form" action="/cliente/{{ $user->id }}/edit">
-                                                                        @csrf
-                                                                        @method('PUT')
+                                                                   
                                                                         <div class="row mrg20">
                                                                             <div class="col-md-12 col-sm-12 col-lg-12">
                                                                                 <label>Nombre<sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Nombre" value="{{ $user->name }}">
+                                                                                <input class="brd-rd3" type="text" placeholder="Nombre" name="name" value="{{ $user->name }}">
                                                                             </div>
                                                                             <div class="col-md-12 col-sm-12 col-lg-12">
                                                                                 <label>Apellidos <sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Apellidos" value="{{ $user->surname }}">
+                                                                                <input class="brd-rd3" type="text" placeholder="Apellidos" name="surname" value="{{ $user->surname }}">
                                                                             </div>
                                                                             <div class="col-md-12 col-sm-12 col-lg-12">
                                                                                 <label>Teléfono<sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Teléfono" value="{{ $user->phoneNumber }}">
+                                                                                <input class="brd-rd3" type="text" placeholder="Teléfono" name="phoneNumber" value="{{ $user->phoneNumber }}">
                                                                             </div>
                                                                             <div class="col-md-12 col-sm-12 col-lg-12">
                                                                                 <label>Dirección<sup>*</sup></label>
-                                                                                <input class="brd-rd3" type="text" placeholder="Dirección" value="{{ $user->address }}">
+                                                                                <input class="brd-rd3" type="text" placeholder="Dirección" name="address"  value="{{ $user->address }}">
                                                                             </div>
                                                                         </div>
-                                                                    </form>
                                                                 </div>
                                                             </div>
                                                             <div  style="margin-top:20px" class="col-md-12 col-sm-12 col-lg-12">
                                                                 <div class="loc-map2">
                                                                     <div class="loc-map brd-rd3" id="loc-map"></div>
                                                                     <div class="loc-srch">
-                                                                        <button class="brd-rd3 red-bg type="submit">Actualizar</button>
+                                                                        <button class="brd-rd3 red-bg" type="submit">Actualizar</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </form>
                                                         </div>
                                                     </div>
                                                 </div>
