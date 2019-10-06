@@ -39,8 +39,7 @@
                                         <li id="ca"><a  href="{{ url('/admin/categoria') }}" style="cursor: pointer;"><i class="fa fa-superpowers"></i>CATEGORIAS</a></li>
                                         <li id="sc"><a  href="{{ url('/admin/sub-categoria') }}"  style="cursor: pointer;" ><i class="fa fa-superpowers"></i> SUBCATEGORÍAS</a></li>
                                         <li id="pr"><a  href="{{ url('/admin/producto') }}" style="cursor: pointer;"><i class="fa fa-shopping-basket"></i>PRODUCTOS</a></li>
-                                        <li id="cr"><a  style="cursor: pointer;"><i class="fa fa-picture-o"></i>CARROUSEL</a></li>
-                                        <li id="oc"><a  style="cursor: pointer;"><i class="fa fa-cog"></i>OTRAS CONFIGURACIONES</a></li>
+                                        <li id="cr"><a  href="{{ url('/admin/carrousel') }}"style="cursor: pointer;"><i class="fa fa-picture-o"></i>CARROUSEL</a></li>
                                     </ul>
                                 </div>
                             </div>

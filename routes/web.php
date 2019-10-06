@@ -1,5 +1,5 @@
 <?php
-
+use App\Carrousel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('principal.index');
+    $images = Carrousel::get();
+    return view('principal.index',['images' => $images]);
 });
 
 Route::get('/contacto', function () {
@@ -30,6 +31,7 @@ Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/categoria', 'CategoryController@index')->name('category.index');
 Route::get('/admin/sub-categoria', 'SubCategoryController@index')->name('sub.category.index');
 Route::get('/admin/producto', 'ProductController@index')->name('sub.category.index');
+Route::get('/admin/carrousel', 'CarrouselController@index')->name('carrousel.index');
 
 Route::get('/categoria/all', 'CategoryController@all')->name('category.all');
 Route::get('/categoria', 'CategoryController@table')->name('category.table');
@@ -68,6 +70,11 @@ Route::post('/order', 'OrderController@store')->name('order.store');
 Route::put('/order/{order}', 'OrderController@update')->name('order.update');
 Route::delete('/order/{order}', 'OrderController@destroy')->name('order.destroy');
 
+Route::get('/carrousel/all', 'CarrouselController@all')->name('carrousel.all');
+Route::get('/carrousel', 'CarrouselController@table')->name('carrousel.table');
+Route::post('/carrousel', 'CarrouselController@store')->name('carrousel.store');
+Route::put('/carrousel', 'CarrouselController@update')->name('carrousel.update');
+Route::delete('/carrousel', 'CarrouselController@destroy')->name('carrousel.destroy');
 
 Auth::routes();
 

@@ -2,11 +2,11 @@
 
 @section('content')
     <section>
-            <div class="block">
+            <div class="block" style="padding: 12% 0;">
                 @if(!isset($image))
-                    <div class="fixed-bg" id="banner-product" style="background-repeat: no-repeat;background-size: 1080px 600px !important;background-image: url(/images/banners_default/compra-donde-quieras.jpg);"></div>
+                    <div class="fixed-bg" id="banner-product" style="background-image: url(/images/banners_default/compra-donde-quieras.jpg);"></div>
                 @else
-                    <div class="fixed-bg" id="banner-product" style="background-size: cover;background-image: url(/images/categorias/{{ $image }});"></div>
+                    <div class="fixed-bg" id="banner-product" style="background-image: url(/images/categorias/{{ $image }});"></div>
                 @endif
                 <div class="page-title-wrapper text-center">
                     <div class="col-md-12 col-sm-12 col-lg-12">

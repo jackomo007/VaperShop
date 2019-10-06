@@ -480,3 +480,108 @@ function actualizar_producto(sub_categoria) {
     });
 }
 
+// CARROUSEL
+$("#Carrousel_wrapper").remove();
+$("#tabla_carrousel").append("<table id='Carrousel' class='width:100%' style='width: 100%;' >" +
+    "<thead style='background-color: orange; color: white;'>" +
+    "<td class='empresa-codigo'><h6 class='mini-title upper'>Código</h6></td>" +
+    "<td class='empresa-nome hide-on-small-only'><h6 class='mini-title upper'>Descripcion</h6></td>" +
+    "<td class='empresa-action hide-on-small-only'></td>" +
+    "</thead>" +
+    "<tbody>" +
+    "</tbody>" +
+    "</table>");
+var data_table = $("#Carrousel").DataTable({
+    "ajax": {
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "/carrousel",
+        dataSrc: '',
+        mDataProp: '',
+        type: 'GET',
+    },
+    "columns": [
+        { mData: "id" },
+        { mData: "description" },
+        { mData: "actions" },
+    ],
+    order: [],
+    columnDefs: [{
+        "targets": 'no-sort',
+        "orderable": false,
+    }],
+    select: {
+        info: false
+    },
+    language: {
+        "search": '<h6 class="mini-title upper black-text">Buscar: </h6>',
+        'searchPlaceholder': "Descripcion...",
+        "paginate": {
+            "previous": '<h6 class="mini-title upper">Anterior</h6>',
+            "next": '<h6 class="mini-title upper">Siguiente</h6>'
+        },
+        "info": '<h6 class="mini-title upper">Mostrando de <span class="wt2">_START_</span> a <span class="wt2">_END_</span> de <span class="wt2">_TOTAL_</span> registros</h6>',
+        "infoFiltered": '<h6 class="mini-title upper"><span class="wt2">_TOTAL_</span> resultado(s)</h6>',
+        "infoEmpty": '<h6 class="mini-title upper">Ningun resultado</h6>',
+        "lengthMenu": '<h6 class="mini-title upper black-text">mostrar</h6>_MENU_',
+        "emptyTable": '<h6 class="mini-title upper">Ningun resultado</h6>',
+        "loadingRecords": 'Carregando...',
+        "zeroRecords": '<h6 class="mini-title upper">Ningun resultado</h6>'
+
+    }
+});
+$("select").addClass("browser-default");
+
+$(document).on("click", ".editar-carrousel", function () {
+    event.preventDefault();
+    document.getElementById("registrar_carrousel").style.display = "none";
+    document.getElementById("actualizar_carrousel").style.display = "block";
+
+    $("#e_car_id").val("");
+    $("#e_description").val("");
+    $("#carrouselIMG").empty();
+
+    $("#e_car_id").val($(this).attr("car-cod"));
+    $("#e_description").val($(this).attr("car-description"));
+    var img = '<img width="900" height="200" style="margin-bottom: 5%;margin-top: 0%;max-width: 95%;margin-left: 30%;" src="/images/carrousel/' + $(this).attr("car-image") + '" alt="carrousel" ></img>';
+    $("#carrouselIMG").append(img);
+});
+
+
+$(document).on("click", ".registrar_carrousel", function () {
+    event.preventDefault();
+    document.getElementById("registrar_carrousel").style.display = "block";
+    document.getElementById("actualizar_carrousel").style.display = "none";
+});
+
+
+$(document).on("click", ".eliminar_carrousel", function () {
+    event.preventDefault();
+
+    var id = $(this).attr("car-cod");
+    var formData = { id: id };
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/carrousel',
+        type: 'DELETE',
+        data: formData,
+        success: function (result) {
+            if (result == 200) {
+                document.getElementById("alerta-carrousel").style.display = "block";
+                setTimeout(function () {
+                    document.getElementById("alerta-carrousel").style.display = "none";
+                    location.reload();
+                }, 3000);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        }
+    });
+});
+

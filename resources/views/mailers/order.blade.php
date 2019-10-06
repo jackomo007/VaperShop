@@ -39,7 +39,7 @@
 										<td>{{$data->address}}</td>
 										<td>{{$data->guest}}</td>
 										@if($data->change === "1")
-											<td>S/ {{$data->pagamento}}</td>
+											<td>S/ {{$data->payment}}</td>
 										@else
 											<td>Transferencia</td>
 										@endif

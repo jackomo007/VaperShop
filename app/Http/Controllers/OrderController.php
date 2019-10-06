@@ -42,6 +42,8 @@ class OrderController extends Controller
         $this->updateStock($products);
 
         Mail::to('jeal.code47@gmail.com')->send(new OrderCreated($request,$order));
+
+        Mail::to(auth()->user()->email)->send(new OrderCreated($request,$order));
         
        return redirect()->route('carrito.close', ['carrito' => $id]);
     }
