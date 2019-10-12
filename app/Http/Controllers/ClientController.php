@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Mail\Contacto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -24,9 +26,10 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function contact(Request $request)
     {
-        //
+        Mail::to(env('MAIL_USERNAME'))->send(new Contacto($request));
+        return back()->with('success-contact', 'Mensaje enviado con exito');
     }
 
     /**

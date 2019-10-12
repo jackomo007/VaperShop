@@ -7,7 +7,7 @@ use App\Order;
 use App\Stock;
 use App\ShoppingCart;
 use App\InShoppingCart;
-use App\Mail\OrderCreated;
+use App\Mail\OrdenDeCompra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -41,11 +41,9 @@ class OrderController extends Controller
         
         $this->updateStock($products);
 
-        Mail::to('jeal.code47@gmail.com')->send(new OrderCreated($request,$order));
-
-        Mail::to(auth()->user()->email)->send(new OrderCreated($request,$order));
+        Mail::to(auth()->user()->email)->cc(env('MAIL_USERNAME'))->send(new OrdenDeCompra($request,$order));
         
-       return redirect()->route('carrito.close', ['carrito' => $id]);
+        return redirect()->route('carrito.close', ['carrito' => $id]);
     }
 
     public function show(Request $request)

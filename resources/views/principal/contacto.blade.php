@@ -38,7 +38,7 @@
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4 col-lg-4">
                                         <div class="contact-info-box">
-                                            <i class="fa fa-phone-square"></i>
+                                            <i class="fa fa-phone-square" style="color:orange"></i>
                                             <h5 itemprop="headline">TELÉFONOS</h5>
                                             <p itemprop="description">Teléfono 01: (55) 555 55555</p>
                                             <p itemprop="description">Teléfono 02: (55) 555 55555</p>
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-lg-4">
                                         <div class="contact-info-box">
-                                            <i class="fa fa-map-marker"></i>
+                                            <i class="fa fa-map-marker" style="color:orange"></i>
                                             <h5 itemprop="headline">DIRECCIÓN</h5>
                                             <p itemprop="description">5Tth Floor, AH Building, 756 New St
                                                 Lima,
@@ -54,8 +54,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-lg-4">
-                                        <div class="contact-info-box">
-                                            <i class="fa fa-envelope"></i>
+                                        <div class="contact-info-box" >
+                                            <i class="fa fa-envelope" style="color:orange"></i>
                                             <h5 itemprop="headline">EMAIL</h5>
                                             <p itemprop="description">support@yourdomain.com</p>
                                             <p itemprop="description">hello@yourdomain.com</p>
@@ -68,24 +68,30 @@
                                     <h3 itemprop="headline">Si tienes alguna pregunta o duda <br> No dudes por favor
                                         de enviarnos un mensaje.</h3>
                                     <div id="message"></div>
-                                    <form method="post" action="https://html.webinane.com/food-chow/contact.php"
-                                        id="contactform">
+                                     @if (\Session::get('success-contact'))
+                                        <div class="alert alert-success">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <p>{{ \Session::get('success-contact') }}</p>
+                                        </div>
+                                    @endif
+                                    <form action="/cliente/contacto" method="POST">
+                                    @csrf
+                                    @method('POST')
                                         <div class="row">
                                             <div class="col-md-12 col-sm-6 col-lg-12">
-                                                <input id="name" type="text" placeholder="Tu Nombre">
+                                                <input id="name" name="name" type="text" placeholder="Tu Nombre">
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-lg-12">
-                                                <input id="email" type="email" placeholder="Tu Correo Electrónico">
+                                                <input id="email" name="email" type="email" placeholder="Tu Correo Electrónico">
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-lg-12">
-                                                <input type="text" placeholder="Asunto">
+                                                <input type="text" name="title" placeholder="Asunto">
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-lg-12">
-                                                <textarea id="comments" placeholder="Mensaje"></textarea>
+                                                <textarea id="comments" name="message" placeholder="Mensaje"></textarea>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-lg-12">
-                                                <button class="brd-rd2" id="submit" type="submit">ENVIAR
-                                                    MENSAJE</button>
+                                                <button class="brd-rd2" type="submit">ENVIAR MENSAJE</button>
                                                 <img src="assets/images/ajax-loader.gif" class="loader"
                                                     alt="ajax-loader.gif" itemprop="image">
                                             </div>
