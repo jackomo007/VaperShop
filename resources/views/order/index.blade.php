@@ -85,12 +85,22 @@
                             <div class="col-md-12 col-sm-12 col-lg-12">
                                 <div class="loc-map2">
                                     <div class="loc-map brd-rd3" id="loc-map"></div>
-                                    @if($orders->isNotEmpty())
-                                        @include('carrito.finalizar', ["shopping_cart" => $order->shopping_cart_id])
-                                    @else
-                                     <div class="loc-srch" style="left: 300px;">
-                                        <button class="btn btn-default"><a href="/admin" style="color:red">No hay ordenes de compra realizadas.</a></button>
-                                    </div>
+                                     @if(Auth::user()->admin)
+                                        @if(!$orders->isEmpty())
+                                            @include('carrito.finalizar', ["shopping_cart" => $order->shopping_cart_id])
+                                        @else
+                                        <div class="loc-srch" style="left: 300px;">
+                                            <button class="btn btn-default"><a href="/admin" style="color:red">No hay ordenes de compra realizadas.</a></button>
+                                        </div>
+                                        @endif
+                                     @else
+                                        @if(!$orders)
+                                            @include('carrito.finalizar', ["shopping_cart" => $order->shopping_cart_id])
+                                        @else
+                                        <div class="loc-srch" style="left: 300px;">
+                                            <button class="btn btn-default"><a href="/admin" style="color:red">No hay ordenes de compra realizadas.</a></button>
+                                        </div>
+                                        @endif
                                     @endif
                                 </div>
                             </div>

@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +26,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::get();
+        if(auth()->user()->admin){
+            $orders = Order::get();
+        }else{
+           $carts = ShoppingCart::where('user_id', auth()->user()->id)->get();
+           foreach ($carts as $cart) {
+               $orders[]=$cart->order;
+           }
+        }
 
         return view('order.index',['orders' => $orders]);
     }

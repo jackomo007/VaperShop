@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class ShoppingCartController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
         $user = auth()->user();
 
@@ -41,7 +45,7 @@ class ShoppingCartController extends Controller
     public function close($carrito)
     {
         ShoppingCart::where('id',$carrito)->update([
-            'status' => 'completado'
+            'status' => 'Espera Pagamento'
         ]);
 
         return redirect("/order");

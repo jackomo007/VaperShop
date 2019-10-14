@@ -139,12 +139,20 @@ class ProductController extends Controller
     public function filter($filter)
     {
         $products = Product::where('sub_category_id', $filter)->paginate(12);
-        $subCategory = SubCategory::find($products[0]->sub_category_id);
-        $image = $subCategory->category->image;
+        $count = Product::where('sub_category_id', $filter)->count();
+        if($count != 0){
+            $subCategory = SubCategory::find($products[0]->sub_category_id);
+            $image = $subCategory->category->image;
 
-        $user = auth()->user();
-        $categories = Category::get();
-        return view('productos.index',['user' => $user, 'image' => $image, 'products' => $products, 'categories' => $categories]);
+            $user = auth()->user();
+            $categories = Category::get();
+            return view('productos.index',['user' => $user, 'image' => $image, 'products' => $products, 'categories' => $categories]);
+        } else {
+            $user = auth()->user();
+            $categories = Category::get();
+            return view('productos.index',['user' => $user, 'categories' => $categories]);
+        }
+        
     }
 
      public function search(Request $request)

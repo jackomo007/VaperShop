@@ -62,14 +62,20 @@ class CarrouselController extends Controller
      */
     public function update(Request $request)
     {
-        $file = $request->file('e_imagen');
-        $image = time() . $file->getClientOriginalName();
-        $file->move(public_path() . '/images/carrousel/', $image);
-
-        Carrousel::where('id',$request->car_id)->update([
-            'description' => $request->e_description,
-            'image' => $image
-        ]);
+        if($request->file('e_imagen')){
+             $file = $request->file('e_imagen');
+            $image = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/images/carrousel/', $image); 
+            
+            Carrousel::where('e_cart_id',$request->car_id)->update([
+                'description' => $request->e_description,
+                'image' => $image
+            ]);
+        }else{
+            Carrousel::where('e_cart_id',$request->car_id)->update([
+                'description' => $request->e_description
+            ]);
+        }
 
         return back()->with('success-carrousel', 'Imagen actualizada con exito');
     }

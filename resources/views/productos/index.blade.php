@@ -86,41 +86,42 @@
                                             <button style="right: 15px;" type="submit"><i class="fa fa-search"></i></button>
                                         </form>
                                         <div class="dishes-list-wrapper">
-
-                                            @foreach ($products as $product)
-                                            <div class="col-md-4 col-sm-6 col-lg-4">
-                                                    <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
-                                                        <div>
-                                                            <img width="200" height="200" style="margin-left: 10%;" src="/images/productos/{{ $product->imageProduct->image }}" alt="producto" >
-                                                        </div>
-                                                        <div class="popular-dish-info">
-                                                            {{--  <h4 itemprop="headline"><a href="food-detail.html" title=""
-                                                                    itemprop="url">{{ $product->title }}</a></h4>  --}}
-                                                            <h4 itemprop="headline"><a href="#" title=""
-                                                            itemprop="url">{{ $product ? $product->description : '' }}</a></h4>
-                                                            <span class="price">S/ {{ $product->pricing }}</span>
-                                                            <form action="/carrito" method = 'POST'>
-                                                            <div class="qty-wrap">
-                                                                <input class="qty" type="text" id="quantity" name="quantity" placeholder="0">
+                                            @if(isset($products))
+                                                @foreach ($products as $product)
+                                                <div class="col-md-4 col-sm-6 col-lg-4">
+                                                        <div class="popular-dish-box style2 wow fadeIn" data-wow-delay="0.2s">
+                                                            <div>
+                                                                <img width="200" height="200" style="margin-left: 10%;" src="/images/productos/{{ $product->imageProduct->image }}" alt="producto" >
                                                             </div>
+                                                            <div class="popular-dish-info">
+                                                                {{--  <h4 itemprop="headline"><a href="food-detail.html" title=""
+                                                                        itemprop="url">{{ $product->title }}</a></h4>  --}}
+                                                                <h4 itemprop="headline"><a href="#" title=""
+                                                                itemprop="url">{{ $product ? $product->description : '' }}</a></h4>
+                                                                <span class="price">S/ {{ $product->pricing }}</span>
+                                                                <form action="/carrito" method = 'POST'>
+                                                                <div class="qty-wrap">
+                                                                    <input class="qty" type="text" id="quantity" name="quantity" placeholder="0">
+                                                                </div>
 
-                                                                @csrf
-                                                                <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                                <input type="hidden" name="price_sale" value="{{$product->pricing}}">
-                                                                <button type="submit" class="btn btn-warning">Agregar al carrito</button>
-                                                            </form>
+                                                                    @csrf
+                                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                                    <input type="hidden" name="price_sale" value="{{$product->pricing}}">
+                                                                    <button type="submit" class="btn btn-warning">Agregar al carrito</button>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
-
-                                    <div class="pagination-wrapper text-center">
-                                        <ul class="pagination justify-content-center">
-                                            {{ $products->links() }}
-                                    </div>
+                                    @if(isset($products))
+                                        <div class="pagination-wrapper text-center">
+                                            <ul class="pagination justify-content-center">
+                                                {{ $products->links() }}
+                                        </div>
+                                    @endif
 
                              </div>
                         </div>
